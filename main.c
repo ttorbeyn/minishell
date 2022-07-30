@@ -1,16 +1,17 @@
 #include "include/minishell.h"
 
-int	check_cmd()
+//int	check_cmd()
 
 int parser(char *line, t_data *data)
 {
 	int	i;
 
+	i = 0;
 	while (line[i])
 	{
 		while (ft_isspace(line[i]))
 			i++;
-		check_cmd()
+//		check_cmd()
 	}
 }
 
