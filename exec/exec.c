@@ -6,11 +6,11 @@
 /*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/07/30 16:34:01 by vic              ###   ########.fr       */
+/*   Updated: 2022/07/30 18:16:37 by vic              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
+#include "include/minishell.h"
 
 char	*get_env_content(char *str, char **envp)
 {

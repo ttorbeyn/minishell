@@ -6,11 +6,11 @@
 /*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:14:21 by vic               #+#    #+#             */
-/*   Updated: 2022/07/30 16:32:10 by vic              ###   ########.fr       */
+/*   Updated: 2022/07/30 18:16:54 by vic              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../include/minishell.h"
 
 int	exec_pwd(char **envp)
 {
