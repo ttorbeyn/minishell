@@ -1,4 +1,4 @@
-#include "include/minishell.h"
+#include "../01_include/minishell.h"
 
 //int	check_cmd()
 

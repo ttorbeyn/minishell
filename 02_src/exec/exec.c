@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/minishell.h"
+#include "../../01_include/minishell.h"
 
 char	*get_env_content(char *str, char **envp)
 {
