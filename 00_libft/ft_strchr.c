@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 11:40:33 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/07/31 18:10:03 by vmusunga         ###   ########.fr       */
+/*   Created: 2022/07/31 18:20:44 by vmusunga          #+#    #+#             */
+/*   Updated: 2022/07/31 18:21:40 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01_include/libft.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t len)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t i;
+	int i;
 
 	i = 0;
-	if (len > 0)
+	if (c == '\0')
 	{
-		while (i < len - 1 && s1[i] && s2[i])
-		{
-			if (s1[i] != s2[i])
-				return (((unsigned char*)s1)[i] - ((unsigned char*)s2)[i]);
+		while (s[i])
 			i++;
-		}
-		return (((unsigned char*)s1)[i] - ((unsigned char*)s2)[i]);
+		return (&((char *)s)[i]);
 	}
+	while (s[i] != ((char)c) && s[i])
+		i++;
+	if (s[i] == ((char)c))
+		return (&((char *)s)[i]);
 	return (0);
 }

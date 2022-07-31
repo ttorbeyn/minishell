@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:46:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/05/03 15:26:16 by vic              ###   ########.fr       */
+/*   Updated: 2022/07/31 17:51:07 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../01_include/libft.h"
 
 static int	ft_countw(char const *str, char c)
 {

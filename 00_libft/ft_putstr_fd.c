@@ -6,11 +6,11 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:36:45 by vmusunga          #+#    #+#             */
-/*   Updated: 2021/01/14 12:33:39 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:10:19 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../01_include/libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

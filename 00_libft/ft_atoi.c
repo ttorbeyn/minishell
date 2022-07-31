@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:24:00 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/07/27 17:35:47 by vic              ###   ########.fr       */
+/*   Updated: 2022/07/31 18:11:03 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../01_include/libft.h"
 
 static int	ft_overflow(unsigned long long x, int sign, int c)
 {
