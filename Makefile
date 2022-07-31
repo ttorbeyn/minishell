@@ -4,9 +4,7 @@ CFLAGS			=	-Wall -Wextra -Werror -lreadline
 
 INCLUDE			=	-I include
 
-SRC				=	./02_src/main.c \
-					./02_src/parsing/init.c \
-					./00_libft/ft_atoi.c \
+SRC				=	./00_libft/ft_atoi.c \
 					./00_libft/ft_isdigit.c \
 					./00_libft/ft_isspace.c \
 					./00_libft/ft_lstadd_back.c \
@@ -23,6 +21,10 @@ SRC				=	./02_src/main.c \
 					./00_libft/ft_strlen.c \
 					./00_libft/ft_strncmp.c \
 					./00_libft/utils/ft_exit.c \
+					./02_src/main.c \
+                    ./02_src/parsing/00_init.c \
+                    ./02_src/parsing/01_lexer.c \
+                    ./02_src/parsing/99_utils.c \
 
 OBJS			=	$(SRC:.c=.o)
 
