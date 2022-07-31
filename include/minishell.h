@@ -10,10 +10,6 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-<<<<<<< HEAD
-=======
-# include <signal.h>
->>>>>>> fe88b5b2a92002d28103bea2005388be3da2d8ba
 
 typedef struct	s_shell{
 	char*	env;
