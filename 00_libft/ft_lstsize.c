@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/31 18:10:29 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/07/31 18:23:41 by vmusunga         ###   ########.fr       */
+/*   Created: 2021/01/13 00:19:01 by ttorbeyn          #+#    #+#             */
+/*   Updated: 2022/01/05 01:05:47 by hubert           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01_include/libft.h"
 
-int	ft_isspace(char str)
+int	ft_lstsize(t_list **lst)
 {
-	if (str == ' ' || str == '\t' || str == '\n' || str == '\v'
-		   || str == '\f' || str == '\r')
-		return (1);
-	return (0);
+	int		i;
+	t_list	*first;
+
+	first = *lst;
+	i = 0;
+	while (first)
+	{
+		first = first->next;
+		i++;
+	}
+	return (i);
 }

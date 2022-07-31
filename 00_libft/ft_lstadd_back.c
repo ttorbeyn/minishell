@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/31 18:10:29 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/07/31 18:23:41 by vmusunga         ###   ########.fr       */
+/*   Created: 2021/01/12 23:47:16 by ttorbeyn          #+#    #+#             */
+/*   Updated: 2021/12/30 21:23:26 by hubert           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01_include/libft.h"
 
-int	ft_isspace(char str)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (str == ' ' || str == '\t' || str == '\n' || str == '\v'
-		   || str == '\f' || str == '\r')
-		return (1);
-	return (0);
+	t_list	*first;
+
+	first = *lst;
+	first = ft_lstlast(first);
+	first->next = new;
+	new->next = NULL;
 }
