@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "../include/libft.h"
 
 static int	ft_overflow(unsigned long long x, int sign, int c)
 {
