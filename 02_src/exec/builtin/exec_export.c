@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_setenv.c                                      :+:      :+:    :+:   */
+/*   exec_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 20:13:02 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:44:22 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,66 +36,28 @@ static int check_valid(char *av)
 	return (0);
 }
 
-char	*get_name(char *str)
-{
-	int i;
-	int len;
-	char *cpy;
-
-	i = 0;
-	len = 0;
-	while (str[len])
-	{
-		if (str[len] == '=')
-			break;
-		len++;
-	}
-	cpy = malloc(sizeof(char) * len + 1);
-	while (i < len)
-	{
-		cpy[i] = str[i];
-		i++;
-	}
-	cpy[i] = '\0';
-	return (cpy);
-}
-
 /*
 	set_env (or export) adds or modifies environement variables in env
 */
 
 int	exec_export(t_cmd command, t_data *data)
 {
-	int i;
 	char *name;
 
-	i = 0;
 	if (!data->env || !command.av[1] || command.av[1][0] == '\0')
 		return (1);
 	if (check_valid(command.av[1]))
 		return (1);
-
-	name = get_name(command.av[1]);
-
-	//check_exist(data, command);
-	// search name in env;
-	// if exists...
-	// else ... 
+	name = get_env_name(command.av[1]);
+	while (data->env)
+	{
+		if (ft_strncmp(data->env->content, name, ft_strlen(name)))
+		{
+			data->env->content = ft_strdup(command.av[1]);
+			return(0);
+		}
+		data->env = data->env->next;
+	}
+	ft_lstadd_back(&data->env, ft_lstnew(command.av[1]));
 	return (0);
 }
-
-// int	main(int ac, char **av)
-// {
-// 	t_cmd command;
-// 	t_data *data;
-// 	int i;
-
-// 	// data->env = malloc(100);
-// 	// data->env[0] = "TEST= blabla";
-// 	command.av = av;
-	
-
-// 	i = exec_export(command, data);
-// 	printf("%d\n", i);
-// 	return (0);
-// }

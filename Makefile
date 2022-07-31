@@ -13,6 +13,7 @@ SRC				=	./02_src/main.c \
 					./00_libft/ft_lstbefore_last.c \
 					./00_libft/ft_lstlast.c \
 					./00_libft/ft_lstnew.c \
+					./00_libft/ft_lstget.c \
 					./00_libft/ft_lstsize.c \
 					./00_libft/ft_putendl_fd.c \
 					./00_libft/ft_putstr_fd.c \
