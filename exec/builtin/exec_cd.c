@@ -6,11 +6,11 @@
 /*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:40:09 by vic               #+#    #+#             */
-/*   Updated: 2022/07/30 16:55:28 by vic              ###   ########.fr       */
+/*   Updated: 2022/07/30 18:16:46 by vic              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../include/minishell.h"
 
 int	get_path(char *str, char **envp)
 {
