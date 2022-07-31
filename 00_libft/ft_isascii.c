@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 22:37:59 by vmusunga         ###   ########.fr       */
+/*   Created: 2020/10/14 15:56:45 by vmusunga          #+#    #+#             */
+/*   Updated: 2022/07/31 19:30:33 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../01_include/minishell.h"
+#include "../01_include/libft.h"
 
-void	executer(char **path, char **cmd, char **env)
+int	ft_isascii(int c)
 {
-	int		i;
-	int		ret;
-	char	*tmp;
-
-	ret = -1;
-	i = -1;
-
-	while (path[i] && ret == -1)
-	{
-		if (tmp)
-			free(tmp);
-		tmp = ft_strjoin(path[i], *cmd);
-		if (!tmp)
-			break;
-		ret = execve(tmp, cmd, env);
-		i++;
-	}
-	if (tmp)
-		free(tmp);
-	return ;
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
+		return (0);
 }

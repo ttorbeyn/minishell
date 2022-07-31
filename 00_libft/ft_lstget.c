@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   ft_lstget.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 22:37:59 by vmusunga         ###   ########.fr       */
+/*   Created: 2022/07/31 22:22:11 by vmusunga          #+#    #+#             */
+/*   Updated: 2022/07/31 22:22:46 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../01_include/minishell.h"
+#include "../01_include/libft.h"
 
-void	executer(char **path, char **cmd, char **env)
+t_list	*ft_lstget(t_list *lst, int index)
 {
-	int		i;
-	int		ret;
-	char	*tmp;
+	int	i;
 
-	ret = -1;
-	i = -1;
-
-	while (path[i] && ret == -1)
+	i = 0;
+	while (lst && i < index)
 	{
-		if (tmp)
-			free(tmp);
-		tmp = ft_strjoin(path[i], *cmd);
-		if (!tmp)
-			break;
-		ret = execve(tmp, cmd, env);
 		i++;
+		lst = lst->next;
 	}
-	if (tmp)
-		free(tmp);
-	return ;
+	return (lst);
 }
