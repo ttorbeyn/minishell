@@ -37,9 +37,10 @@ int	main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
+//	(void)env;
 	line = "rien";
 	data_set(&data, &data.env, env);
-	print_lst(&data.env);
+//	print_lst(&data.env);
 	signal(SIGQUIT, SIG_IGN);
 	while (line)
 	{
