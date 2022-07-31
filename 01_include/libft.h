@@ -25,7 +25,7 @@ char	*ft_strchr(const char *s, int c);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstbeforelast(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_lstnew(char *content);
+t_list	*ft_lstnew(void *content);
 int	ft_lstsize(t_list **lst);
 
 int	ft_exit(void);
