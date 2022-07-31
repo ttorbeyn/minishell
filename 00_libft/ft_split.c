@@ -74,8 +74,10 @@ char	**ft_split(char const *s, char c)
 
 	new = malloc((sizeof(char *)) * (ft_wordcount(s, c) + 1));
 	if (!new || !s)
+	{
 		return (NULL);
 		ft_exit();
+	}
 	i = -1;
 	x = 0;
 	while (++i < (ft_wordcount(s, c)))
