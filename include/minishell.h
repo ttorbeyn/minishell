@@ -11,17 +11,17 @@
 #include <readline/history.h>
 
 
-typedef struct	s_shell{
+typedef struct	s_data{
 	char*	env;
-}				t_shell;
+}				t_data;
 
-typedef struct	s_command{
+typedef struct	s_cmd{
 	char			*cmd;
 	int				ac;
 	char			**av;
 	//t_redirection	out;
 	//t_redirection	in;
-}				t_command;
+}				t_cmd;
 
 
 
