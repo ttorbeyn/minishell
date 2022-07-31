@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_pwd.c                                         :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/30 13:14:21 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 20:13:02 by vmusunga         ###   ########.fr       */
+/*   Created: 2020/10/14 15:56:45 by vmusunga          #+#    #+#             */
+/*   Updated: 2022/07/31 19:30:33 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../01_include/minishell.h"
+#include "../01_include/libft.h"
 
-int	exec_pwd(char **env)
+int	ft_isascii(int c)
 {
-	char *tmp;
-
-	tmp = get_env_content("PWD", env);
-	ft_putendl_fd(tmp, 1);
-	free(tmp);
-	return (0);
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
+		return (0);
 }

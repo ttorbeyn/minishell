@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/07/30 18:16:37 by vic              ###   ########.fr       */
+/*   Updated: 2022/07/31 20:13:02 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../01_include/minishell.h"
 
-char	*get_env_content(char *str, char **envp)
+char	*get_env_content(char *str, char **env)
 {
 	int i;
 	char *tmp;
@@ -21,10 +21,10 @@ char	*get_env_content(char *str, char **envp)
 	i = 0;
 	target = NULL;
 	tmp = ft_strjoin(str, "=");
-	while (envp[i])
+	while (env[i])
 	{
-		if (!ft_strncmp(envp[i], tmp, ft_strlen(tmp)))
-			target = ft_strdup(envp[i]); //(=HOME)
+		if (!ft_strncmp(env[i], tmp, ft_strlen(tmp)))
+			target = ft_strdup(env[i]); //(=HOME)
 		i++;
 	}
 	printf("%s/n", target);

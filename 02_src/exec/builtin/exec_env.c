@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   exec_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 17:09:16 by vic              ###   ########.fr       */
+/*   Updated: 2022/07/31 20:15:14 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
 
-int	exec_env(t_cmd command, char **envp)
+int	exec_env(t_cmd command, t_data *data)
 {
-	int i;
+	t_list *tmp;
 
-	i = 0;
+	tmp = data->env;
 	if (command.ac > 2)
 	{
 		ft_putendl_fd("Error: Too many arguments", 2);
 		return (1);
 	}
-	if (!envp)
+	if (!tmp)
 		return (1);
-	while (envp[i])
+	while (tmp)
 	{
-		ft_putstr_fd(envp[i], 1);
+		ft_putstr_fd(tmp->content, 1);
 		write (1, "\n", 1);
-		i++;
+		tmp = tmp->next;
 	}
 	return (0);
 }
