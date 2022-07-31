@@ -6,13 +6,13 @@
 /*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:14:59 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 16:43:39 by vic              ###   ########.fr       */
+/*   Updated: 2022/07/31 17:09:48 by vic              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../01_include/minishell.h"
 
-int	exec_exit(t_command command)
+int	exec_exit(t_cmd command)
 {
 	// if (!command.av[1])
 	// 	exit();

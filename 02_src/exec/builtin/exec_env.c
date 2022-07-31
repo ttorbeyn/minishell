@@ -6,13 +6,13 @@
 /*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 16:13:48 by vic              ###   ########.fr       */
+/*   Updated: 2022/07/31 17:09:16 by vic              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
 
-int	exec_env(t_command command, char **envp)
+int	exec_env(t_cmd command, char **envp)
 {
 	int i;
 

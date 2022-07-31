@@ -6,13 +6,13 @@
 /*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:59:37 by vic               #+#    #+#             */
-/*   Updated: 2022/07/30 18:16:49 by vic              ###   ########.fr       */
+/*   Updated: 2022/07/31 17:09:22 by vic              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
 
-int	exec_echo(t_command command)
+int	exec_echo(t_cmd command)
 {
 	int i;
 	int flag;

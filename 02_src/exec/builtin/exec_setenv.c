@@ -6,13 +6,13 @@
 /*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 16:57:51 by vic              ###   ########.fr       */
+/*   Updated: 2022/07/31 17:06:55 by vic              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../01_include/minishell.h"
 
-int	exec_setenv(t_command command)
+int	exec_setenv(t_cmd command)
 {
 	
 }

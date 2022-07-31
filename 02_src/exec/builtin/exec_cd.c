@@ -6,7 +6,7 @@
 /*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:40:09 by vic               #+#    #+#             */
-/*   Updated: 2022/07/30 18:16:46 by vic              ###   ########.fr       */
+/*   Updated: 2022/07/31 17:09:41 by vic              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	set_dir(char *path, char ***envp)
 	// then change the current path in struct ??
 }
 
-int	exec_cd(t_command command, char **envp)
+int	exec_cd(t_cmd command, char **envp)
 {
 	char *path;
 	int ret;
