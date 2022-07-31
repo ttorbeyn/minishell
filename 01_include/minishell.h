@@ -11,6 +11,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-int	data_set(t_data *data, char **env);
+void	data_set(t_data *data, t_list **envp, char **env);
 
 #endif
