@@ -6,87 +6,90 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:46:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/07/31 17:51:07 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:06:21 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01_include/libft.h"
 
-static int	ft_countw(char const *str, char c)
+static int	ft_wordcount(char const *s, char c)
 {
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		while (str[i] == c)
-			i++;
-		if (str[i] != c && str[i])
-			count++;
-		while (str[i] != c && str[i])
-			i++;
-	}
-	return (count);
-}
-
-static int	ft_len(char const *str, char c)
-{
-	int	x;
-	int	i;
+	size_t	i;
+	int		x;
 
 	i = 0;
 	x = 0;
-	if (str[i] == c)
-		i++;
-	while (str[i] && str[i] != c)
+	if (s[i] != c && s[i])
 	{
-		i++;
 		x++;
+		i++;
+	}
+	else if (s[i])
+		i++;
+	while (s[i] != '\0')
+	{
+		if (s[i - 1] == c && s[i] != c)
+			x++;
+		i++;
 	}
 	return (x);
 }
 
-static char	**ft_free(char **tab, int x)
+static int	ft_wordlen(char const *s, char c, size_t x)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (i < x && tab[i])
+	while (s[x] && s[x] == c)
+		x++;
+	while (s[x] && s[x] != c)
 	{
-		free(tab[i]);
+		x++;
 		i++;
 	}
-	free(tab);
+	return (i);
+}
+
+static char	**ft_freeall(char **new, int i)
+{
+	int	j;
+
+	j = 0;
+	while (j < i && new[j])
+	{
+		free(new[j]);
+		j++;
+	}
+	free(new);
+	ft_exit();
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c, int i)
+char	**ft_split(char const *s, char c)
 {
-	char	**dest;
-	int		x;
-	int		y;
+	char	**new;
+	int		i;
+	size_t	j;
+	size_t	x;
 
-	i = 0;
+	new = malloc((sizeof(char *)) * (ft_wordcount(s, c) + 1));
+	if (!new || !s)
+		return (NULL);
+		ft_exit();
+	i = -1;
 	x = 0;
-	if ((!s))
-		return (NULL);
-	dest = malloc(sizeof(char **) * (ft_countw(s, c) + 1));
-	if (!dest)
-		return (NULL);
-	while (x < ft_countw(s, c))
+	while (++i < (ft_wordcount(s, c)))
 	{
-		y = 0;
-		dest[x] = malloc(sizeof(char *) * (ft_len(&s[i], c) + 1));
-		if (!dest[x])
-			return (ft_free(dest, x));
-		while (s[i] == c)
-			i++;
-		while (s[i] != c && s[i])
-			dest[x][y++] = s[i++];
-		dest[x++][y] = '\0';
+		j = 0;
+		new[i] = malloc((sizeof(char) * (ft_wordlen(s, c, x) + 1)));
+		if (!new[i])
+			ft_freeall(new, i);
+		while (s[x] && s[x] == c)
+			x++;
+		while (s[x] && s[x] != c)
+			new[i][j++] = s[x++];
+		new[i][j] = '\0';
 	}
-	dest[x] = 0;
-	return (dest);
+	new[i] = NULL;
+	return (new);
 }

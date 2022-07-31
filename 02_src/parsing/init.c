@@ -13,7 +13,6 @@ void	data_set(t_data *data, t_list **envp, char **env)
 	printf("%d\n", env_len);
 	while (i < env_len)
 	{
-		printf("%d\t : %s\n", i, env[i]);
 		ft_lstadd_back(envp, ft_lstnew(env[i]));
 		i++;
 	}

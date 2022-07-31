@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 22:37:59 by vmusunga         ###   ########.fr       */
+/*   Created: 2021/01/11 15:40:10 by vmusunga          #+#    #+#             */
+/*   Updated: 2022/07/31 19:30:34 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../01_include/minishell.h"
+#include "../01_include/libft.h"
 
-void	executer(char **path, char **cmd, char **env)
+char	*ft_strrchr(const char *s, int c)
 {
-	int		i;
-	int		ret;
-	char	*tmp;
+	int i;
+	int len;
 
-	ret = -1;
-	i = -1;
-
-	while (path[i] && ret == -1)
+	len = 0;
+	i = 0;
+	while (s[len])
+		len++;
+	if (c == '\0')
+		return (&((char *)s)[len]);
+	while (len > 0)
 	{
-		if (tmp)
-			free(tmp);
-		tmp = ft_strjoin(path[i], *cmd);
-		if (!tmp)
-			break;
-		ret = execve(tmp, cmd, env);
-		i++;
+		if (s[len - 1] == ((char)c))
+			return (&((char *)s)[len - 1]);
+		len--;
 	}
-	if (tmp)
-		free(tmp);
-	return ;
+	return (0);
 }

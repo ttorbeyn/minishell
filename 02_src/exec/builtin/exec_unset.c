@@ -1,46 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_setenv.c                                      :+:      :+:    :+:   */
+/*   exec_unset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 18:20:14 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/07/31 22:44:08 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
 
-static int check_valid(char *av)
+void	unset_from_env(t_data *data, t_list **env, int i)
+{
+	t_list	*previous;
+	t_list	*current;
+	t_list	*next;
+
+	previous = ft_lstget(*env, i - 1);
+	current = ft_lstget(*env, i);
+	next = ft_lstget(*env, i + 1);
+	if (previous && next)
+		previous->next = next;
+	else if (previous && !next)
+		previous->next = NULL;
+	else if (!previous && next)
+		current = next;
+	else
+		current = NULL;
+}
+
+int	exec_unset(t_cmd command, t_data *data)
 {
 	int	i;
+	char *name;
 
 	i = 0;
-	if (!ft_strchr(av, '='))
-		return (1);
-	while (ft_strncmp(av[i], "=", 1) && av[i])
+	name = get_env_name(command.av[1]);
+	while (&data->env[i])
 	{
-		if (!ft_isdigit((int)av[i]))
-			return (1);
+		if (ft_strncmp(data->env->content, name, ft_strlen(name)))
+		{
+			unset_from_env(data, &data->env, i);
+		}
 		i++;
 	}
 	return (0);
-}
-
-/*
-	set_env (or export) adds or modifies environement variables in envp
-*/
-
-int	exec_export(t_cmd command, t_data *data)
-{
-	int i;
-
-	i = 0;
-	if (check_valid(command.av[1]))
-		return (1);
-	while (command.av[1][i])
-	{
-		
-	}
 }
