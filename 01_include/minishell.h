@@ -19,7 +19,7 @@ char	*get_line(t_data *data);
 int	lex(t_data *data);
 
 //utils
-void	print_lst(t_list **env)
+void	print_lst(t_list **env);
 
 /// BUILTINS
 char	*get_env_content(char *name, t_list *env);
