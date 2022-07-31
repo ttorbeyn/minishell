@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_pwd.c                                         :+:      :+:    :+:   */
+/*   exec_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/30 13:14:21 by vic               #+#    #+#             */
-/*   Updated: 2022/07/30 18:16:54 by vic              ###   ########.fr       */
+/*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
+/*   Updated: 2022/07/31 16:13:48 by vic              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../../../01_include/minishell.h"
 
-int	exec_pwd(char **envp)
+int	exec_env(t_command command, char **envp)
 {
-	char *tmp;
+	int i;
 
-	tmp = get_env_content("PWD", envp);
-	ft_putendl_fd(tmp, 1);
-	free(tmp);
+	i = 0;
+	if (command.ac > 2)
+	{
+		ft_putendl_fd("Error: Too many arguments", 2);
+		return (1);
+	}
+	if (!envp)
+		return (1);
+	while (envp[i])
+	{
+		ft_putstr_fd(envp[i], 1);
+		write (1, "\n", 1);
+		i++;
+	}
 	return (0);
 }

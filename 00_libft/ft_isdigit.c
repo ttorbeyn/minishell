@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 11:35:33 by vmusunga          #+#    #+#             */
-/*   Updated: 2021/01/15 10:47:05 by vmusunga         ###   ########.fr       */
+/*   Created: 2021/01/08 14:31:58 by vmusunga          #+#    #+#             */
+/*   Updated: 2022/06/09 14:50:24 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-char	*ft_strdup(const char *s1)
+int	ft_isdigit(int c)
 {
-	int		i;
-	char	*cpy;
-	size_t	len;
+	if (c >= '0' && c <= '9')
+		return (0);
+	else
+		return (1);
+}
 
-	len = ft_strlen(s1);
+int	isdigit_check(char *s)
+{
+	int	i;
+
 	i = 0;
-	if (!(cpy = malloc(sizeof(const char) * (len + 1))))
-		return (NULL);
-	while (s1[i])
+	while (s[i])
 	{
-		cpy[i] = s1[i];
+		if (ft_isdigit(s[i]))
+			return (0);
 		i++;
 	}
-	cpy[i] = '\0';
-	return (cpy);
+	return (1);
 }

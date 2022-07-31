@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   exec_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 15:40:19 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/06/07 13:55:17 by vmusunga         ###   ########.fr       */
+/*   Created: 2022/07/30 13:14:21 by vic               #+#    #+#             */
+/*   Updated: 2022/07/30 18:16:54 by vic              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../../01_include/minishell.h"
 
-void	ft_putendl_fd(char *s, int fd)
+int	exec_pwd(char **envp)
 {
-	int	i;
+	char *tmp;
 
-	i = 0;
-	if ((!s))
-		return ;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-	write(fd, "\n", 1);
+	tmp = get_env_content("PWD", envp);
+	ft_putendl_fd(tmp, 1);
+	free(tmp);
+	return (0);
 }

@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_env.c                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vic <vic@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 16:13:48 by vic              ###   ########.fr       */
+/*   Created: 2021/01/12 15:36:45 by vmusunga          #+#    #+#             */
+/*   Updated: 2021/01/14 12:33:39 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/libft.h"
 
-int	exec_env(t_command command, char **envp)
+void	ft_putstr_fd(char *s, int fd)
 {
 	int i;
 
 	i = 0;
-	if (command.ac > 2)
+	if ((!s))
+		return ;
+	while (s[i])
 	{
-		ft_putendl_fd("Error: Too many arguments", 2);
-		return (1);
-	}
-	if (!envp)
-		return (1);
-	while (envp[i])
-	{
-		ft_putstr_fd(envp[i], 1);
-		write (1, "\n", 1);
+		write(fd, &s[i], 1);
 		i++;
 	}
-	return (0);
 }

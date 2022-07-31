@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 11:40:33 by vmusunga          #+#    #+#             */
-/*   Updated: 2021/01/13 17:58:08 by vmusunga         ###   ########.fr       */
+/*   Created: 2021/01/12 11:35:33 by vmusunga          #+#    #+#             */
+/*   Updated: 2021/01/15 10:47:05 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t len)
+char	*ft_strdup(const char *s1)
 {
-	size_t i;
+	int		i;
+	char	*cpy;
+	size_t	len;
 
+	len = ft_strlen(s1);
 	i = 0;
-	if (len > 0)
+	if (!(cpy = malloc(sizeof(const char) * (len + 1))))
+		return (NULL);
+	while (s1[i])
 	{
-		while (i < len - 1 && s1[i] && s2[i])
-		{
-			if (s1[i] != s2[i])
-				return (((unsigned char*)s1)[i] - ((unsigned char*)s2)[i]);
-			i++;
-		}
-		return (((unsigned char*)s1)[i] - ((unsigned char*)s2)[i]);
+		cpy[i] = s1[i];
+		i++;
 	}
-	return (0);
+	cpy[i] = '\0';
+	return (cpy);
 }

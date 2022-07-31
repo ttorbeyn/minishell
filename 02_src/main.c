@@ -1,4 +1,4 @@
-#include "include/minishell.h"
+#include "../01_include/minishell.h"
 
 //int	check_cmd()
 
@@ -18,12 +18,13 @@ int parser(char *line, t_data *data)
 
 int	main(int ac, char **av, char **env)
 {
-	char	*line;
 	t_data	data;
+	char	*line;
 
 	(void)ac;
 	(void)av;
 	line = "rien";
+	data_set
 	data.envp = env;
 	signal(SIGQUIT, SIG_IGN);
 	while (line)

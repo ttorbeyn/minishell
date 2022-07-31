@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 14:31:58 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/06/09 14:50:24 by vmusunga         ###   ########.fr       */
+/*   Created: 2021/01/13 17:05:51 by vmusunga          #+#    #+#             */
+/*   Updated: 2022/06/07 13:55:46 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "../include/libft.h"
 
-int	ft_isdigit(int c)
+size_t	ft_strlen(const char *str)
 {
-	if (c >= '0' && c <= '9')
-		return (0);
-	else
-		return (1);
-}
+	int	x;
 
-int	isdigit_check(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (ft_isdigit(s[i]))
-			return (0);
-		i++;
-	}
-	return (1);
+	x = 0;
+	while (str[x])
+		x++;
+	return (x);
 }
