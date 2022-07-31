@@ -5,6 +5,8 @@
 
 typedef struct	s_data{
 	t_list	*env;
+	char	*line;
+	t_list	*cmds;
 }				t_data;
 
 typedef struct	s_cmd{

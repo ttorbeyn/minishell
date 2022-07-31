@@ -11,6 +11,14 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+//00_init
 void	data_set(t_data *data, t_list **envp, char **env);
+char	*get_line(t_data *data);
+
+//01_lexer
+int	lex(t_data *data);
+
+//utils
+void	print_lst(t_list **env)
 
 #endif
