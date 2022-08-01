@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 22:33:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/07/31 22:57:02 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:43:24 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,4 @@ char	*get_env_name(char *str)
 	}
 	cpy[i] = '\0';
 	return (cpy);
-}
-
-int	is_builtin(char *cmd)
-{
-	if (!ft_strncmp(cmd, "cd", 2))
-		return (1);
-	if (!ft_strncmp(cmd, "echo", 4))
-		return (2);
-	if (!ft_strncmp(cmd, "exit", 4))
-		return (3);
-	if (!ft_strncmp(cmd, "env", 3))
-		return (4);
-	if (!ft_strncmp(cmd, "setenv", 6))
-		return (5);
-	if (!ft_strncmp(cmd, "unsetenv", 8))
-		return (6);
-	return (0);
 }

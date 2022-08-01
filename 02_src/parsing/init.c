@@ -18,4 +18,7 @@ void	data_set(t_data *data, t_list **envp, char **env)
 		ft_lstadd_back(envp, ft_lstnew(env[i]));
 		i++;
 	}
+		printf("lstsize1:	%d\n", ft_lstsize(envp));
+		printf("I:	%d\n", i);
+
 }
