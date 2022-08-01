@@ -6,18 +6,18 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 20:15:14 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:48:52 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
 
-int	exec_env(t_cmd command, t_data *data)
+int	exec_env(t_cmd *command, t_data *data)
 {
 	t_list *tmp;
 
 	tmp = data->env;
-	if (command.ac > 2)
+	if (command->ac > 1)
 	{
 		ft_putendl_fd("Error: Too many arguments", 2);
 		return (1);

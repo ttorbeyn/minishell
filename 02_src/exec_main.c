@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:52 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/01 14:19:14 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/01 16:02:19 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_lst(t_list **env)
 
 	first = *env;
 	int len = ft_lstsize(env);
-	printf("lstsize:	%d\n", len);
+	// printf("lstsize:	%d\n", len);
 
 	int i = 0;
 	while (i < len)
@@ -31,7 +31,7 @@ void	print_lst(t_list **env)
 }
 
 
-int	is_builtin(t_cmd *cmd)
+int	is_builtin(t_cmd *cmd, t_data *data)
 {
 	if (!ft_strncmp(cmd->av[0], "cd", 2))
 		return (1);
@@ -40,9 +40,9 @@ int	is_builtin(t_cmd *cmd)
 	if (!ft_strncmp(cmd->av[0], "exit", 4))
 		return (3);
 	if (!ft_strncmp(cmd->av[0], "env", 3))
-		return (4);
-	if (!ft_strncmp(cmd->av[0], "setenv", 6))
-		return (5);
+		return (exec_env(cmd, data));
+	if (!ft_strncmp(cmd->av[0], "export", 6))
+		return (exec_export(cmd, data));
 	if (!ft_strncmp(cmd->av[0], "unsetenv", 8))
 		return (6);
 	return (0);
@@ -59,8 +59,9 @@ int	main(int ac, char **av, char **env)
 	// len_env = ft_lstsize(&data.env);
 	if (ac < 2)
 		return (1);
+	cmd.ac = ac - 1;
 	data_set(&data, &data.env, env);
-	cmd.av = malloc(sizeof(char*) * ac + 1);
+	cmd.av = malloc(sizeof(char*) * ac);
 	// print_lst(&data.env);
 	while (av[i+1])
 	{
@@ -68,7 +69,7 @@ int	main(int ac, char **av, char **env)
 		i++;
 	}
 	cmd.cmd = ft_strdup(av[1]);
-	is_builtin(&cmd);
+	is_builtin(&cmd, &data);
 	i = -1;
 	// while (cmd.av[++i])
 	// 	printf("av%d:	%s\n", i, cmd.av[i]);
