@@ -6,13 +6,13 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 22:44:08 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:40:35 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
 
-void	unset_from_env(t_data *data, t_list **env, int i)
+void	unset_from_env(t_list **env, int i)
 {
 	t_list	*previous;
 	t_list	*current;
@@ -42,7 +42,7 @@ int	exec_unset(t_cmd command, t_data *data)
 	{
 		if (ft_strncmp(data->env->content, name, ft_strlen(name)))
 		{
-			unset_from_env(data, &data->env, i);
+			unset_from_env(&data->env, i);
 		}
 		i++;
 	}
