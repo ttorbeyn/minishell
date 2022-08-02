@@ -32,8 +32,8 @@ EXEC			=	./02_src/exec/builtin/builtin_utils.c \
 					./02_src/exec/builtin/exec_export.c \
 					./02_src/exec/builtin/exec_pwd.c \
 					./02_src/exec/builtin/exec_unset.c \
-#					./02_src/exec/builtin/exec_cd.c \
-					./02_src/exec/builtin/exec_exit.c 
+					./02_src/exec/builtin/exec_cd.c \
+#					./02_src/exec/builtin/exec_exit.c 
 
 SRC				=	$(LIBFT) \
 					$(PARSING) \

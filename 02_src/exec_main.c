@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:52 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/02 13:07:16 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/02 17:16:58 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_lst(t_list **env)
 int	is_builtin(t_cmd *cmd, t_data *data)
 {
 	if (!ft_strncmp(cmd->av[0], "cd", 2))
-		return (1);
+		return (exec_cd(cmd, data));
 	if (!ft_strncmp(cmd->av[0], "echo", 4))
 		return (exec_echo(cmd));
 	if (!ft_strncmp(cmd->av[0], "exit", 4))

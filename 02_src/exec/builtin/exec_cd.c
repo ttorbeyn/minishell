@@ -6,59 +6,69 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:40:09 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 20:13:02 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/02 17:24:53 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
 
-int	get_path(char *str, char **env)
+char	*get_path(t_cmd *command, t_data *data)
 {
-	int i;
+	char		*path;
+	const char	*home;
 
-	i = 0;
-	while (env[i])
+	path = NULL;
+	home = get_env_content("HOME", data->env);
+	if (command->av[1])
 	{
-		if (!ft_strncmp(env[i], str, ft_strlen(str)))
-			return (i);
-		i++;
+		path = getcwd(NULL, 0);
+		path = ft_strjoin(path, "/");
+		path = ft_strjoin(path, command->av[1]);
 	}
-	return (-1);
+	else
+		chdir(home);
+	return (path);
 }
 
-int	set_dir(char *path, char ***env)
+void	update_env(t_data *data, char *name)
 {
-	int ret;
+	char	*content;
+	t_list	*tmp;
+	char	*path;
 
-	ret = chdir(path);
-	if (ret == -1)
-		return (-1);
-	// then change the current path in struct ??
+	tmp = data->env;
+	while (tmp)
+	{
+		content = (char *) tmp->content;
+		if (!ft_strncmp(name, content, ft_strlen(name)))
+		{
+			path = get_pwd();
+			tmp->content = ft_strjoin(name, path);
+			if (!content)
+				exit(EXIT_FAILURE);
+			free(path);
+			break ;
+		}
+		tmp = tmp->next;
+	}
 }
 
-int	exec_cd(t_cmd command, char **env)
+int	exec_cd(t_cmd *command, t_data *data)
 {
 	char *path;
-	int ret;
 
-	if (!command.av[1])
+	update_env(data, "OLDPWD=");
+	path = get_path(command, data);
+	if (!path)
+		return (1);
+	if (chdir(path) < 0)
 	{
-		path = get_env_content("HOME", env);
-		if (!path)
-		{
-			ft_putendl_fd("Error: No home set", 2);
-			return (1);
-		}
-		ret = set_dir(path, &env);
+		ft_putendl_fd("Error: Path not found", 2);
 		free(path);
-		return (ret);
-	}
-	if (command.av[2])
-	{
-		ft_putendl_fd("Error: Too many arguments", 2);
 		return (1);
 	}
-	if (command.av[1][0] == '\0')
-		return (set_dir(".", &env));
-	return (set_dir(command.av[1], &env));
+	update_env(data, "PWD=");
+	// print_lst(&data->env);
+	free(path);
+	return (0);
 }

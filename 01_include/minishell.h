@@ -15,10 +15,12 @@ void	data_set(t_data *data, t_list **envp, char **env);
 void	print_lst(t_list **env);
 
 /// BUILTINS
+char	*get_pwd(void);
 char	*get_env_content(char *name, t_list *env);
 char	*get_env_name(char *str);
 int		is_builtin(t_cmd *cmd, t_data *data);
 
+int	exec_cd(t_cmd *command, t_data *data);
 int	exec_echo(t_cmd *command);
 int	exec_env(t_cmd *command, t_data *data);
 int	exec_pwd(t_data *data);
