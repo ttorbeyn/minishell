@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:52 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/01 16:02:19 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/02 13:07:16 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ int	is_builtin(t_cmd *cmd, t_data *data)
 		return (3);
 	if (!ft_strncmp(cmd->av[0], "env", 3))
 		return (exec_env(cmd, data));
+	if (!ft_strncmp(cmd->av[0], "pwd", 3))
+		return (exec_pwd(data));
 	if (!ft_strncmp(cmd->av[0], "export", 6))
 		return (exec_export(cmd, data));
-	if (!ft_strncmp(cmd->av[0], "unsetenv", 8))
-		return (6);
+	if (!ft_strncmp(cmd->av[0], "unset", 5))
+		return (exec_unset(cmd, data));
 	return (0);
 }
 

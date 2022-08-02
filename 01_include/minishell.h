@@ -21,7 +21,9 @@ int		is_builtin(t_cmd *cmd, t_data *data);
 
 int	exec_echo(t_cmd *command);
 int	exec_env(t_cmd *command, t_data *data);
+int	exec_pwd(t_data *data);
 int	exec_export(t_cmd *command, t_data *data);
+int	exec_unset(t_cmd *command, t_data *data);
 
 
 #endif
