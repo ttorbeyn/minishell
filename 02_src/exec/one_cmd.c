@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_env.c                                         :+:      :+:    :+:   */
+/*   one_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/08/12 18:41:52 by vmusunga         ###   ########.fr       */
+/*   Created: 2022/08/12 18:20:58 by vmusunga          #+#    #+#             */
+/*   Updated: 2022/08/12 20:10:35 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../01_include/minishell.h"
+#include "../../01_include/minishell.h"
 
-int	exec_env(t_cmd *command, t_data *data)
+int	one_cmd(t_cmd *cmd, t_data *data)
 {
-	t_list *tmp;
-
-	tmp = data->env;
-	if (command->ac > 1)
-	{
-		return_error("Error: Path not found", 0);
-		return (1);
-	}
-	if (!tmp)
-		return (1);
-	while (tmp)
-	{
-		ft_putstr_fd(tmp->content, 1);
-		write (1, "\n", 1);
-		tmp = tmp->next;
-	}
+	//check buitin
+	executer(cmd, data);
 	return (0);
+	//forks
 }
+
+// void	child_one(t_data *data, t_cmd *cmd)
+// {
+	
+// }

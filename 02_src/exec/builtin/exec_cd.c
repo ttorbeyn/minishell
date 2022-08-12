@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:40:09 by vic               #+#    #+#             */
-/*   Updated: 2022/08/02 17:24:53 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/12 18:41:12 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	exec_cd(t_cmd *command, t_data *data)
 		return (1);
 	if (chdir(path) < 0)
 	{
-		ft_putendl_fd("Error: Path not found", 2);
+		return_error("Error: Path not found", 0);
 		free(path);
 		return (1);
 	}

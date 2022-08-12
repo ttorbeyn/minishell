@@ -33,12 +33,15 @@ EXEC			=	./02_src/exec/builtin/builtin_utils.c \
 					./02_src/exec/builtin/exec_pwd.c \
 					./02_src/exec/builtin/exec_unset.c \
 					./02_src/exec/builtin/exec_cd.c \
+					./02_src/exec/utils.c \
+					./02_src/exec/one_cmd.c \
+					./02_src/exec/exec.c
 #					./02_src/exec/builtin/exec_exit.c 
 
 SRC				=	$(LIBFT) \
 					$(PARSING) \
 					$(EXEC) \
-					./02_src/exec_main.c
+					./02_src/exec_main.c 
 #					./02_src/main.c\
 					./02_src/parsing/init.c
 

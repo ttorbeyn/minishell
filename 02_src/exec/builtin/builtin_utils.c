@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 22:33:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/02 17:00:32 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/12 18:40:45 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_pwd(void)
 	pwd = NULL;
 	pwd = getcwd(pwd, 0);
 	if (!pwd)
-		ft_putendl_fd("Error\n", 2);
+		return_error("Error\n", 0);
 	return (pwd);
 }
 

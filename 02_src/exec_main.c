@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:52 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/02 17:16:58 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/12 20:03:52 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@ void	print_lst(t_list **env)
 	int i = 0;
 	while (i < len)
 	{
-		printf("%s\n", (char*)first->content);
+		printf("%d:	%s\n", i, (char*)first->content);
 		// ft_putstr_fd(first->content, 1);
 		first = first->next;
 		i++;
 	}
 }
-
 
 int	is_builtin(t_cmd *cmd, t_data *data)
 {
@@ -72,7 +71,8 @@ int	main(int ac, char **av, char **env)
 	}
 	cmd.cmd = ft_strdup(av[1]);
 	is_builtin(&cmd, &data);
-	i = -1;
+	one_cmd(&cmd, &data);
+	// i = -1;
 	// while (cmd.av[++i])
 	// 	printf("av%d:	%s\n", i, cmd.av[i]);
 	// printf("cmd:	%s\n", cmd.cmd);
