@@ -6,11 +6,30 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:38:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/13 14:25:36 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/13 19:06:53 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../01_include/minishell.h"
+
+int	check_builtin(t_cmd *cmd)
+{
+	if (!ft_strncmp(cmd->av[0], "cd", 2))
+		return (1);
+	if (!ft_strncmp(cmd->av[0], "echo", 4))
+		return (2);
+	if (!ft_strncmp(cmd->av[0], "exit", 4))
+		return (3);
+	if (!ft_strncmp(cmd->av[0], "env", 3))
+		return (4);
+	if (!ft_strncmp(cmd->av[0], "pwd", 3))
+		return (5);
+	if (!ft_strncmp(cmd->av[0], "export", 6))
+		return (6);
+	if (!ft_strncmp(cmd->av[0], "unset", 5))
+		return (7);
+	return (0);
+}
 
 /*
 check_path:

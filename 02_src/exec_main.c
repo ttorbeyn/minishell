@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:52 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/13 14:07:50 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/13 22:58:51 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,6 @@ void	print_lst(t_list **env)
 	}
 }
 
-int	is_builtin(t_cmd *cmd, t_data *data)
-{
-	if (!ft_strncmp(cmd->av[0], "cd", 2))
-		return (exec_cd(cmd, data));
-	if (!ft_strncmp(cmd->av[0], "echo", 4))
-		return (exec_echo(cmd));
-	if (!ft_strncmp(cmd->av[0], "exit", 4))
-		return (3);
-	if (!ft_strncmp(cmd->av[0], "env", 3))
-		return (exec_env(cmd, data));
-	if (!ft_strncmp(cmd->av[0], "pwd", 3))
-		return (exec_pwd(data));
-	if (!ft_strncmp(cmd->av[0], "export", 6))
-		return (exec_export(cmd, data));
-	if (!ft_strncmp(cmd->av[0], "unset", 5))
-		return (exec_unset(cmd, data));
-	return (0);
-}
-
 void	envp_init(t_data *data, char **env)
 {
 	int i;
@@ -67,29 +48,60 @@ void	envp_init(t_data *data, char **env)
 	return;
 }
 
+void	big_fat_init(t_cmd *cmd, t_data *data, int ac, char **av, char **env)
+{
+	int cmd_nb = 2;
+	char *cmd0;
+	char *cmd1;
+	char *flag1;
+
+	///MALLOCS
+	cmd0 = malloc(sizeof(char) * 3 + 1);
+	cmd1 = malloc(sizeof(char) * 3 + 1);
+	flag1 = malloc(sizeof(char) * 2 + 1);
+	data->cmd = malloc(sizeof(t_cmd) * cmd_nb + 1);
+
+	///CMDS
+	cmd0 = "env";
+	cmd1 = "cat";
+	flag1 = "-e";
+
+	data->cmd_count = cmd_nb;
+
+	/// T_CMD[0]
+	data->cmd[0].cmd.ac = 1;
+	data->cmd[0].cmd.cmd = ft_strdup(cmd0);
+	data->cmd[0].cmd.av[0] = ft_strdup(cmd0);
+	/// T_CMD[1]
+	data->cmd[1].cmd.ac = 2;
+	data->cmd[1].cmd.cmd = ft_strdup(cmd1);
+	data->cmd[1].cmd.av[0] = ft_strdup(cmd1);
+	data->cmd[1].cmd.av[1] = ft_strdup(flag1);
+
+	envp_init(&data, env);
+
+}
+
+//INIT CMD_COUNT
 int	main(int ac, char **av, char **env)
 {
 	t_data data;
 	t_cmd cmd;
-	// int len_env;
 	int i;
 
 	i = 0;
-	// len_env = ft_lstsize(&data.env);
 	if (ac < 2)
 		return (1);
 	cmd.ac = ac - 1;
 	data_set(&data, &data.env, env);
-	cmd.av = malloc(sizeof(char*) * ac);
-	// print_lst(&data.env);
-	while (av[i+1])
-	{
-		cmd.av[i] = ft_strdup(av[i+1]);
-		i++;
-	}
-	envp_init(&data, env);
-	cmd.cmd = ft_strdup(av[1]);
-	is_builtin(&cmd, &data);
+	// cmd.av = malloc(sizeof(char*) * ac);
+	// while (av[i+1])
+	// {
+	// 	cmd.av[i] = ft_strdup(av[i+1]);
+	// 	i++;
+	// }
+	// envp_init(&data, env);
+	// cmd.cmd = ft_strdup(av[1]);
 	one_cmd(&cmd, &data);
 	// i = -1;
 	// while (cmd.av[++i])

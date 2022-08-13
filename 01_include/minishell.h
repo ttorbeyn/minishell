@@ -15,9 +15,10 @@ void	data_set(t_data *data, t_list **envp, char **env);
 void	print_lst(t_list **env);
 
 /// EXEC
+int		cmd_switch(t_cmd *cmd, t_data *data);
+int		exec_builtin(t_cmd *cmd, t_data *data);
 void	executer(t_cmd *cmd, t_data *data);
-void	executer(t_cmd *cmd, t_data *data);
-int	one_cmd(t_cmd *cmd, t_data *data);
+int		one_cmd(t_cmd *cmd, t_data *data);
 
 /// BUILTINS
 char	*get_pwd(void);
@@ -33,8 +34,9 @@ int		exec_export(t_cmd *command, t_data *data);
 int		exec_unset(t_cmd *command, t_data *data);
 
 /// UTILS
-int		return_error(char *msg, int system);
+int		check_builtin(t_cmd *cmd);
 char	*check_path(char **env, char *cmd);
+int		return_error(char *msg, int system);
 
 
 
