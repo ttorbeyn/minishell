@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:52 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/12 20:03:52 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/13 14:07:50 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,24 @@ int	is_builtin(t_cmd *cmd, t_data *data)
 	return (0);
 }
 
+void	envp_init(t_data *data, char **env)
+{
+	int i;
+	int len;
+
+	i = 0;
+	len = 0;
+	while (env[len])
+		len++;
+	data->envp = malloc(sizeof(char*) * len +1);
+	while (env[i])
+	{
+		data->envp[i] = ft_strdup(env[i]);
+		i++;
+	}
+	return;
+}
+
 int	main(int ac, char **av, char **env)
 {
 	t_data data;
@@ -69,6 +87,7 @@ int	main(int ac, char **av, char **env)
 		cmd.av[i] = ft_strdup(av[i+1]);
 		i++;
 	}
+	envp_init(&data, env);
 	cmd.cmd = ft_strdup(av[1]);
 	is_builtin(&cmd, &data);
 	one_cmd(&cmd, &data);

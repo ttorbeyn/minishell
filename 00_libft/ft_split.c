@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:46:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/07/31 22:06:21 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/13 13:44:36 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ char	**ft_split(char const *s, char c)
 
 	new = malloc((sizeof(char *)) * (ft_wordcount(s, c) + 1));
 	if (!new || !s)
-		return (NULL);
 		ft_exit();
 	i = -1;
 	x = 0;
