@@ -6,18 +6,18 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/08/12 18:41:52 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/13 23:27:18 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
 
-int	exec_env(t_cmd *command, t_data *data)
+int	exec_env(t_cmd command, t_data *data)
 {
 	t_list *tmp;
 
 	tmp = data->env;
-	if (command->ac > 1)
+	if (command.ac > 1)
 	{
 		return_error("Error: Path not found", 0);
 		return (1);

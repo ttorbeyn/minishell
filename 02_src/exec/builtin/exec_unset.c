@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/08/12 18:42:28 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/13 23:28:49 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	unset_from_env(t_list **env, int i)
 // doesnt work on first of the list
 // unset TEST= should return an error (unset TEST -> OK)
 
-int	exec_unset(t_cmd *command, t_data *data)
+int	exec_unset(t_cmd command, t_data *data)
 {
 	int	i;
 	char *name;
@@ -42,7 +42,7 @@ int	exec_unset(t_cmd *command, t_data *data)
 
 	i = 0;
 	tmp = data->env;
-	name = get_env_name(command->av[1]);
+	name = get_env_name(command.av[1]);
 	// printf("%s\n", get_env_name(tmp->content));
 	while (tmp)
 	{

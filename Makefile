@@ -36,7 +36,7 @@ EXEC			=	./02_src/exec/builtin/builtin_utils.c \
 					./02_src/exec/utils.c \
 					./02_src/exec/one_cmd.c \
 					./02_src/exec/exec.c \
-					./02_src/exec/forks.c
+#					./02_src/exec/forks.c
 #					./02_src/exec/builtin/exec_exit.c 
 
 SRC				=	$(LIBFT) \

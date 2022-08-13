@@ -6,24 +6,24 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:40:09 by vic               #+#    #+#             */
-/*   Updated: 2022/08/12 18:41:12 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/13 23:20:33 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
 
-char	*get_path(t_cmd *command, t_data *data)
+char	*get_path(t_cmd command, t_data *data)
 {
 	char		*path;
 	const char	*home;
 
 	path = NULL;
 	home = get_env_content("HOME", data->env);
-	if (command->av[1])
+	if (command.av[1])
 	{
 		path = getcwd(NULL, 0);
 		path = ft_strjoin(path, "/");
-		path = ft_strjoin(path, command->av[1]);
+		path = ft_strjoin(path, command.av[1]);
 	}
 	else
 		chdir(home);
@@ -53,7 +53,7 @@ void	update_env(t_data *data, char *name)
 	}
 }
 
-int	exec_cd(t_cmd *command, t_data *data)
+int	exec_cd(t_cmd command, t_data *data)
 {
 	char *path;
 

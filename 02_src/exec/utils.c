@@ -6,27 +6,28 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:38:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/13 19:06:53 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/14 01:10:52 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../01_include/minishell.h"
 
-int	check_builtin(t_cmd *cmd)
+int	check_builtin(char *cmd)
 {
-	if (!ft_strncmp(cmd->av[0], "cd", 2))
+	// printf("ALO");
+	if (!ft_strncmp(cmd, "cd", 2))
 		return (1);
-	if (!ft_strncmp(cmd->av[0], "echo", 4))
+	if (!ft_strncmp(cmd, "echo", 4))
 		return (2);
-	if (!ft_strncmp(cmd->av[0], "exit", 4))
+	if (!ft_strncmp(cmd, "exit", 4))
 		return (3);
-	if (!ft_strncmp(cmd->av[0], "env", 3))
+	if (!ft_strncmp(cmd, "env", 3))
 		return (4);
-	if (!ft_strncmp(cmd->av[0], "pwd", 3))
+	if (!ft_strncmp(cmd, "pwd", 3))
 		return (5);
-	if (!ft_strncmp(cmd->av[0], "export", 6))
+	if (!ft_strncmp(cmd, "export", 6))
 		return (6);
-	if (!ft_strncmp(cmd->av[0], "unset", 5))
+	if (!ft_strncmp(cmd, "unset", 5))
 		return (7);
 	return (0);
 }

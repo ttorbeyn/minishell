@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:52 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/13 22:58:51 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/14 01:20:19 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ void	envp_init(t_data *data, char **env)
 	return;
 }
 
-void	big_fat_init(t_cmd *cmd, t_data *data, int ac, char **av, char **env)
+void	big_fat_init(t_data *data, char **env)
 {
 	int cmd_nb = 2;
 	char *cmd0;
+	// char *flag0;
 	char *cmd1;
 	char *flag1;
 
@@ -59,26 +60,38 @@ void	big_fat_init(t_cmd *cmd, t_data *data, int ac, char **av, char **env)
 	cmd0 = malloc(sizeof(char) * 3 + 1);
 	cmd1 = malloc(sizeof(char) * 3 + 1);
 	flag1 = malloc(sizeof(char) * 2 + 1);
-	data->cmd = malloc(sizeof(t_cmd) * cmd_nb + 1);
+	data->cmd = malloc(sizeof(t_cmd) * cmd_nb);
+	data->cmd[0].av = malloc(sizeof(char*) * 2 + 1);
+	data->cmd[1].av = malloc(sizeof(char*) * 2 + 1);
 
 	///CMDS
-	cmd0 = "env";
+	cmd0 = "pwd";
+	// flag0 = "02_src/exec/builtin/exec_exit.c";
 	cmd1 = "cat";
 	flag1 = "-e";
 
 	data->cmd_count = cmd_nb;
 
 	/// T_CMD[0]
-	data->cmd[0].cmd.ac = 1;
-	data->cmd[0].cmd.cmd = ft_strdup(cmd0);
-	data->cmd[0].cmd.av[0] = ft_strdup(cmd0);
+	data->cmd[0].ac = 1;
+	data->cmd[0].cmd = ft_strdup(cmd0);
+	data->cmd[0].av[0] = ft_strdup(cmd0);
+	// data->cmd[0].av[1] = ft_strdup(flag0);
+	
 	/// T_CMD[1]
-	data->cmd[1].cmd.ac = 2;
-	data->cmd[1].cmd.cmd = ft_strdup(cmd1);
-	data->cmd[1].cmd.av[0] = ft_strdup(cmd1);
-	data->cmd[1].cmd.av[1] = ft_strdup(flag1);
+	data->cmd[1].ac = 2;
+	data->cmd[1].cmd = ft_strdup(cmd1);
+	data->cmd[1].av[0] = ft_strdup(cmd1);
+	data->cmd[1].av[1] = ft_strdup(flag1);
 
-	envp_init(&data, env);
+	///CHECK
+	// printf("cmd[0].cmd:	%s\n", data->cmd[0].cmd);
+	// printf("cmd[0].av[0]:	%s\n", data->cmd[0].av[0]);
+	// printf("cmd[1].cmd:	%s\n", data->cmd[1].cmd);
+	// printf("cmd[1].av[0]:	%s\n", data->cmd[1].av[0]);
+	// printf("cmd[1].av[1]:	%s\n", data->cmd[1].av[1]);
+
+	envp_init(data, env);
 
 }
 
@@ -86,26 +99,17 @@ void	big_fat_init(t_cmd *cmd, t_data *data, int ac, char **av, char **env)
 int	main(int ac, char **av, char **env)
 {
 	t_data data;
-	t_cmd cmd;
-	int i;
+	int warning_samere;
+	// int i;
 
-	i = 0;
+	// i = 0;
+	warning_samere = ft_strlen(av[0]);
 	if (ac < 2)
-		return (1);
-	cmd.ac = ac - 1;
+		warning_samere++;
+
 	data_set(&data, &data.env, env);
-	// cmd.av = malloc(sizeof(char*) * ac);
-	// while (av[i+1])
-	// {
-	// 	cmd.av[i] = ft_strdup(av[i+1]);
-	// 	i++;
-	// }
-	// envp_init(&data, env);
-	// cmd.cmd = ft_strdup(av[1]);
-	one_cmd(&cmd, &data);
-	// i = -1;
-	// while (cmd.av[++i])
-	// 	printf("av%d:	%s\n", i, cmd.av[i]);
-	// printf("cmd:	%s\n", cmd.cmd);
+	big_fat_init(&data, env);
+	one_cmd(&data);
+
 	return (0);
 }

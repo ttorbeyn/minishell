@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/08/01 16:43:56 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/13 23:28:08 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,30 +40,30 @@ static int check_valid(char *av)
 	set_env (or export) adds or modifies environement variables in env
 */
 
-int	exec_export(t_cmd *command, t_data *data)
+int	exec_export(t_cmd command, t_data *data)
 {
 	char *name;
 	t_list *tmp;
 
-	if (!data->env || !command->av[1] || command->av[1][0] == '\0')
+	if (!data->env || !command.av[1] || command.av[1][0] == '\0')
 		return (1);
-	if (check_valid(command->av[1]))
+	if (check_valid(command.av[1]))
 		return (1);
 	tmp = data->env;
-	name = get_env_name(command->av[1]);
+	name = get_env_name(command.av[1]);
 	// printf("%s\n", name);
 	while (tmp)
 	{
 		if (!ft_strncmp(tmp->content, name, ft_strlen(name)))
 		{
-			tmp->content = ft_strdup(command->av[1]);
+			tmp->content = ft_strdup(command.av[1]);
 			// printf("EXISTS:	%s\n", (char*)data->env->content);
 			// print_lst(&data->env);
 			return(0);
 		}
 		tmp = tmp->next;
 	}
-	ft_lstadd_back(&data->env, ft_lstnew(command->av[1]));
+	ft_lstadd_back(&data->env, ft_lstnew(command.av[1]));
 	// print_lst(&data->env);
 	// printf("CREATED:	%s\n", (char*)data->env->content);
 	return (0);
