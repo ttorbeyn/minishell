@@ -15,7 +15,7 @@
 t_list	*ft_lstbeforelast(t_list *lst)
 {
 	if (!lst)
-		ft_exit();
+		ft_panic("Error : ft_lstbeforelast\n");
 	while (lst->next->next != 0)
 		lst = lst->next;
 	return (lst);

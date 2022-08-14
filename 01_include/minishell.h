@@ -18,6 +18,8 @@ char	*get_line(t_data *data);
 //01_lexer
 int	lex(t_data *data);
 
+t_list	*ft_strtok(char *line);
+
 //utils
 void	print_lst(t_list **env);
 

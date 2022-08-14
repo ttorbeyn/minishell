@@ -61,7 +61,7 @@ static char	**ft_freeall(char **new, int i)
 		j++;
 	}
 	free(new);
-	ft_exit();
+	ft_panic("Error : ft_split\n");
 	return (NULL);
 }
 
@@ -74,7 +74,7 @@ char	**ft_split(char const *s, char c)
 
 	new = malloc((sizeof(char *)) * (ft_wordcount(s, c) + 1));
 	if (!new || !s)
-		ft_exit();
+		ft_panic("Error : ft_split\n");
 	i = -1;
 	x = 0;
 	while (++i < (ft_wordcount(s, c)))

@@ -16,14 +16,18 @@ SRC				=	./00_libft/ft_atoi.c \
 					./00_libft/ft_putendl_fd.c \
 					./00_libft/ft_putstr_fd.c \
 					./00_libft/ft_split.c \
+					./00_libft/ft_strchr.c \
 					./00_libft/ft_strdup.c \
 					./00_libft/ft_strjoin.c \
 					./00_libft/ft_strlen.c \
 					./00_libft/ft_strncmp.c \
+					./00_libft/ft_strndup.c \
+					./00_libft/ft_strtrim.c \
 					./00_libft/utils/ft_exit.c \
 					./02_src/main.c \
                     ./02_src/parsing/00_init.c \
                     ./02_src/parsing/01_lexer.c \
+                    ./02_src/parsing/ft_strtok.c \
                     ./02_src/parsing/99_utils.c \
 
 OBJS			=	$(SRC:.c=.o)

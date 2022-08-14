@@ -18,7 +18,7 @@ t_list	*ft_lstnew(void *content)
 
 	begin = malloc(sizeof(t_list));
 	if (begin == NULL)
-		ft_exit();
+		ft_panic("Error : ft_lstnew\n");
 	begin->content = content;
 	begin->next = NULL;
 	return (begin);

@@ -1,7 +1,7 @@
 #include "../../01_include/libft.h"
 
-int	ft_exit(void)
+void	ft_panic(char *str)
 {
-	write(2, "Error\n", 6);
-	exit (EXIT_FAILURE);
+	write(2, str, ft_strlen(str));
+	exit (1);
 }
