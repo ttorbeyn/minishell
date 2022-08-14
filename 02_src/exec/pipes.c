@@ -6,52 +6,68 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/13 20:10:31 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/14 16:10:39 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../01_include/minishell.h"
 
-int	pipex(t_cmd *cmd, t_data *data)
+
+void	first_child(t_data *data, int *pipe1)
 {
-	int pid;
-	int pipe1[2];
-	int pipe2[2];
+	int exist;
 
-	pid = fork();
-	if (pid == -1)
-		return (return_error("PANIC FORK ERROR", 2));
-	first_cmd(cmd, data, pipe1);
-}
+	exist = 0;
+	if (data->cmd[0].av[0])
+		exist = 1;
 
-void	first_child(t_data *data, t_cmd *cmd, int *pipe1)
-{
-	int exec;
+	if (data->cmd[0].in.path)
+		redirect_input(data, 0);
+	if (data->cmd[0].out.path)
+		redirect_output(data, 0);
 
-	exec = 0;
-	if (cmd[0].av[0])
-		exec = 1;
-
-	if (cmd[0].in.path)
-		redirect_input(cmd, 0, data);
-	if (cmd[0].out.path)
-		redirect_output(cmd, 0, data);
-
-	if (pipe1)
+	else if (pipe1)
 	{
-		//pipe
-		dup2(pipe1[1], STDOUT_FILENO);
-		executer(cmd, data);
-		
+		if (dup2(pipe1[1], STDOUT_FILENO) == -1)
+			return_error("Minishell: Error: dup2 failed\n", 2);
+		close(pipe1[0]);
+		close(pipe1[1]);
 	}
 
-	if (exec)
+	if (exist)
 	{
-		if (check_builtin(cmd))
-			exec_builtin(cmd, data);
+		if (check_builtin(data->cmd[0].cmd))
+			exec_builtin(data, 0);
 		else
-			executer(cmd, data); //specify cmd[i]
+			executer(data->cmd[0], data);
 	}
+	exit(0);
 }
 
-void	last_child();
+void	last_child(t_data *data, int *pipein, int i)
+{
+	int exist;
+
+	exist = 0;
+	if (data->cmd[i].av[0])
+		exist = 1;
+
+	if (data->cmd[i].in.path)
+		redirect_input(data, i);
+	if (data->cmd[0].out.path)
+		redirect_output(data, 0);
+
+	else if (dup2(pipein[0], STDIN_FILENO) == -1)
+		return_error("Minishell: Error: dup2 failed\n", 2);
+	close(pipein[0]);
+	close(pipein[1]);
+
+	if (exist)
+	{
+		if (check_builtin(data->cmd[0].cmd))
+			exec_builtin(data, i);
+		else
+			executer(data->cmd[i], data);
+	}
+	exit(0);
+}

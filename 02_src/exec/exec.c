@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/08/14 00:59:18 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/14 16:42:40 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	cmd_switch(t_data *data)
 	if (data->cmd_count == 1)
 	{
 		if (one_cmd(data))
-		return (1);
+			return (1);
 	}
 	else
-		// if (pipex(cmd, data))
-		return (1);
+		if (pipex(data))
+			return (1);
 	return (0);
 }
 

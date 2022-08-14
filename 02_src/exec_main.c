@@ -6,29 +6,11 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:52 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/14 01:20:19 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/14 16:44:26 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../01_include/minishell.h"
-
-void	print_lst(t_list **env)
-{
-	t_list *first;
-
-	first = *env;
-	int len = ft_lstsize(env);
-	// printf("lstsize:	%d\n", len);
-
-	int i = 0;
-	while (i < len)
-	{
-		printf("%d:	%s\n", i, (char*)first->content);
-		// ft_putstr_fd(first->content, 1);
-		first = first->next;
-		i++;
-	}
-}
 
 void	envp_init(t_data *data, char **env)
 {
@@ -61,11 +43,11 @@ void	big_fat_init(t_data *data, char **env)
 	cmd1 = malloc(sizeof(char) * 3 + 1);
 	flag1 = malloc(sizeof(char) * 2 + 1);
 	data->cmd = malloc(sizeof(t_cmd) * cmd_nb);
-	data->cmd[0].av = malloc(sizeof(char*) * 2 + 1);
+	data->cmd[0].av = malloc(sizeof(char*) * 1 + 1);
 	data->cmd[1].av = malloc(sizeof(char*) * 2 + 1);
 
 	///CMDS
-	cmd0 = "pwd";
+	cmd0 = "env";
 	// flag0 = "02_src/exec/builtin/exec_exit.c";
 	cmd1 = "cat";
 	flag1 = "-e";
@@ -109,7 +91,6 @@ int	main(int ac, char **av, char **env)
 
 	data_set(&data, &data.env, env);
 	big_fat_init(&data, env);
-	one_cmd(&data);
-
+	cmd_switch(&data);
 	return (0);
 }

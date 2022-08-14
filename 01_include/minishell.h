@@ -4,6 +4,8 @@
 # include "libft.h"
 # include "structure.h"
 # include <stdio.h>
+# include <fcntl.h>
+# include <signal.h>
 # include <unistd.h>
 # include <limits.h>
 # include <time.h>
@@ -12,19 +14,28 @@
 # include <readline/history.h>
 
 void	data_set(t_data *data, t_list **envp, char **env);
-void	print_lst(t_list **env);
 
-/// EXEC
+
+/// EXEC ///
 int		cmd_switch(t_data *data);
+int		one_cmd(t_data *data);
 int		exec_builtin(t_data *data, int i);
 void	executer(t_cmd cmd, t_data *data);
-int		one_cmd(t_data *data);
+	//PIPES
+void	first_child(t_data *data, int *pipe1);
+void	last_child(t_data *data, int *pipein, int i);
+	//FORKS
+int		pipex(t_data *data);
+int		first_cmd(t_data *data, int *pipe1);
+void	last_cmd(t_data *data, int *pipein, int pid);
+	//REDIR
+void	redirect_input(t_data *data, int i);
+void	redirect_output(t_data *data, int i);
 
-/// BUILTINS
+/// BUILTINS ///
 char	*get_pwd(void);
 char	*get_env_content(char *name, t_list *env);
 char	*get_env_name(char *str);
-// int		is_builtin(t_data *data, int i);
 
 int		exec_cd(t_cmd command, t_data *data);
 int		exec_echo(t_cmd command);
@@ -33,11 +44,11 @@ int		exec_pwd(t_data *data);
 int		exec_export(t_cmd command, t_data *data);
 int		exec_unset(t_cmd command, t_data *data);
 
-/// UTILS
+/// UTILS ///
 int		check_builtin(char *cmd);
 char	*check_path(char **env, char *cmd);
 int		return_error(char *msg, int system);
-
+void	print_lst(t_list **env);
 
 
 #endif

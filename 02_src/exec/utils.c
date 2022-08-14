@@ -6,15 +6,30 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:38:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/14 01:10:52 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/14 14:18:15 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../01_include/minishell.h"
 
+void	print_lst(t_list **env)
+{
+	t_list *first;
+
+	first = *env;
+	int len = ft_lstsize(env);
+
+	int i = 0;
+	while (i < len)
+	{
+		printf("%d:	%s\n", i, (char*)first->content);
+		first = first->next;
+		i++;
+	}
+}
+
 int	check_builtin(char *cmd)
 {
-	// printf("ALO");
 	if (!ft_strncmp(cmd, "cd", 2))
 		return (1);
 	if (!ft_strncmp(cmd, "echo", 4))
