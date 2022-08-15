@@ -24,6 +24,26 @@ int	is_delim(char c, char *delim)
 	return (0);
 }
 
+//int	is_separator(char *line)
+//{
+//	int i;
+//
+//	i = 0;
+//	if (line[i] == '|')
+//	{
+////		if (ft_strchr("|<>", line[i + 1]))
+////			return (-1);
+//		return (1);
+//	}
+//	if (ft_strncmp("<<", line, 2) || ft_strncmp(">>", line, 2))
+//	{
+//		return (2);
+//	}
+//	if (line[i] == '<' || line[i] == '>')
+//		return (1);
+//	return (0);
+//}
+
 int	is_separator(char *line)
 {
 	int i;
@@ -59,15 +79,12 @@ char *create_token(t_list **token, char *begin, char *end)
 	int len;
 
 	len = 0;
-//	printf("begin : %p\n", &begin[3]);
-//	printf("end : %p\n", &end);
 	bgn = begin;
 	while (*begin && begin != end)
 	{
 		begin++;
 		len++;
 	}
-	printf("len : %d\n", len);
 	if (len)
 		ft_lstadd_back(token, ft_lstnew(ft_strndup(bgn, len)));
 	return (begin);
@@ -91,6 +108,8 @@ t_list	*ft_strtok(char *line)
 		{
 			tmp = create_token(&token, tmp, &line[i]);
 			i += is_separator(&line[i]);
+			if (line[i] && ft_strchr("|<>", line[i]))
+				ft_panic("Error separator");
 			tmp = create_token(&token, tmp, &line[i]);
 		}
 		if (is_space(line[i]))
