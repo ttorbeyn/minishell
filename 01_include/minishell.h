@@ -26,6 +26,7 @@ t_list	*ft_strtok(char *line);
 int	is_space(char c);
 int	is_delim(char c, char *delim);
 int	is_separator(char *line);
+int	check_quotes(int i, char *line);
 
 //utils
 void	print_lst(t_list **env);

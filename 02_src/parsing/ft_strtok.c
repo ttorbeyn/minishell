@@ -1,7 +1,5 @@
 #include "../../01_include/minishell.h"
 
-
-
 char *create_token(t_list **token, char *begin, char *end)
 {
 	char *bgn;
