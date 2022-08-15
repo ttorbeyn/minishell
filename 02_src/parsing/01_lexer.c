@@ -9,8 +9,9 @@ int	lex(t_data *data)
 	token = ft_strtok(data->line);
 	while (token)
 	{
-		printf("content : %s\n", (char*)token->content);
+		printf("content[%d] : %s\n", i, (char*)token->content);
 		token = token->next;
+		i++;
 	}
 	return (0);
 }

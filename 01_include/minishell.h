@@ -18,7 +18,14 @@ char	*get_line(t_data *data);
 //01_lexer
 int	lex(t_data *data);
 
+//ft_strtok
+char *create_token(t_list **token, char *begin, char *end);
 t_list	*ft_strtok(char *line);
+
+//ft_strtok_utils
+int	is_space(char c);
+int	is_delim(char c, char *delim);
+int	is_separator(char *line);
 
 //utils
 void	print_lst(t_list **env);
