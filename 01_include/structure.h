@@ -22,7 +22,7 @@ typedef struct	s_cmd{
 
 typedef struct	s_token {
 	char	*content;
-	char	*type;
+	int	type;
 	struct s_token *next;
 }				t_token;
 

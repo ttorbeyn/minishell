@@ -50,6 +50,6 @@ int	check_quotes(int i, char *line)
 		if (line[i] == quote_type)
 			return (i);
 	}
-	ft_panic("Quote not closed\n");
-	return (0);
+	ft_error("Quote not closed\n");
+	return (-1);
 }
