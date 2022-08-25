@@ -3,7 +3,13 @@
 
 # include "libft.h"
 
-
+typedef struct s_pipes
+{
+	int		new_end[2];
+	int		old_end[2];
+	int		f_in;
+	int		f_out;
+}				t_pipes;
 
 typedef struct	s_redirection{
 	char			*path;

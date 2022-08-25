@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:52 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/14 16:44:26 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:47:33 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	big_fat_init(t_data *data, char **env)
 	data->cmd[1].av = malloc(sizeof(char*) * 2 + 1);
 
 	///CMDS
-	cmd0 = "env";
+	cmd0 = "pwd";
 	// flag0 = "02_src/exec/builtin/exec_exit.c";
 	cmd1 = "cat";
 	flag1 = "-e";

@@ -18,19 +18,20 @@ void	data_set(t_data *data, t_list **envp, char **env);
 
 /// EXEC ///
 int		cmd_switch(t_data *data);
-int		one_cmd(t_data *data);
 int		exec_builtin(t_data *data, int i);
 void	executer(t_cmd cmd, t_data *data);
-	//PIPES
-void	first_child(t_data *data, int *pipe1);
-void	last_child(t_data *data, int *pipein, int i);
-	//FORKS
-int		pipex(t_data *data);
-int		first_cmd(t_data *data, int *pipe1);
-void	last_cmd(t_data *data, int *pipein, int pid);
+
+///PIPES ///
+void	child_process(t_data *data, t_pipes *pipe, int i);
+void	parent_process(t_data *data, t_pipes *pipe, int pid, int i);
+void	ft_fork(t_data *data, t_pipes *pipe, int i);
+void	lauching_process(t_data *data);
+	//PIPES UTILS
+void	short_dup(int x, int y);
+void	close_pipe(int *end);
+void	dup_close_pipe(int end, int fd, int *ends);
 	//REDIR
-void	redirect_input(t_data *data, int i);
-void	redirect_output(t_data *data, int i);
+void	redirections(t_data *data, t_pipes *pipe, int i);
 
 /// BUILTINS ///
 char	*get_pwd(void);

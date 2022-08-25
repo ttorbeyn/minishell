@@ -6,68 +6,81 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/14 16:10:39 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:50:42 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../01_include/minishell.h"
 
 
-void	first_child(t_data *data, int *pipe1)
+void	child_process(t_data *data, t_pipes *pipe, int i)
 {
-	int exist;
+	redirections(data, pipe, i);
 
-	exist = 0;
-	if (data->cmd[0].av[0])
-		exist = 1;
+	if (pipe->f_in != 0)
+		short_dup(pipe->f_in, 0);
+	if (pipe->f_out != 1)
+		short_dup(pipe->f_out, 1);
 
-	if (data->cmd[0].in.path)
-		redirect_input(data, 0);
-	if (data->cmd[0].out.path)
-		redirect_output(data, 0);
-
-	else if (pipe1)
-	{
-		if (dup2(pipe1[1], STDOUT_FILENO) == -1)
-			return_error("Minishell: Error: dup2 failed\n", 2);
-		close(pipe1[0]);
-		close(pipe1[1]);
-	}
-
-	if (exist)
-	{
-		if (check_builtin(data->cmd[0].cmd))
-			exec_builtin(data, 0);
-		else
-			executer(data->cmd[0], data);
-	}
-	exit(0);
+	if (i > 0)
+		dup_close_pipe(pipe->old_end[0], pipe->f_in, pipe->old_end);
+	if (i + 1 < data->cmd_count)
+		dup_close_pipe(pipe->new_end[1], pipe->f_out, pipe->new_end);
+	
+	if (check_builtin(data->cmd[i].cmd))
+			exec_builtin(data, i);
+	else
+			executer(data->cmd[i], data);
+	return ;
 }
 
-void	last_child(t_data *data, int *pipein, int i)
+void	parent_process(t_data *data, t_pipes *pipe, int pid, int i)
 {
-	int exist;
-
-	exist = 0;
-	if (data->cmd[i].av[0])
-		exist = 1;
-
-	if (data->cmd[i].in.path)
-		redirect_input(data, i);
-	if (data->cmd[0].out.path)
-		redirect_output(data, 0);
-
-	else if (dup2(pipein[0], STDIN_FILENO) == -1)
-		return_error("Minishell: Error: dup2 failed\n", 2);
-	close(pipein[0]);
-	close(pipein[1]);
-
-	if (exist)
+	if (i > 0)
+		close_pipe(pipe->old_end);
+	if (i + 1 < data->cmd_count)
 	{
-		if (check_builtin(data->cmd[0].cmd))
-			exec_builtin(data, i);
-		else
-			executer(data->cmd[i], data);
+		pipe->old_end[0] = pipe->new_end[0];
+		pipe->old_end[1] = pipe->new_end[1];
 	}
-	exit(0);
+	waitpid(pid, NULL, 0);
+}
+
+void	ft_fork(t_data *data, t_pipes *pipe, int i)
+{
+	int pid;
+
+	pid = fork();
+	if (pid == -1)
+		return_error("Minishell: Error: fork error", 2);
+	if (pid == 0)
+	{
+		child_process(data, pipe, i);
+		exit (0);
+	}
+	else
+		parent_process(data, pipe, pid, i);
+	return ;
+}
+
+void	lauching_process(t_data *data)
+{
+	int i;
+	t_pipes p;
+
+	i = 0;
+	while (i < data->cmd_count)
+	{
+		if (i + 1 < data->cmd_count)
+		{
+			if (pipe(p.new_end))
+			{
+				return_error("Minishell: pipe error", 2);
+				return ;
+			}
+		}
+		ft_fork(data, &p, i);
+		i++;
+	}
+	return ;
 }
