@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/08/25 18:46:14 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:07:25 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,3 @@ void	executer(t_cmd cmd, t_data *data) //send precise cmd[i]
 		return_error("Execution error", 2);
 	return ;
 }
-
-
