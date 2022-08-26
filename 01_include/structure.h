@@ -3,17 +3,7 @@
 
 # include "libft.h"
 
-typedef struct	s_data{
-	t_list	*env;
-	char	*line;
-	int double_quotes;
-	int simple_quotes;
-	t_list	*cmds;
-}				t_data;
-
 typedef struct	s_cmd{
-	char 			*type;
-	char			*cmd;
 	int				ac;
 	char			**av;
 	//t_redirection	out;
@@ -21,14 +11,17 @@ typedef struct	s_cmd{
 }				t_cmd;
 
 typedef struct	s_token {
-	char	*content;
-	int	type;
-	struct s_token *next;
+	char			*content;
+	int				type;
+	struct s_token	*next;
 }				t_token;
 
-typedef struct	s_quoted {
-	int		quoted;
-	char	*content;
-}				t_quoted;
+typedef struct	s_data{
+	char	*line;
+	t_list	*env;
+	t_token	*token;
+	int 	nb_cmd;
+	t_cmd	*cmds;
+}				t_data;
 
 #endif

@@ -13,6 +13,12 @@ int	main(int ac, char **av, char **env)
 	{
 		data.line = get_line(&data);
 		lex(&data);
+//		printf("coucou\n");
+//		print_tok(&data.token);
+//		printf("coucou2\n");
+		parser(&data);
+//		printf("coucou3\n");
+
 //		parser(line, &data);
 	}
 	return (0);

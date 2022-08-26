@@ -15,8 +15,6 @@ void	data_set(t_data *data, t_list **envp, char **env)
 	int	i;
 	int	env_len;
 
-	data->double_quotes = 0;
-	data->simple_quotes = 0;
 	data->env = NULL;
 	i = 0;
 	env_len = 0;

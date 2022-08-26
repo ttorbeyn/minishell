@@ -21,3 +21,25 @@ void	print_lst(t_list **env)
 		i++;
 	}
 }
+
+void	print_tok(t_token **token)
+{
+	t_token *first;
+	int len = 0;
+
+	first = *token;
+	while (first)
+	{
+		len++;
+		first = first->next;
+	}
+	first = *token;
+
+	int i = 0;
+	while (i < len)
+	{
+		printf("tok[%d] = |%s|\n", i, first->content);
+		first = first->next;
+		i++;
+	}
+}

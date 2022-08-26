@@ -18,8 +18,8 @@ int	check_separator(t_token **token)
 
 int	count_cmd(t_token **token)
 {
-	t_token *tmp;
 	int	count;
+	t_token *tmp;
 
 	tmp = *token;
 	count = 1;
@@ -34,25 +34,24 @@ int	count_cmd(t_token **token)
 
 int	lex(t_data *data)
 {
-	t_token *token;
 	int i;
-	int cmd_count;
+	t_token *tmp;
 
 	i = 0;
-	token = ft_strtok(data->line);
-	if (!token)
+	data->token = ft_strtok(data->line);
+	if (!data->token)
 		return (1);
-	if (check_separator(&token))
+	if (check_separator(&data->token))
 		return (ft_error("Separator error\n"));
-	cmd_count = count_cmd(&token);
-	while (token)
+	data->nb_cmd = count_cmd(&data->token);
+	tmp = data->token;
+	while (tmp)
 	{
-		printf("content[%d] : %s\n", i, (char*)token->content);
-		printf("type[%d] : %d\n", i, token->type);
-		token = token->next;
+		printf("content[%d] : %s\n", i, (char*)tmp->content);
+		printf("type[%d] : %d\n", i, tmp->type);
+		tmp = tmp->next;
 		i++;
 	}
-	printf("cmd_count : [%d]\n", cmd_count);
-
+	printf("cmd_count : [%d]\n", data->nb_cmd);
 	return (0);
 }

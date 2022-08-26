@@ -29,6 +29,7 @@ SRC				=	./00_libft/ft_atoi.c \
                     ./02_src/parsing/01_lexer.c \
                     ./02_src/parsing/02_ft_strtok.c \
                     ./02_src/parsing/02_ft_strtok_utils.c \
+                    ./02_src/parsing/03_parser.c \
                     ./02_src/parsing/99_utils.c \
 
 OBJS			=	$(SRC:.c=.o)
