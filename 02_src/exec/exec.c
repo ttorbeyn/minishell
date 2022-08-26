@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/08/25 19:07:25 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:42:48 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	exec_builtin(t_data *data, int i)
 	return (0);
 }
 
-void	executer(t_cmd cmd, t_data *data) //send precise cmd[i]
+void	executer(t_cmd cmd, t_data *data)
 {
 	char	*path;
 	int ret;

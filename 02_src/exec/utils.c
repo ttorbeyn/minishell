@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:38:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/14 14:18:15 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:00:02 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,10 @@ int	return_error(char *msg, int system)
 	else
 		ft_putendl_fd(msg, 2);
 	return (1);
+}
+
+void	ft_abort(char *str, int system)
+{
+	return_error(str, system);
+	exit(0);
 }

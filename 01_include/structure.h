@@ -11,12 +11,21 @@ typedef struct s_pipes
 	int		f_out;
 }				t_pipes;
 
-typedef struct	s_redirection{
+typedef struct	s_here
+{
+	char	*limit;
+	void	*next;
+}				t_here;
+
+typedef struct	s_redirection
+{
 	char			*path;
 	int				chmod;	//O_RDONLY O_WRONLY | O_TRUNC | O_CREAT..
+	t_here			*doc;
 }				t_redirection;
 
-typedef struct	s_cmd{		//one s_cmd for each cmds
+typedef struct	s_cmd		//one s_cmd for each cmds
+{
 	char			*cmd;
 	int				ac;
 	char			**av;
@@ -24,7 +33,8 @@ typedef struct	s_cmd{		//one s_cmd for each cmds
 	t_redirection	out;	//storing in/out destination w/ their respective cmds
 }				t_cmd;
 
-typedef struct	s_data{
+typedef struct	s_data
+{
 	t_list	*env;
 	t_cmd	*cmd;
 	char	**envp;

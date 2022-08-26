@@ -32,6 +32,7 @@ void	close_pipe(int *end);
 void	dup_close_pipe(int end, int fd, int *ends);
 	//REDIR
 void	redirections(t_data *data, t_pipes *pipe, int i);
+int		open_heredoc(t_here *doc);
 
 /// BUILTINS ///
 char	*get_pwd(void);
@@ -49,6 +50,7 @@ int		exec_unset(t_cmd command, t_data *data);
 int		check_builtin(char *cmd);
 char	*check_path(char **env, char *cmd);
 int		return_error(char *msg, int system);
+void	ft_abort(char *str, int system);
 void	print_lst(t_list **env);
 
 
