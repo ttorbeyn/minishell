@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/25 18:50:42 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/27 17:04:39 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 void	child_process(t_data *data, t_pipes *pipe, int i)
 {
 	redirections(data, pipe, i);
-
 	if (pipe->f_in != 0)
 		short_dup(pipe->f_in, 0);
 	if (pipe->f_out != 1)
@@ -26,7 +25,7 @@ void	child_process(t_data *data, t_pipes *pipe, int i)
 		dup_close_pipe(pipe->old_end[0], pipe->f_in, pipe->old_end);
 	if (i + 1 < data->cmd_count)
 		dup_close_pipe(pipe->new_end[1], pipe->f_out, pipe->new_end);
-	
+
 	if (check_builtin(data->cmd[i].cmd))
 			exec_builtin(data, i);
 	else
