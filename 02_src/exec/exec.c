@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/08/27 17:24:05 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:42:42 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	cmd_switch(t_data *data)
 	if (data->cmd_count == 1)
 	{
 		if (check_builtin(data->cmd[0].cmd))
-			exec_builtin(data, 0);
+			exec_old_builtin(data, 0);
 		else
 			executer(data->cmd[0], data);
 	}
@@ -26,7 +26,26 @@ int	cmd_switch(t_data *data)
 	return (0);
 }
 
-int	exec_builtin(t_data *data, int i)
+int	exec_old_builtin(t_data *data, int i)
+{
+	if (!ft_strncmp(data->cmd[i].av[0], "cd", 2))
+		return (exec_cd(data->cmd[i], data));
+	if (!ft_strncmp(data->cmd[i].av[0], "echo", 4))
+		return (exec_echo(data->cmd[i]));
+	if (!ft_strncmp(data->cmd[i].av[0], "exit", 4))
+		return (3);
+	// if (!ft_strncmp(data->cmd[i].av[0], "env", 3))
+	// 	return (exec_env(data->cmd[i], data));
+	// if (!ft_strncmp(data->cmd[i].av[0], "pwd", 3))
+	// 	return (exec_pwd(data, pipe));
+	if (!ft_strncmp(data->cmd[i].av[0], "export", 6))
+		return (exec_export(data->cmd[i], data));
+	if (!ft_strncmp(data->cmd[i].av[0], "unset", 5))
+		return (exec_unset(data->cmd[i], data));
+	return (0);
+}
+
+int	exec_builtin(t_data *data, int i, t_pipes *pipe)
 {
 	if (!ft_strncmp(data->cmd[i].av[0], "cd", 2))
 		return (exec_cd(data->cmd[i], data));
@@ -35,9 +54,9 @@ int	exec_builtin(t_data *data, int i)
 	if (!ft_strncmp(data->cmd[i].av[0], "exit", 4))
 		return (3);
 	if (!ft_strncmp(data->cmd[i].av[0], "env", 3))
-		return (exec_env(data->cmd[i], data));
+		return (exec_env(data->cmd[i], data, pipe));
 	if (!ft_strncmp(data->cmd[i].av[0], "pwd", 3))
-		return (exec_pwd(data));
+		return (exec_pwd(data, pipe));
 	if (!ft_strncmp(data->cmd[i].av[0], "export", 6))
 		return (exec_export(data->cmd[i], data));
 	if (!ft_strncmp(data->cmd[i].av[0], "unset", 5))

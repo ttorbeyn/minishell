@@ -18,7 +18,8 @@ void	data_set(t_data *data, t_list **envp, char **env);
 
 /// EXEC ///
 int		cmd_switch(t_data *data);
-int		exec_builtin(t_data *data, int i);
+int		exec_builtin(t_data *data, int i, t_pipes *pipe);
+int	exec_old_builtin(t_data *data, int i);
 void	executer(t_cmd cmd, t_data *data);
 
 ///PIPES ///
@@ -41,8 +42,8 @@ char	*get_env_name(char *str);
 
 int		exec_cd(t_cmd command, t_data *data);
 int		exec_echo(t_cmd command);
-int		exec_env(t_cmd command, t_data *data);
-int		exec_pwd(t_data *data);
+int		exec_env(t_cmd command, t_data *data, t_pipes *p);
+int		exec_pwd(t_data *data, t_pipes *p);
 int		exec_export(t_cmd command, t_data *data);
 int		exec_unset(t_cmd command, t_data *data);
 

@@ -6,13 +6,13 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/08/13 23:27:18 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:45:50 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
 
-int	exec_env(t_cmd command, t_data *data)
+int	exec_env(t_cmd command, t_data *data, t_pipes *p)
 {
 	t_list *tmp;
 
@@ -26,8 +26,8 @@ int	exec_env(t_cmd command, t_data *data)
 		return (1);
 	while (tmp)
 	{
-		ft_putstr_fd(tmp->content, 1);
-		write (1, "\n", 1);
+		write(p->f_out, tmp->content, ft_strlen(tmp->content));
+		write(p->f_out, "\n", 1);
 		tmp = tmp->next;
 	}
 	return (0);

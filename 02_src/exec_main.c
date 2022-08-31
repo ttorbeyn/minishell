@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:52 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/27 17:28:36 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:45:26 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	envp_init(t_data *data, char **env)
 	return;
 }
 
-void	test_one_cmd(t_data *data, char *cmd, char *flag)
+void	test_one_cmd(t_data *data, char *cmd, char *flag, char **env)
 {
 	int cmd_nb = 1;
 	int f = 1;
@@ -46,31 +46,34 @@ void	test_one_cmd(t_data *data, char *cmd, char *flag)
 	data->cmd[0].av[0] = ft_strdup(cmd);
 	if (flag)
 		data->cmd[0].av[1] = ft_strdup(flag);
+	
+	envp_init(data, env);
+
 }
 
-void	test_cmd(t_data *data, char **env, char **cmd, char **flag, int cmd_nb)
-{
-	int i = 0;
-	int f;
+// void	test_cmd(t_data *data, char **env, char **cmd, char **flag, int cmd_nb)
+// {
+// 	int i = 0;
+// 	int f;
 
-	data->cmd = malloc(sizeof(t_cmd) * cmd_nb);
-	while (i < cmd_nb)
-	{
-		f = 1;
-		if (flag[i])
-			f = 2;
+// 	data->cmd = malloc(sizeof(t_cmd) * cmd_nb);
+// 	while (i < cmd_nb)
+// 	{
+// 		f = 1;
+// 		if (flag[i])
+// 			f = 2;
 		
-		data->cmd[i].av = malloc(sizeof(char*) * f + 1);
+// 		data->cmd[i].av = malloc(sizeof(char*) * f + 1);
 
-		data->cmd[i].ac = f;
-		data->cmd[i].cmd = ft_strdup(cmd[i]);
-		data->cmd[i].av[0] = ft_strdup(cmd[i]);
-		if (flag)
-			data->cmd[i].av[1] = ft_strdup(flag[i]);
-		i++;
-	}
-		envp_init(data, env);
-}
+// 		data->cmd[i].ac = f;
+// 		data->cmd[i].cmd = ft_strdup(cmd[i]);
+// 		data->cmd[i].av[0] = ft_strdup(cmd[i]);
+// 		if (flag)
+// 			data->cmd[i].av[1] = ft_strdup(flag[i]);
+// 		i++;
+// 	}
+// 		envp_init(data, env);
+// }
 
 void	big_fat_init(t_data *data, char **env)
 {
@@ -90,7 +93,7 @@ void	big_fat_init(t_data *data, char **env)
 	data->cmd[1].av = malloc(sizeof(char*) * 2 + 1);
 
 	///CMDS
-	cmd0 = "pwd";
+	cmd0 = "env";
 	// flag0 = "02_src/exec/builtin";
 	cmd1 = "cat";
 	flag1 = "-e";
@@ -124,11 +127,7 @@ void	big_fat_init(t_data *data, char **env)
 int	main(int ac, char **av, char **env)
 {
 	t_data data;
-	char **cmd;
-	char **flag;
 	int warning_samere;
-	int cmd_nb;
-	int i;
 
 	warning_samere = ft_strlen(av[0]);
 	if (ac < 2)
