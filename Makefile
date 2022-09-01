@@ -1,12 +1,13 @@
 CC				=	gcc
 
-CFLAGS			=	-Wall -Wextra -Werror -lreadline
+CFLAGS			=	-Wall -Wextra -lreadline
 
 INCLUDE			=	-I include
 
-SRC				=	./00_libft/ft_atoi.c \
+LIBFT			=	./00_libft/ft_atoi.c \
 					./00_libft/ft_isdigit.c \
 					./00_libft/ft_isspace.c \
+					./00_libft/ft_isascii.c \
 					./00_libft/ft_lstadd_back.c \
 					./00_libft/ft_lstbefore_last.c \
 					./00_libft/ft_lstlast.c \
@@ -31,6 +32,27 @@ SRC				=	./00_libft/ft_atoi.c \
                     ./02_src/parsing/02_ft_strtok_utils.c \
                     ./02_src/parsing/03_parser.c \
                     ./02_src/parsing/99_utils.c \
+					./00_libft/ft_strchr.c \
+					./00_libft/utils/ft_exit.c
+
+PARSING			=	./02_src/parsing/init.c
+
+EXEC			=	./02_src/exec/builtin/builtin_utils.c \
+					./02_src/exec/builtin/exec_echo.c \
+					./02_src/exec/builtin/exec_env.c \
+					./02_src/exec/builtin/exec_export.c \
+					./02_src/exec/builtin/exec_pwd.c \
+#					./02_src/exec/builtin/exec_unset.c \
+					./02_src/exec/builtin/exec_cd.c \
+					./02_src/exec/builtin/exec_exit.c 
+
+SRC				=	$(LIBFT) \
+					$(PARSING) \
+					$(EXEC) \
+					./02_src/exec_main.c
+#					./02_src/main.c\
+					./02_src/parsing/init.c
+
 
 OBJS			=	$(SRC:.c=.o)
 
