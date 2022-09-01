@@ -47,11 +47,11 @@ int	lex(t_data *data)
 	tmp = data->token;
 	while (tmp)
 	{
-		printf("content[%d] : %s\n", i, (char*)tmp->content);
-		printf("type[%d] : %d\n", i, tmp->type);
+//		printf("content[%d] : %s\n", i, (char*)tmp->content);
+//		printf("type[%d] : %d\n", i, tmp->type);
 		tmp = tmp->next;
 		i++;
 	}
-	printf("cmd_count : [%d]\n", data->nb_cmd);
+//	printf("cmd_count : [%d]\n", data->nb_cmd);
 	return (0);
 }

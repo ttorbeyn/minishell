@@ -16,7 +16,7 @@ void	print_lst(t_list **env)
 	int i = 0;
 	while (i < len)
 	{
-		printf("%p\n", first->content);
+//		printf("%p\n", first->content);
 		first = first->next;
 		i++;
 	}
@@ -38,7 +38,7 @@ void	print_tok(t_token **token)
 	int i = 0;
 	while (i < len)
 	{
-		printf("tok[%d] = |%s|\n", i, first->content);
+//		printf("tok[%d] = |%s|\n", i, first->content);
 		first = first->next;
 		i++;
 	}
