@@ -3,11 +3,33 @@
 
 # include "libft.h"
 
-typedef struct	s_cmd{
+typedef struct s_pipes
+{
+	int		new_end[2];
+	int		old_end[2];
+	int		f_in;
+	int		f_out;
+}				t_pipes;
+
+typedef struct	s_here
+{
+	char	*limit;
+	void	*next;
+}				t_here;
+
+typedef struct	s_redirection
+{
+	char			*path;
+	int				chmod;	//O_RDONLY O_WRONLY | O_TRUNC | O_CREAT..
+	t_here			*doc;
+}				t_redirection;
+
+typedef struct	s_cmd		//one s_cmd for each cmds
+{
 	int				ac;
 	char			**av;
-	//t_redirection	out;
-	//t_redirection	in;
+	t_redirection	in;
+	t_redirection	out;	//storing in/out destination w/ their respective cmds
 }				t_cmd;
 
 typedef struct	s_token {

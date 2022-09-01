@@ -42,14 +42,20 @@ EXEC			=	./02_src/exec/builtin/builtin_utils.c \
 					./02_src/exec/builtin/exec_env.c \
 					./02_src/exec/builtin/exec_export.c \
 					./02_src/exec/builtin/exec_pwd.c \
-#					./02_src/exec/builtin/exec_unset.c \
+					./02_src/exec/builtin/exec_unset.c \
 					./02_src/exec/builtin/exec_cd.c \
-					./02_src/exec/builtin/exec_exit.c 
+					./02_src/exec/utils.c \
+					./02_src/exec/exec.c \
+					./02_src/exec/pipes.c \
+					./02_src/exec/pipe_utils.c \
+					./02_src/exec/redirections.c \
+					./02_src/exec/heredoc.c \
+#					./02_src/exec/builtin/exec_exit.c 
 
 SRC				=	$(LIBFT) \
 					$(PARSING) \
 					$(EXEC) \
-					./02_src/exec_main.c
+					./02_src/exec_main.c 
 #					./02_src/main.c\
 					./02_src/parsing/init.c
 

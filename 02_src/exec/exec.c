@@ -6,32 +6,76 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 22:37:59 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:42:42 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../01_include/minishell.h"
 
-void	executer(char **path, char **cmd, char **env)
+int	cmd_switch(t_data *data)
 {
-	int		i;
-	int		ret;
-	char	*tmp;
-
-	ret = -1;
-	i = -1;
-
-	while (path[i] && ret == -1)
+	if (data->cmd_count == 1)
 	{
-		if (tmp)
-			free(tmp);
-		tmp = ft_strjoin(path[i], *cmd);
-		if (!tmp)
-			break;
-		ret = execve(tmp, cmd, env);
-		i++;
+		if (check_builtin(data->cmd[0].cmd))
+			exec_old_builtin(data, 0);
+		else
+			executer(data->cmd[0], data);
 	}
-	if (tmp)
-		free(tmp);
+	else
+		lauching_process(data);
+	return (0);
+}
+
+int	exec_old_builtin(t_data *data, int i)
+{
+	if (!ft_strncmp(data->cmd[i].av[0], "cd", 2))
+		return (exec_cd(data->cmd[i], data));
+	if (!ft_strncmp(data->cmd[i].av[0], "echo", 4))
+		return (exec_echo(data->cmd[i]));
+	if (!ft_strncmp(data->cmd[i].av[0], "exit", 4))
+		return (3);
+	// if (!ft_strncmp(data->cmd[i].av[0], "env", 3))
+	// 	return (exec_env(data->cmd[i], data));
+	// if (!ft_strncmp(data->cmd[i].av[0], "pwd", 3))
+	// 	return (exec_pwd(data, pipe));
+	if (!ft_strncmp(data->cmd[i].av[0], "export", 6))
+		return (exec_export(data->cmd[i], data));
+	if (!ft_strncmp(data->cmd[i].av[0], "unset", 5))
+		return (exec_unset(data->cmd[i], data));
+	return (0);
+}
+
+int	exec_builtin(t_data *data, int i, t_pipes *pipe)
+{
+	if (!ft_strncmp(data->cmd[i].av[0], "cd", 2))
+		return (exec_cd(data->cmd[i], data));
+	if (!ft_strncmp(data->cmd[i].av[0], "echo", 4))
+		return (exec_echo(data->cmd[i]));
+	if (!ft_strncmp(data->cmd[i].av[0], "exit", 4))
+		return (3);
+	if (!ft_strncmp(data->cmd[i].av[0], "env", 3))
+		return (exec_env(data->cmd[i], data, pipe));
+	if (!ft_strncmp(data->cmd[i].av[0], "pwd", 3))
+		return (exec_pwd(data, pipe));
+	if (!ft_strncmp(data->cmd[i].av[0], "export", 6))
+		return (exec_export(data->cmd[i], data));
+	if (!ft_strncmp(data->cmd[i].av[0], "unset", 5))
+		return (exec_unset(data->cmd[i], data));
+	return (0);
+}
+
+void	executer(t_cmd cmd, t_data *data)
+{
+	char	*path;
+	int ret;
+
+	path = check_path(data->envp, cmd.cmd);
+	ret = execve(path, cmd.av, data->envp);
+	if (!path)
+		return_error("Path not found", 0);
+	else
+		free(path);
+	if (ret == -1)
+		return_error("Execution error", 2);
 	return ;
 }

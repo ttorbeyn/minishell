@@ -6,29 +6,37 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 20:15:14 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/01 15:28:31 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
 
-int	exec_env(t_cmd command, t_data *data)
+int	exec_env(t_cmd command, t_data *data, t_pipes *p)
 {
 	t_list *tmp;
 
 	tmp = data->env;
-	if (command.ac > 2)
-	{
-		ft_putendl_fd("Error: Too many arguments", 2);
-		return (1);
-	}
+	// if (command.ac > 1)
+	// {
+	// 	return_error("Error: Path not found", 0);
+	// 	return (1);
+	// }
+	print_lst(&data->env);
+	write(2, "\nALO2\n\n", 8);
 	if (!tmp)
 		return (1);
 	while (tmp)
 	{
-		ft_putstr_fd(tmp->content, 1);
-		write (1, "\n", 1);
+		write(p->f_out, tmp->content, ft_strlen(tmp->content));
+		write(p->f_out, "\n", 1);
 		tmp = tmp->next;
 	}
+	// while (data->env)
+	// {
+	// 	write(p->f_out, data->env->content, ft_strlen(data->env->content));
+	// 	write(p->f_out, "\n", 1);
+	// 	data->env = data->env->next;
+	// }
 	return (0);
 }

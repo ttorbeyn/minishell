@@ -6,11 +6,22 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 22:33:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/01 12:43:24 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/08/31 17:41:55 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
+
+char	*get_pwd(void)
+{
+	char	*pwd;
+
+	pwd = NULL;
+	pwd = getcwd(pwd, 0);
+	if (!pwd)
+		return_error("Error\n", 0);
+	return (pwd);
+}
 
 char	*get_env_content(char *name, t_list *env)
 {

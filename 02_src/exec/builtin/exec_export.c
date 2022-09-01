@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/07/31 23:01:52 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/01 15:27:16 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,29 @@ static int check_valid(char *av)
 int	exec_export(t_cmd command, t_data *data)
 {
 	char *name;
+	t_list *tmp;
 
 	if (!data->env || !command.av[1] || command.av[1][0] == '\0')
 		return (1);
 	if (check_valid(command.av[1]))
 		return (1);
+	tmp = data->env;
 	name = get_env_name(command.av[1]);
-	printf("%s\n", name);
-	while (data->env)
+	while (tmp)
 	{
-		if (ft_strncmp(data->env->content, name, ft_strlen(name)))
+		if (!ft_strncmp(tmp->content, name, ft_strlen(name)))
 		{
-			data->env->content = ft_strdup(command.av[1]);
+			tmp->content = ft_strdup(command.av[1]);
+			// printf("EXISTS:	%s\n", (char*)data->env->content);
+			// print_lst(&data->env);
 			return(0);
 		}
-		data->env = data->env->next;
+		tmp = tmp->next;
 	}
 	ft_lstadd_back(&data->env, ft_lstnew(command.av[1]));
+	print_lst(&data->env);
+	write(2, "\nALO\n\n", 7);
+	// printf("CREATED:	%s\n", (char*)data->env->content);
+	// ft_putstr_fd(data->env->content, 2);
 	return (0);
 }
