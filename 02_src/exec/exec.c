@@ -16,7 +16,7 @@ int	cmd_switch(t_data *data)
 {
 	if (data->nb_cmd == 1)
 	{
-		if (check_builtin(data->cmds[0].cmd))
+		if (check_builtin(data->cmds[0].av[0]))
 			exec_old_builtin(data, 0);
 		else
 			executer(data->cmds[0], data);
@@ -34,10 +34,10 @@ int	exec_old_builtin(t_data *data, int i)
 		return (exec_echo(data->cmds[i]));
 	if (!ft_strncmp(data->cmds[i].av[0], "exit", 4))
 		return (3);
-	// if (!ft_strncmp(data->cmds[i].av[0], "env", 3))
-	// 	return (exec_env(data->cmds[i], data));
-	// if (!ft_strncmp(data->cmds[i].av[0], "pwd", 3))
-	// 	return (exec_pwd(data, pipe));
+//	 if (!ft_strncmp(data->cmds[i].av[0], "env", 3))
+//	 	return (exec_env(data->cmds[i], data));
+//	 if (!ft_strncmp(data->cmds[i].av[0], "pwd", 3))
+//	 	return (exec_pwd(data, pipe));
 	if (!ft_strncmp(data->cmds[i].av[0], "export", 6))
 		return (exec_export(data->cmds[i], data));
 	if (!ft_strncmp(data->cmds[i].av[0], "unset", 5))
@@ -69,7 +69,7 @@ void	executer(t_cmd cmd, t_data *data)
 	char	*path;
 	int ret;
 
-	path = check_path(data->envp, cmd.cmd);
+	path = check_path(data->envp, cmd.av[0]);
 	ret = execve(path, cmd.av, data->envp);
 	if (!path)
 		return_error("Path not found", 0);

@@ -1,6 +1,6 @@
 CC				=	gcc
 
-CFLAGS			=	-Wall -Wextra -lreadline
+CFLAGS			=	-Wall -Wextra -Werror -lreadline
 
 INCLUDE			=	-I include
 
@@ -25,17 +25,15 @@ LIBFT			=	./00_libft/ft_atoi.c \
 					./00_libft/ft_strndup.c \
 					./00_libft/ft_strtrim.c \
 					./00_libft/utils/ft_exit.c \
-					./02_src/main.c \
-                    ./02_src/parsing/00_init.c \
-                    ./02_src/parsing/01_lexer.c \
-                    ./02_src/parsing/02_ft_strtok.c \
-                    ./02_src/parsing/02_ft_strtok_utils.c \
-                    ./02_src/parsing/03_parser.c \
-                    ./02_src/parsing/99_utils.c \
-					./00_libft/ft_strchr.c \
-					./00_libft/utils/ft_exit.c
+					./00_libft/ft_strrchr.c
 
-PARSING			=	./02_src/parsing/init.c
+PARSING			=	./02_src/parsing/00_init.c \
+					./02_src/parsing/01_lexer.c \
+					./02_src/parsing/02_ft_strtok.c \
+					./02_src/parsing/02_ft_strtok_utils.c \
+					./02_src/parsing/03_parser.c \
+					./02_src/parsing/99_utils.c \
+					./02_src/main.c \
 
 EXEC			=	./02_src/exec/builtin/builtin_utils.c \
 					./02_src/exec/builtin/exec_echo.c \
@@ -55,7 +53,7 @@ EXEC			=	./02_src/exec/builtin/builtin_utils.c \
 SRC				=	$(LIBFT) \
 					$(PARSING) \
 					$(EXEC) \
-					./02_src/exec_main.c 
+#					./02_src/exec_main.c
 #					./02_src/main.c\
 					./02_src/parsing/init.c
 

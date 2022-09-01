@@ -25,4 +25,5 @@ void	data_set(t_data *data, t_list **envp, char **env)
 		ft_lstadd_back(envp, ft_lstnew(env[i]));
 		i++;
 	}
+	envp_init(data, env);
 }

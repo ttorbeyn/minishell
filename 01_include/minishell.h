@@ -20,6 +20,8 @@
 # define DGREAT 4
 # define DLESS 5
 
+void	envp_init(t_data *data, char **env);
+
 //00_init
 void	data_set(t_data *data, t_list **envp, char **env);
 char	*get_line(t_data *data);
@@ -40,9 +42,8 @@ int	check_quotes(int i, char *line);
 //03_parser
 int	parser(t_data *data);
 
-//utils
+//99_utils
 int		ft_error(char *error);
-void	print_lst(t_list **env);
 void	print_tok(t_token **token);
 
 

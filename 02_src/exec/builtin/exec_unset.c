@@ -15,20 +15,20 @@
 void	unset_from_env(t_list **env, int i)
 {
 	t_list	*previous;
-	t_list	*current;
+//	t_list	*current;
 	t_list	*next;
 
 	previous = ft_lstget(*env, i - 1);
-	current = ft_lstget(*env, i);
+//	current = ft_lstget(*env, i);
 	next = ft_lstget(*env, i + 1);
 	if (previous && next)
 		previous->next = next;
 	else if (previous && !next)
 		previous->next = NULL;
-	else if (!previous && next)
-		current = next;
-	else
-		current = NULL;
+//	else if (!previous && next)
+//		current = next;
+//	else
+//		current = NULL;
 }
 
 // doesnt work on first of the list

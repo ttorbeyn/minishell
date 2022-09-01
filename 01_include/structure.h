@@ -44,6 +44,7 @@ typedef struct	s_data{
 	t_token	*token;
 	int 	nb_cmd;
 	t_cmd	*cmds;
+	char	**envp;
 }				t_data;
 
 #endif

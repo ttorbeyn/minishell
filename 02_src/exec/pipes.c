@@ -26,7 +26,7 @@ void	child_process(t_data *data, t_pipes *pipe, int i)
 	if (i + 1 < data->nb_cmd)
 		dup_close_pipe(pipe->new_end[1], pipe->f_out, pipe->new_end);
 
-	if (check_builtin(data->cmds[i].cmd))
+	if (check_builtin(data->cmds[i].av[0]))
 	{
 			exec_builtin(data, i, pipe);
 			exit(0);

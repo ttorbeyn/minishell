@@ -17,11 +17,11 @@ int	exec_env(t_cmd command, t_data *data, t_pipes *p)
 	t_list *tmp;
 
 	tmp = data->env;
-	// if (command.ac > 1)
-	// {
-	// 	return_error("Error: Path not found", 0);
-	// 	return (1);
-	// }
+	 if (command.ac > 1)
+	 {
+	 	return_error("Error: Path not found", 0);
+	 	return (1);
+	 }
 	print_lst(&data->env);
 	write(2, "\nALO2\n\n", 8);
 	if (!tmp)
