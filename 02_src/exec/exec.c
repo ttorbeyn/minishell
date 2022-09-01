@@ -14,12 +14,12 @@
 
 int	cmd_switch(t_data *data)
 {
-	if (data->cmd_count == 1)
+	if (data->nb_cmd == 1)
 	{
-		if (check_builtin(data->cmd[0].cmd))
+		if (check_builtin(data->cmds[0].cmd))
 			exec_old_builtin(data, 0);
 		else
-			executer(data->cmd[0], data);
+			executer(data->cmds[0], data);
 	}
 	else
 		lauching_process(data);
@@ -28,39 +28,39 @@ int	cmd_switch(t_data *data)
 
 int	exec_old_builtin(t_data *data, int i)
 {
-	if (!ft_strncmp(data->cmd[i].av[0], "cd", 2))
-		return (exec_cd(data->cmd[i], data));
-	if (!ft_strncmp(data->cmd[i].av[0], "echo", 4))
-		return (exec_echo(data->cmd[i]));
-	if (!ft_strncmp(data->cmd[i].av[0], "exit", 4))
+	if (!ft_strncmp(data->cmds[i].av[0], "cd", 2))
+		return (exec_cd(data->cmds[i], data));
+	if (!ft_strncmp(data->cmds[i].av[0], "echo", 4))
+		return (exec_echo(data->cmds[i]));
+	if (!ft_strncmp(data->cmds[i].av[0], "exit", 4))
 		return (3);
-	// if (!ft_strncmp(data->cmd[i].av[0], "env", 3))
-	// 	return (exec_env(data->cmd[i], data));
-	// if (!ft_strncmp(data->cmd[i].av[0], "pwd", 3))
+	// if (!ft_strncmp(data->cmds[i].av[0], "env", 3))
+	// 	return (exec_env(data->cmds[i], data));
+	// if (!ft_strncmp(data->cmds[i].av[0], "pwd", 3))
 	// 	return (exec_pwd(data, pipe));
-	if (!ft_strncmp(data->cmd[i].av[0], "export", 6))
-		return (exec_export(data->cmd[i], data));
-	if (!ft_strncmp(data->cmd[i].av[0], "unset", 5))
-		return (exec_unset(data->cmd[i], data));
+	if (!ft_strncmp(data->cmds[i].av[0], "export", 6))
+		return (exec_export(data->cmds[i], data));
+	if (!ft_strncmp(data->cmds[i].av[0], "unset", 5))
+		return (exec_unset(data->cmds[i], data));
 	return (0);
 }
 
 int	exec_builtin(t_data *data, int i, t_pipes *pipe)
 {
-	if (!ft_strncmp(data->cmd[i].av[0], "cd", 2))
-		return (exec_cd(data->cmd[i], data));
-	if (!ft_strncmp(data->cmd[i].av[0], "echo", 4))
-		return (exec_echo(data->cmd[i]));
-	if (!ft_strncmp(data->cmd[i].av[0], "exit", 4))
+	if (!ft_strncmp(data->cmds[i].av[0], "cd", 2))
+		return (exec_cd(data->cmds[i], data));
+	if (!ft_strncmp(data->cmds[i].av[0], "echo", 4))
+		return (exec_echo(data->cmds[i]));
+	if (!ft_strncmp(data->cmds[i].av[0], "exit", 4))
 		return (3);
-	if (!ft_strncmp(data->cmd[i].av[0], "env", 3))
-		return (exec_env(data->cmd[i], data, pipe));
-	if (!ft_strncmp(data->cmd[i].av[0], "pwd", 3))
+	if (!ft_strncmp(data->cmds[i].av[0], "env", 3))
+		return (exec_env(data->cmds[i], data, pipe));
+	if (!ft_strncmp(data->cmds[i].av[0], "pwd", 3))
 		return (exec_pwd(data, pipe));
-	if (!ft_strncmp(data->cmd[i].av[0], "export", 6))
-		return (exec_export(data->cmd[i], data));
-	if (!ft_strncmp(data->cmd[i].av[0], "unset", 5))
-		return (exec_unset(data->cmd[i], data));
+	if (!ft_strncmp(data->cmds[i].av[0], "export", 6))
+		return (exec_export(data->cmds[i], data));
+	if (!ft_strncmp(data->cmds[i].av[0], "unset", 5))
+		return (exec_unset(data->cmds[i], data));
 	return (0);
 }
 

@@ -23,16 +23,16 @@ void	child_process(t_data *data, t_pipes *pipe, int i)
 
 	if (i > 0)
 		dup_close_pipe(pipe->old_end[0], pipe->f_in, pipe->old_end);
-	if (i + 1 < data->cmd_count)
+	if (i + 1 < data->nb_cmd)
 		dup_close_pipe(pipe->new_end[1], pipe->f_out, pipe->new_end);
 
-	if (check_builtin(data->cmd[i].cmd))
+	if (check_builtin(data->cmds[i].cmd))
 	{
 			exec_builtin(data, i, pipe);
 			exit(0);
 	}
 	else
-			executer(data->cmd[i], data);
+			executer(data->cmds[i], data);
 	return ;
 }
 
@@ -40,7 +40,7 @@ void	parent_process(t_data *data, t_pipes *pipe, int pid, int i)
 {
 	if (i > 0)
 		close_pipe(pipe->old_end);
-	if (i + 1 < data->cmd_count)
+	if (i + 1 < data->nb_cmd)
 	{
 		pipe->old_end[0] = pipe->new_end[0];
 		pipe->old_end[1] = pipe->new_end[1];
@@ -72,9 +72,9 @@ void	lauching_process(t_data *data)
 	t_pipes p;
 
 	i = 0;
-	while (i < data->cmd_count)
+	while (i < data->nb_cmd)
 	{
-		if (i + 1 < data->cmd_count)
+		if (i + 1 < data->nb_cmd)
 		{
 			if (pipe(p.new_end))
 			{

@@ -17,17 +17,17 @@ void	redirections(t_data *data, t_pipes *pipe, int i)
 	pipe->f_in = 0;
 	pipe->f_out = 1;
 
-	if(data->cmd[i].in.doc)
-		pipe->f_in = open_heredoc(data->cmd[i].in.doc);
-	if (data->cmd[i].in.path)
+	if(data->cmds[i].in.doc)
+		pipe->f_in = open_heredoc(data->cmds[i].in.doc);
+	if (data->cmds[i].in.path)
 	{
-		pipe->f_in = open(data->cmd[i].in.path, data->cmd[i].in.chmod);
+		pipe->f_in = open(data->cmds[i].in.path, data->cmds[i].in.chmod);
 		if (pipe->f_in < 0)
 			return_error("Minishell: Error : No such file or directory", 2);
 	}
-	if (data->cmd[i].out.path)
+	if (data->cmds[i].out.path)
 	{
-		pipe->f_in = open(data->cmd[i].out.path, data->cmd[i].out.chmod);
+		pipe->f_in = open(data->cmds[i].out.path, data->cmds[i].out.chmod);
 		if (pipe->f_out < 0)
 			return_error("Minishell: Error : No such file or directory", 2);
 	}
