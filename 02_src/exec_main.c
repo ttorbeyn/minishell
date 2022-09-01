@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:17:52 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/31 18:45:26 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/01 14:54:50 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,17 @@ void	big_fat_init(t_data *data, char **env)
 	///MALLOCS
 	cmd0 = malloc(sizeof(char) * 3 + 1);
 	cmd1 = malloc(sizeof(char) * 3 + 1);
-	// flag0 = malloc(sizeof(char) * 19 + 1);
-	flag1 = malloc(sizeof(char) * 2 + 1);
+	flag0 = malloc(sizeof(char) * 19 + 1);
+	// flag1 = malloc(sizeof(char) * 2 + 1);
 	data->cmd = malloc(sizeof(t_cmd) * cmd_nb);
 	data->cmd[0].av = malloc(sizeof(char*) * 1 + 1);
 	data->cmd[1].av = malloc(sizeof(char*) * 2 + 1);
 
 	///CMDS
-	cmd0 = "env";
-	// flag0 = "02_src/exec/builtin";
-	cmd1 = "cat";
-	flag1 = "-e";
+	cmd0 = "export";
+	flag0 = "TEST=bite";
+	cmd1 = "env";
+	// flag1 = "-e";
 
 	data->cmd_count = cmd_nb;
 
@@ -104,13 +104,13 @@ void	big_fat_init(t_data *data, char **env)
 	data->cmd[0].ac = 1;
 	data->cmd[0].cmd = ft_strdup(cmd0);
 	data->cmd[0].av[0] = ft_strdup(cmd0);
-	// data->cmd[0].av[1] = ft_strdup(flag0);
+	data->cmd[0].av[1] = ft_strdup(flag0);
 	
 	/// T_CMD[1]
 	data->cmd[1].ac = 2;
 	data->cmd[1].cmd = ft_strdup(cmd1);
 	data->cmd[1].av[0] = ft_strdup(cmd1);
-	data->cmd[1].av[1] = ft_strdup(flag1);
+	// data->cmd[1].av[1] = ft_strdup(flag1);
 
 	///CHECK
 	// printf("cmd[0].cmd:	%s\n", data->cmd[0].cmd);

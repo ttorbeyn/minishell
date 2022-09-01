@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/31 18:43:07 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/01 18:09:41 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	child_process(t_data *data, t_pipes *pipe, int i)
 		dup_close_pipe(pipe->new_end[1], pipe->f_out, pipe->new_end);
 
 	if (check_builtin(data->cmd[i].cmd))
+	{
 			exec_builtin(data, i, pipe);
+			exit(0);
+	}
 	else
 			executer(data->cmd[i], data);
 	return ;
@@ -55,6 +58,7 @@ void	ft_fork(t_data *data, t_pipes *pipe, int i)
 	if (pid == 0)
 	{
 		child_process(data, pipe, i);
+		// waitpid(pid, NULL, 0);
 		exit (0);
 	}
 	else

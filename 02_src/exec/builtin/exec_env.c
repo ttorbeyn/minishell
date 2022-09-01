@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/08/31 18:45:50 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/01 15:28:31 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ int	exec_env(t_cmd command, t_data *data, t_pipes *p)
 	t_list *tmp;
 
 	tmp = data->env;
-	if (command.ac > 1)
-	{
-		return_error("Error: Path not found", 0);
-		return (1);
-	}
+	// if (command.ac > 1)
+	// {
+	// 	return_error("Error: Path not found", 0);
+	// 	return (1);
+	// }
+	print_lst(&data->env);
+	write(2, "\nALO2\n\n", 8);
 	if (!tmp)
 		return (1);
 	while (tmp)
@@ -30,5 +32,11 @@ int	exec_env(t_cmd command, t_data *data, t_pipes *p)
 		write(p->f_out, "\n", 1);
 		tmp = tmp->next;
 	}
+	// while (data->env)
+	// {
+	// 	write(p->f_out, data->env->content, ft_strlen(data->env->content));
+	// 	write(p->f_out, "\n", 1);
+	// 	data->env = data->env->next;
+	// }
 	return (0);
 }
