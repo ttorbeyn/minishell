@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/01 15:27:16 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/02 14:45:05 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	exec_export(t_cmd command, t_data *data)
 		tmp = tmp->next;
 	}
 	ft_lstadd_back(&data->env, ft_lstnew(command.av[1]));
-	print_lst(&data->env);
-	write(2, "\nALO\n\n", 7);
+	// print_lst(&data->env);
+	// write(2, "\nALO\n\n", 7);
 	// printf("CREATED:	%s\n", (char*)data->env->content);
 	// ft_putstr_fd(data->env->content, 2);
 	return (0);

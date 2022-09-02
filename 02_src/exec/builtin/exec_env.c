@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/09/01 15:28:31 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/02 14:44:38 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	exec_env(t_cmd command, t_data *data, t_pipes *p)
 	 	return_error("Error: Path not found", 0);
 	 	return (1);
 	 }
-	print_lst(&data->env);
-	write(2, "\nALO2\n\n", 8);
+	// print_lst(&data->env);
+	// write(2, "\nALO2\n\n", 8);
 	if (!tmp)
 		return (1);
 	while (tmp)

@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:59:37 by vic               #+#    #+#             */
-/*   Updated: 2022/08/13 23:27:00 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/02 14:30:07 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	exec_echo(t_cmd command)
 		flag++;
 		i++;
 	}
-	while (command.av[i])
+	while (i < command.ac)
 	{
-		if (i != command.ac - 1 && i != 1)
+		if (i != command.ac && i != flag + 1)
 			write(1, " ", 1);
 		ft_putstr_fd(command.av[i], 1);
 		i++;

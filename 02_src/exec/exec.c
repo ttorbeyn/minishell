@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/08/31 18:42:42 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:04:45 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 int	cmd_switch(t_data *data)
 {
+	t_pipes p;
+
 	if (data->nb_cmd == 1)
 	{
 		if (check_builtin(data->cmds[0].av[0]))
-			exec_old_builtin(data, 0);
+			exec_builtin(data, 0, &p);
 		else
 			executer(data->cmds[0], data);
 	}
 	else
-		lauching_process(data);
+		lauching_process(data, &p);
 	return (0);
 }
 
@@ -68,6 +70,16 @@ void	executer(t_cmd cmd, t_data *data)
 {
 	char	*path;
 	int ret;
+
+	int i = -1;
+	while (data->envp[++i])
+		ft_putstr_fd(data->envp[i], 1);
+
+	// while (cmd.av[++i])
+	// 	ft_putstr_fd(cmd.av[i], 1);
+
+	// while (++i < cmd.ac)
+	// 	ft_putstr_fd(cmd.av[i], 2);
 
 	path = check_path(data->envp, cmd.av[0]);
 	ret = execve(path, cmd.av, data->envp);
