@@ -31,22 +31,19 @@ int	main(int ac, char **av, char **env)
 	{
 		data.line = get_line(&data);
 		lex(&data);
-//		printf("coucou\n");
-//		print_tok(&data.token);
-//		printf("coucou2\n");
 		parser(&data);
-		int i = 0;
-		int j;
-		while (i < data.nb_cmd)
-		{
-			j = 0;
-			while (j < data.cmds[i].ac)
-			{
-				printf("cmd[%d]|av[%d]\t:\t|%s|\n", i, j, data.cmds[i].av[j]);
-				j++;
-			}
-			i++;
-		}
+		// int i = 0;
+		// int j;
+		// while (i < data.nb_cmd)
+		// {
+		// 	j = 0;
+		// 	while (j < data.cmds[i].ac)
+		// 	{
+		// 		printf("cmd[%d]|av[%d]\t:\t|%s|\n", i, j, data.cmds[i].av[j]);
+		// 		j++;
+		// 	}
+		// 	i++;
+		// }
 		cmd_switch(&data);
 //		parser(line, &data);
 	}

@@ -57,7 +57,7 @@ void	executer(t_cmd cmd, t_data *data);
 void	child_process(t_data *data, t_pipes *pipe, int i);
 void	parent_process(t_data *data, t_pipes *pipe, int pid, int i);
 void	ft_fork(t_data *data, t_pipes *pipe, int i);
-void	lauching_process(t_data *data);
+void	lauching_process(t_data *data, t_pipes *p);
 	//PIPES UTILS
 void	short_dup(int x, int y);
 void	close_pipe(int *end);

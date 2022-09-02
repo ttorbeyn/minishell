@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/01 18:09:41 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/02 14:40:20 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,23 @@ void	ft_fork(t_data *data, t_pipes *pipe, int i)
 	return ;
 }
 
-void	lauching_process(t_data *data)
+void	lauching_process(t_data *data, t_pipes *p)
 {
 	int i;
-	t_pipes p;
+	// t_pipes p;
 
 	i = 0;
 	while (i < data->nb_cmd)
 	{
 		if (i + 1 < data->nb_cmd)
 		{
-			if (pipe(p.new_end))
+			if (pipe(p->new_end))
 			{
 				return_error("Minishell: pipe error", 2);
 				return ;
 			}
 		}
-		ft_fork(data, &p, i);
+		ft_fork(data, p, i);
 		i++;
 	}
 	return ;
