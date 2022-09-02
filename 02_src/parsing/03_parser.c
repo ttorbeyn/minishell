@@ -26,7 +26,7 @@ t_token *make_av(t_token *token, t_cmd *cmd)
 
 	tmp = token;
 	token = count_arg(token, cmd);
-	cmd->av = malloc(sizeof(char*) * cmd->ac);
+	cmd->av = malloc(sizeof(char*) * (cmd->ac + 1));
 	i = 0;
 	while (i < cmd->ac)
 	{
@@ -34,6 +34,7 @@ t_token *make_av(t_token *token, t_cmd *cmd)
 		tmp = tmp->next;
 		i++;
 	}
+	cmd->av[i] = NULL;
 	return (token);
 }
 
