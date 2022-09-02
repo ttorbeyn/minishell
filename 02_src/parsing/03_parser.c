@@ -9,6 +9,8 @@ t_token *count_arg(t_token *tmp, t_cmd *cmd)
 		cmd->ac++;
 		tmp = tmp->next;
 	}
+	while (tmp && (tmp->type == GREAT || tmp->type == LESS || tmp->type == DGREAT || tmp->type == DLESS))
+		tmp = tmp->next;
 	if (tmp && tmp->type == PIPE)
 	{
 		tmp = tmp->next;
@@ -19,7 +21,6 @@ t_token *count_arg(t_token *tmp, t_cmd *cmd)
 
 t_token *make_av(t_token *token, t_cmd *cmd)
 {
-//	char **av;
 	int i;
 	t_token *tmp;
 
