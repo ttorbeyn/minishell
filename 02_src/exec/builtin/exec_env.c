@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/09/02 14:44:38 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:43:23 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	exec_env(t_cmd command, t_data *data, t_pipes *p)
 	tmp = data->env;
 	 if (command.ac > 1)
 	 {
-	 	return_error("Error: Path not found", 0);
+	 	return_error("Error: Path not found", NULL, 0);
 	 	return (1);
 	 }
 	// print_lst(&data->env);

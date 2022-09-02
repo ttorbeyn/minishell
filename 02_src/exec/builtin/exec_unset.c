@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/08/13 23:28:49 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:43:39 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ int	exec_unset(t_cmd command, t_data *data)
 		i++;
 		tmp = tmp->next;
 	}
-	return_error("Error: Invalid parameter name", 0);
+	return_error("Error: Invalid parameter name", NULL, 0);
 	return (0);
 }

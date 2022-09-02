@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:40:09 by vic               #+#    #+#             */
-/*   Updated: 2022/08/31 18:03:48 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:53:22 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ void	update_env(t_data *data, char *name)
 		if (!ft_strncmp(name, content, ft_strlen(name)))
 		{
 			path = get_pwd();
-			// ft_putstr_fd(path, 2);
-			// fflush(stdout);
 			tmp->content = ft_strjoin(name, path);
 			if (!content)
 				exit(EXIT_FAILURE);
@@ -63,19 +61,14 @@ int	exec_cd(t_cmd command, t_data *data)
 	path = get_path(command, data);
 	if (!path)
 		return (1);
-
-	// ft_putstr_fd(path, 2);
-	// fflush(stdout);
 	if (chdir(path) < 0)
 	{
-		return_error("Error: Path not found", 0);
+		return_error("Error: Path not found", NULL, 0);
 		free(path);
 		return (1);
 	}
-	// ft_putstr_fd("ALO\n", 2);
-	// fflush(stdout);
 	update_env(data, "PWD=");
-	print_lst(&data->env);
+	// print_lst(&data->env);
 	free(path);
 	return (0);
 }
