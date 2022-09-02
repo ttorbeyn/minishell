@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 16:29:45 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/25 18:52:59 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:44:11 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	short_dup(int x, int y)
 	ret = dup2(x, y);
 	if (ret == -1)
 	{
-		return_error("Minishell: Error: dup failed\n", 2);
+		return_error("Minishell: Error: dup failed\n", NULL, 2);
 		exit(1);
 	}
 }
@@ -31,13 +31,13 @@ void	close_pipe(int *end)
 	r = close(end[0]);
 	if (r == -1)
 	{
-		return_error("Minishell: Error: pipe failed\n", 2);
+		return_error("Minishell: Error: pipe failed\n", NULL, 2);
 		exit(1);
 	}
 	r = close(end[1]);
 	if (r == -1)
 	{
-		return_error("Minishell: Error: pipe failed\n", 2);
+		return_error("Minishell: Error: pipe failed\n", NULL, 2);
 		exit(1);
 	}
 }

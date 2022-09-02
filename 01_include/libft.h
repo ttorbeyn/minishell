@@ -12,6 +12,7 @@ typedef struct s_list {
 
 int	ft_atoi(const char *str);
 int	ft_isdigit(int c);
+int	isdigit_check(char *s);
 int	ft_isspace(char str);
 int	ft_isascii(int c);
 void	ft_putendl_fd(char *s, int fd);

@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:07:39 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/08/26 17:18:54 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/02 15:44:24 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	redirections(t_data *data, t_pipes *pipe, int i)
 	{
 		pipe->f_in = open(data->cmds[i].in.path, data->cmds[i].in.chmod);
 		if (pipe->f_in < 0)
-			return_error("Minishell: Error : No such file or directory", 2);
+			return_error("Minishell: Error : No such file or directory", NULL, 2);
 	}
 	if (data->cmds[i].out.path)
 	{
 		pipe->f_in = open(data->cmds[i].out.path, data->cmds[i].out.chmod);
 		if (pipe->f_out < 0)
-			return_error("Minishell: Error : No such file or directory", 2);
+			return_error("Minishell: Error : No such file or directory", NULL, 2);
 	}
 	return ;
 }

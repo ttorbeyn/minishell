@@ -77,11 +77,13 @@ int		exec_env(t_cmd command, t_data *data, t_pipes *p);
 int		exec_pwd(t_data *data, t_pipes *p);
 int		exec_export(t_cmd command, t_data *data);
 int		exec_unset(t_cmd command, t_data *data);
+int		exec_exit(t_cmd cmd);
+
 
 /// UTILS ///
 int		check_builtin(char *cmd);
 char	*check_path(char **env, char *cmd);
-int		return_error(char *msg, int system);
+int		return_error(char *msg, char *msg2, int system);
 void	ft_abort(char *str, int system);
 void	print_lst(t_list **env);
 
