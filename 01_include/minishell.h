@@ -19,6 +19,8 @@
 # define LESS 3
 # define DGREAT 4
 # define DLESS 5
+# define IN 6
+# define OUT 7
 
 int		g_exit;
 
@@ -43,6 +45,9 @@ int	check_quotes(int i, char *line);
 
 //03_parser
 int	parser(t_data *data);
+
+//04_redirection
+t_token *redirection(t_token *token, t_cmd *cmd);
 
 //99_utils
 int		ft_error(char *error);

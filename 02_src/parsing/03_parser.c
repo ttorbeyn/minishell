@@ -1,31 +1,45 @@
 #include "../../01_include/minishell.h"
 
-t_token *count_arg(t_token *tmp, t_cmd *cmd)
+void cmd_init(t_cmd *cmd)
 {
-	if (!tmp)
-		return (0);
-	while (tmp && tmp->type == WORD)
-	{
-		cmd->ac++;
-		tmp = tmp->next;
-	}
-	if (tmp && tmp->type == PIPE)
-	{
-		tmp = tmp->next;
-		return (tmp);
-	}
-	return (tmp);
+	cmd->ac = 0;
+	cmd->av = NULL;
+	cmd->in.path = NULL;
+	cmd->in.chmod = 0;
+	cmd->in.doc = NULL;
+	cmd->out.path = NULL;
+	cmd->out.chmod = 0;
+	cmd->out.doc = NULL;
 }
 
-t_token *make_av(t_token *token, t_cmd *cmd)
+t_token *count_arg(t_token *token, t_cmd *cmd, t_data *data)
 {
-//	char **av;
+	if (!token)
+		return (0);
+	while (token && token->type == WORD)
+	{
+		cmd->ac++;
+		token = token->next;
+	}
+	if (token && token->type == PIPE)
+	{
+		token = token->next;
+		return (token);
+	}
+	if (token && token->type > 1)
+		token = redirection(token, cmd);
+	return (token);
+}
+
+t_token *make_av(t_token *token, t_cmd *cmd, t_data *data)
+{
 	int i;
 	t_token *tmp;
 
 
 	tmp = token;
-	token = count_arg(token, cmd);
+	cmd_init(cmd);
+	token = count_arg(token, cmd, data);
 	cmd->av = malloc(sizeof(char*) * (cmd->ac + 1));
 	i = 0;
 	while (i < cmd->ac)
@@ -48,7 +62,7 @@ int	parser(t_data *data)
 	data->cmds = malloc(sizeof(t_cmd) * data->nb_cmd);
 	while (i < data->nb_cmd)
 	{
-		tmp = make_av(tmp, &data->cmds[i]);
+		tmp = make_av(tmp, &data->cmds[i], data);
 		i++;
 	}
 	return (0);
