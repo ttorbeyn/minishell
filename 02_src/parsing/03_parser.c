@@ -12,31 +12,6 @@ void cmd_init(t_cmd *cmd)
 	cmd->out.doc = NULL;
 }
 
-t_token *cmd_redirection(t_token *token, t_redirection redir, int chmod)
-{
-		int fd;
-
-		token = token->next;
-		redir.path = token->content;
-		redir.chmod = chmod;
-		fd = open(token->content, chmod);
-		close (fd);
-		return (token);
-}
-
-t_token *redirection(t_token *token, t_cmd *cmd)
-{
-	if (token->type == GREAT)
-		token = cmd_redirection(token, cmd->out, (O_WRONLY | O_TRUNC | O_CREAT));
-	else if (token->type == LESS)
-		token = cmd_redirection(token, cmd->in, (O_RDONLY));
-	else if (token->type == DGREAT)
-		token = cmd_redirection(token, cmd->out, (O_WRONLY | O_APPEND | O_CREAT));
-//	else if (token->type == DLESS)
-
-	return (token);
-}
-
 t_token *count_arg(t_token *token, t_cmd *cmd, t_data *data)
 {
 	if (!token)

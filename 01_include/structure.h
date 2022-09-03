@@ -17,19 +17,19 @@ typedef struct	s_here
 	void	*next;
 }				t_here;
 
-typedef struct	s_redirection
+typedef struct	s_redir
 {
 	char			*path;
 	int				chmod;	//O_RDONLY O_WRONLY | O_TRUNC | O_CREAT..
 	t_here			*doc;
-}				t_redirection;
+}				t_redir;
 
 typedef struct	s_cmd		//one s_cmd for each cmds
 {
 	int				ac;
 	char			**av;
-	t_redirection	in;
-	t_redirection	out;	//storing in/out destination w/ their respective cmds
+	t_redir	in;
+	t_redir	out;	//storing in/out destination w/ their respective cmds
 }				t_cmd;
 
 typedef struct	s_token {
