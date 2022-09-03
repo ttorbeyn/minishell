@@ -19,6 +19,8 @@
 # define LESS 3
 # define DGREAT 4
 # define DLESS 5
+# define IN 6
+# define OUT 7
 
 void	envp_init(t_data *data, char **env);
 

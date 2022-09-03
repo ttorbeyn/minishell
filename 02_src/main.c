@@ -18,6 +18,23 @@ void	envp_init(t_data *data, char **env)
 	return;
 }
 
+int	print_cmd(t_data *data)
+{
+	int i = 0;
+	int j;
+	while (i < data->nb_cmd)
+	{
+		j = 0;
+		while (j < data->cmds[i].ac)
+		{
+			printf("cmd[%d]|av[%d]\t:\t|%s|\n", i, j, data->cmds[i].av[j]);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	main(int ac, char **av, char **env)
 {
 	t_data	data;
@@ -30,20 +47,9 @@ int	main(int ac, char **av, char **env)
 	while (data.line)
 	{
 		data.line = get_line(&data);
-		lex(&data);
-		parser(&data);
-		 int i = 0;
-		 int j;
-		 while (i < data.nb_cmd)
-		 {
-		 	j = 0;
-		 	while (j < data.cmds[i].ac)
-		 	{
-		 		printf("cmd[%d]|av[%d]\t:\t|%s|\n", i, j, data.cmds[i].av[j]);
-		 		j++;
-		 	}
-		 	i++;
-		 }
+		if (lex(&data) || parser(&data))
+			continue;
+		print_cmd(&data);
 //		cmd_switch(&data);
 //		parser(line, &data);
 	}
