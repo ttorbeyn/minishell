@@ -12,7 +12,7 @@ void cmd_init(t_cmd *cmd)
 	cmd->out.doc = NULL;
 }
 
-t_token *count_arg(t_token *token, t_cmd *cmd, t_data *data)
+t_token *count_arg(t_token *token, t_cmd *cmd)
 {
 	if (!token)
 		return (0);
@@ -31,7 +31,7 @@ t_token *count_arg(t_token *token, t_cmd *cmd, t_data *data)
 	return (token);
 }
 
-t_token *make_av(t_token *token, t_cmd *cmd, t_data *data)
+t_token *make_av(t_token *token, t_cmd *cmd)
 {
 	int i;
 	t_token *tmp;
@@ -39,7 +39,7 @@ t_token *make_av(t_token *token, t_cmd *cmd, t_data *data)
 
 	tmp = token;
 	cmd_init(cmd);
-	token = count_arg(token, cmd, data);
+	token = count_arg(token, cmd);
 	cmd->av = malloc(sizeof(char*) * (cmd->ac + 1));
 	i = 0;
 	while (i < cmd->ac)
@@ -62,7 +62,7 @@ int	parser(t_data *data)
 	data->cmds = malloc(sizeof(t_cmd) * data->nb_cmd);
 	while (i < data->nb_cmd)
 	{
-		tmp = make_av(tmp, &data->cmds[i], data);
+		tmp = make_av(tmp, &data->cmds[i]);
 		i++;
 	}
 	return (0);

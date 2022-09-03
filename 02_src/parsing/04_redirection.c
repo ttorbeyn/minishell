@@ -54,6 +54,7 @@ t_token *redirection(t_token *token, t_cmd *cmd)
 	{
 		token = token->next;
 		ft_hereadd_back(&cmd->in.doc, ft_herenew(token->content));
+		printf("heredoc created\n");
 	}
 	return (token);
 }
