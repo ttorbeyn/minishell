@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:38:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/02 15:48:58 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/03 23:54:02 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,16 @@ char	*check_path(char **env, char *cmd)
 int	return_error(char *msg, char *msg2, int system)
 {
 	ft_putstr_fd("Minishell: ", 2);
-	if (system)
-		perror(msg);
-	else
+	// if (system)
+	// 	// perror(msg);
+	// else
+	// {
 		ft_putstr_fd(msg, 2);
-	if (msg2)
-		ft_putstr_fd(msg2, 2);
+		if (msg2)
+			ft_putstr_fd(msg2, 2);
+	// }
 	write(2, "\n", 1);
+	g_exit = system;
 	return (1);
 }
 

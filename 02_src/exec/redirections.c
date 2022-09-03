@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:07:39 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/02 15:44:24 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/04 00:46:40 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,26 @@
 
 void	redirections(t_data *data, t_pipes *pipe, int i)
 {
+	char *in;
+	char *out;
+
 	pipe->f_in = 0;
 	pipe->f_out = 1;
-
 	if(data->cmds[i].in.doc)
 		pipe->f_in = open_heredoc(data->cmds[i].in.doc);
-	if (data->cmds[i].in.path)
+	in = data->cmds[i].in.path;
+	out = data->cmds[i].out.path;
+	if (in)
 	{
 		pipe->f_in = open(data->cmds[i].in.path, data->cmds[i].in.chmod);
 		if (pipe->f_in < 0)
-			return_error("Minishell: Error : No such file or directory", NULL, 2);
+			return_error(in, ": No such file or directory", 1);
 	}
-	if (data->cmds[i].out.path)
+	if (out)
 	{
 		pipe->f_in = open(data->cmds[i].out.path, data->cmds[i].out.chmod);
 		if (pipe->f_out < 0)
-			return_error("Minishell: Error : No such file or directory", NULL, 2);
+			return_error(out, ": No such file or directory", 1);
 	}
 	return ;
 }

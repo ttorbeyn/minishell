@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:14:59 by vic               #+#    #+#             */
-/*   Updated: 2022/09/02 16:33:58 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/03 23:42:17 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	exec_exit(t_cmd cmd)
 {
 	if (cmd.av[1])
 	{
-		if (isdigit_check(cmd.av[1]))
+		if (!isdigit_check(cmd.av[1]))
 			return_error(cmd.av[1], ": numeric argument required", 1);
 	}
 	write(1, "exit\n", 5);

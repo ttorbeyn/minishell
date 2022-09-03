@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/02 16:12:01 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/03 23:56:04 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void	child_process(t_data *data, t_pipes *pipe, int i)
 {
-	// int r;
 	redirections(data, pipe, i);
 	if (pipe->f_in != 0)
 		short_dup(pipe->f_in, 0);
@@ -55,11 +54,10 @@ void	ft_fork(t_data *data, t_pipes *pipe, int i)
 
 	pid = fork();
 	if (pid == -1)
-		return_error("Minishell: Error: fork error", NULL, 2);
+		return_error("Error : fork error", NULL, 2);
 	if (pid == 0)
 	{
 		child_process(data, pipe, i);
-		// waitpid(pid, NULL, 0);
 		exit (0);
 	}
 	else
@@ -79,7 +77,7 @@ void	lauching_process(t_data *data, t_pipes *p)
 		{
 			if (pipe(p->new_end))
 			{
-				return_error("Minishell: pipe error", NULL, 2);
+				return_error("Error : pipe error", NULL, 2);
 				return ;
 			}
 		}

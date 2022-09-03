@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:42:17 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/02 15:43:57 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/03 23:57:59 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	found_limit(t_here **doc, char *input, int *fd)
 		close(*fd);
 		*fd = open("heredoc", O_RDONLY, 0666);
 		if (*fd < 0)
-			return_error("Minishell: No such file or directory : heredoc", NULL, 1);
+			return_error("Error : No such file or directory : heredoc", NULL, 1);
 		if (unlink("heredoc"))
-			ft_abort("Minishell: : Unlink failed", 255);
+			ft_abort("Error : Unlink failed", 255);
 		return (1);
 	}
 	else
@@ -41,7 +41,7 @@ int	found_limit(t_here **doc, char *input, int *fd)
 		close(*fd);
 		*fd = open("heredoc", O_TRUNC | O_WRONLY, 0666);
 		if (*fd < 0)
-			return_error("Minishell: heredoc", NULL, 1);
+			return_error("Error : heredoc", NULL, 1);
 	}
 	return (0);
 }
@@ -58,7 +58,7 @@ int	open_heredoc(t_here *doc)
 		if (!input)
 		{
 			if (unlink("heredoc"))
-				ft_abort("Minishell: : Unlink failed", 255);
+				ft_abort("Error : Unlink failed", 255);
 				close(fd);
 				exit(0);
 		}

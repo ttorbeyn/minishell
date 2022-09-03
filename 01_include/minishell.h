@@ -20,6 +20,8 @@
 # define DGREAT 4
 # define DLESS 5
 
+int		g_exit;
+
 void	envp_init(t_data *data, char **env);
 
 //00_init
@@ -75,7 +77,7 @@ int		exec_cd(t_cmd command, t_data *data);
 int		exec_echo(t_cmd command);
 int		exec_env(t_cmd command, t_data *data, t_pipes *p);
 int		exec_pwd(t_data *data, t_pipes *p);
-int		exec_export(t_cmd command, t_data *data);
+int		exec_export(t_cmd command, t_data *data, t_pipes *p);
 int		exec_unset(t_cmd command, t_data *data);
 int		exec_exit(t_cmd cmd);
 

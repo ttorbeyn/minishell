@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/02 14:45:05 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/04 00:19:50 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,31 @@ static int check_valid(char *av)
 	return (0);
 }
 
-/*
-	set_env (or export) adds or modifies environement variables in env
-*/
+int	empty_export(t_data *data, t_pipes *p)
+{
+	t_list *tmp;
 
-int	exec_export(t_cmd command, t_data *data)
+	tmp = data->env;
+	if (!tmp)
+		return (1);
+	while (tmp->next)
+	{
+		write(p->f_out, tmp->content, ft_strlen(tmp->content));
+		write(p->f_out, "\n", 1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	exec_export(t_cmd command, t_data *data, t_pipes *p)
 {
 	char *name;
 	t_list *tmp;
 
-	if (!data->env || !command.av[1] || command.av[1][0] == '\0')
+	if (!data->env)
 		return (1);
+	if (!command.av[1])
+		return (empty_export(data, p));
 	if (check_valid(command.av[1]))
 		return (1);
 	tmp = data->env;
@@ -56,16 +70,10 @@ int	exec_export(t_cmd command, t_data *data)
 		if (!ft_strncmp(tmp->content, name, ft_strlen(name)))
 		{
 			tmp->content = ft_strdup(command.av[1]);
-			// printf("EXISTS:	%s\n", (char*)data->env->content);
-			// print_lst(&data->env);
 			return(0);
 		}
 		tmp = tmp->next;
 	}
 	ft_lstadd_back(&data->env, ft_lstnew(command.av[1]));
-	// print_lst(&data->env);
-	// write(2, "\nALO\n\n", 7);
-	// printf("CREATED:	%s\n", (char*)data->env->content);
-	// ft_putstr_fd(data->env->content, 2);
 	return (0);
 }
