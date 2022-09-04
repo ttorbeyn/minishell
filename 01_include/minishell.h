@@ -44,6 +44,9 @@ int	check_quotes(int i, char *line);
 //03_parser
 int	parser(t_data *data);
 
+//04_quotes
+t_token *remove_quotes(t_data *data);
+
 //04_redirection
 t_token *redirection(t_token *token, t_cmd *cmd);
 

@@ -51,7 +51,6 @@ int	main(int ac, char **av, char **env)
 			continue;
 		print_cmd(&data);
 //		cmd_switch(&data);
-//		parser(line, &data);
 	}
 
 	return (0);

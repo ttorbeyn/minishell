@@ -35,7 +35,7 @@ char	*get_env_content(char *name, t_list *env)
 	{
 		content = (char*)env->content;
 		if (!ft_strncmp(content, tmp, ft_strlen(tmp)))
-			target = ft_strdup(content); //(=HOME)
+			target = ft_strdup(&content[ft_strlen(name) + 1]); //(=HOME)
 		env = env->next;
 	}
 	free(tmp);
