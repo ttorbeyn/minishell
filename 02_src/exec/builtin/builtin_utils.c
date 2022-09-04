@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 22:33:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/02 15:52:56 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/04 03:54:02 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*get_env_content(char *name, t_list *env)
 	{
 		content = (char*)env->content;
 		if (!ft_strncmp(content, tmp, ft_strlen(tmp)))
-			target = ft_strdup(content); //(=HOME)
+			target = ft_strdup(&content[ft_strlen(name) + 1]); //(=HOME)
 		env = env->next;
 	}
 	free(tmp);

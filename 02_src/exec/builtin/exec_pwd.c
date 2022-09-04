@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:14:21 by vic               #+#    #+#             */
-/*   Updated: 2022/08/31 18:32:11 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/04 03:54:44 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int	exec_pwd(t_data *data, t_pipes *p)
 	char *tmp;
 
 	tmp = get_env_content("PWD", data->env);
-	// ft_putendl_fd(tmp + 4, 1);
-	write(p->f_out, tmp + 4, ft_strlen(tmp));
-	write(p->f_out, "\n", 1);
-	// free(tmp);
+	ft_putendl_fd(tmp, p->f_out);
+	free(tmp);
 	return (0);
 }

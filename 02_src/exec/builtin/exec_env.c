@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/09/04 00:11:25 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/04 03:34:22 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int	exec_env(t_cmd command, t_data *data, t_pipes *p)
 		return (1);
 	while (tmp)
 	{
-		write(p->f_out, tmp->content, ft_strlen(tmp->content));
-		write(p->f_out, "\n", 1);
+		ft_putendl_fd(tmp->content, p->f_out);
 		tmp = tmp->next;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:38:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/03 23:54:02 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/04 02:40:22 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	print_lst(t_list **env)
 	int i = 0;
 	while (i < len)
 	{
-		// printf("%d:	%s\n", i, (char*)first->content);
-		ft_putstr_fd((char*)first->content, 2);
-		write(2, "\n", 1);
+		printf("%d:	%s\n", i, (char*)first->content);
+		// ft_putstr_fd((char*)first->content, 2);
+		// write(2, "\n", 1);
 		first = first->next;
 		i++;
 	}
@@ -89,17 +89,17 @@ int	return_error(char *msg, char *msg2, int system)
 	// 	// perror(msg);
 	// else
 	// {
-		ft_putstr_fd(msg, 2);
-		if (msg2)
-			ft_putstr_fd(msg2, 2);
+	ft_putstr_fd(msg, 2);
+	if (msg2)
+		ft_putstr_fd(msg2, 2);
 	// }
 	write(2, "\n", 1);
 	g_exit = system;
 	return (1);
 }
 
-void	ft_abort(char *str, int system)
+void	ft_abort(char *str)
 {
-	return_error(str, NULL, system);
+	return_error(str, NULL, 255);
 	exit(0);
 }

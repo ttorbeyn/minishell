@@ -91,7 +91,7 @@ int		exec_exit(t_cmd cmd);
 int		check_builtin(char *cmd);
 char	*check_path(char **env, char *cmd);
 int		return_error(char *msg, char *msg2, int system);
-void	ft_abort(char *str, int system);
+void	ft_abort(char *str);
 void	print_lst(t_list **env);
 
 

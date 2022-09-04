@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:42:17 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/03 23:57:59 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/04 01:58:00 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	found_limit(t_here **doc, char *input, int *fd)
 		if (*fd < 0)
 			return_error("Error : No such file or directory : heredoc", NULL, 1);
 		if (unlink("heredoc"))
-			ft_abort("Error : Unlink failed", 255);
+			ft_abort("Error : Unlink failed");
 		return (1);
 	}
 	else
@@ -52,15 +52,16 @@ int	open_heredoc(t_here *doc)
 	char	*input;
 
 	fd = open("heredoc", O_CREAT | O_WRONLY, 0666);
-	while(21)
+	signal(SIGINT, SIG_DFL);
+	while (21)
 	{
 		input = readline(">");
 		if (!input)
 		{
 			if (unlink("heredoc"))
-				ft_abort("Error : Unlink failed", 255);
-				close(fd);
-				exit(0);
+				ft_abort("Error : Unlink failed");
+			close(fd);
+			exit(0);
 		}
 		if (*input && search_limit(input, doc->limit))
 			found_limit(&doc, input, &fd);

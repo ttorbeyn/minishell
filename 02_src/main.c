@@ -49,9 +49,8 @@ int	main(int ac, char **av, char **env)
 		data.line = get_line(&data);
 		if (lex(&data) || parser(&data))
 			continue;
-		print_cmd(&data);
-//		cmd_switch(&data);
-//		parser(line, &data);
+		// print_cmd(&data);
+		cmd_switch(&data);
 	}
 
 	return (0);
