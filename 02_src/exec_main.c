@@ -43,7 +43,6 @@
 // 		f = 1;
 // 		if (flag[i])
 // 			f = 2;
-		
 // 		data->cmd[i].av = malloc(sizeof(char*) * f + 1);
 
 // 		data->cmd[i].ac = f;

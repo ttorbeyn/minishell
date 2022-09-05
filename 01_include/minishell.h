@@ -34,7 +34,6 @@
 # define IN 6
 # define OUT 7
 
-
 //main
 void	envp_init(t_data *data, char **env);
 
@@ -86,7 +85,7 @@ t_token	*redirection(t_token *token, t_cmd *cmd);
 int		is_space(char c);
 int		ft_error(char *error);
 void	print_tok(t_token **token);
-int	print_cmd(t_data *data);
+int		print_cmd(t_data *data);
 
 /// EXEC ///
 int		cmd_switch(t_data *data);
