@@ -40,7 +40,7 @@ void	envp_init(t_data *data, char **env);
 //PARSING
 
 //00_init
-char	*get_line(t_data *data);
+char	*get_line(void);
 void	data_set(t_data *data, t_list **envp, char **env);
 
 //01_lexer
@@ -83,7 +83,7 @@ t_token	*redirection(t_token *token, t_cmd *cmd);
 
 //99_utils
 int		is_space(char c);
-int		ft_error(char *error);
+int	ft_error(char *errmsg, int errnum);
 void	print_tok(t_token **token);
 int		print_cmd(t_data *data);
 

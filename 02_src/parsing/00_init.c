@@ -12,11 +12,10 @@
 
 #include "../../01_include/minishell.h"
 
-char	*get_line(t_data *data)
+char	*get_line(void)
 {
 	char	*line;
 
-	(void)data;
 	line = readline("Éshell : ");
 	add_history(line);
 	return (line);

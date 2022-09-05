@@ -87,7 +87,6 @@ t_token	*remove_quotes(t_data *data)
 	{
 		if (data->token->type == WORD)
 		{
-			printf("token de base\t:\t|%s|\n", data->token->content);
 			i = 0;
 			while (data->token->content[i])
 			{

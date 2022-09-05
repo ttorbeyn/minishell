@@ -31,7 +31,7 @@ void	ft_tokadd_back(t_token **token, t_token *new)
 
 	current = *token;
 	if (token == NULL || new == NULL)
-		return ;
+		ft_panic("Error : malloc ft_tokadd_back\n");
 	if (*token == NULL)
 		*token = new;
 	else
@@ -69,6 +69,5 @@ int	check_quotes(int i, char *line)
 		if (line[i] == quote_type)
 			return (i);
 	}
-	ft_error("Quote not closed\n");
-	return (-1);
+	return (ft_error("Quote not closed\n", -1));
 }

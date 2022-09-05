@@ -62,10 +62,7 @@ int	tok_sep(t_token **token, char **tmp, char *line, int i)
 	*tmp = create_token(token, *tmp, &line[i]);
 	i += is_separator(&line[i]);
 	if (line[i] && ft_strchr("|<>", line[i]))
-	{
-		ft_error("Error separator\n");
-		return (-1);
-	}
+		return (ft_error("Separator error\n", -1));
 	*tmp = create_token(token, *tmp, &line[i]);
 	return (i);
 }
@@ -74,6 +71,8 @@ int	init_token(char **line, char **tmp, t_token **token)
 {
 	*token = NULL;
 	*line = ft_strtrim(*line, " ");
+	if (!*line)
+		return (ft_error("Trim error\n", 1));
 	*tmp = *line;
 	return (0);
 }

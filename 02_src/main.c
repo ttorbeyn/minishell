@@ -41,7 +41,7 @@ int	main(int ac, char **av, char **env)
 	data.line = "rien";
 	while (data.line)
 	{
-		data.line = get_line(&data);
+		data.line = get_line();
 		if (lex(&data) || parser(&data))
 			continue ;
 		print_cmd(&data);

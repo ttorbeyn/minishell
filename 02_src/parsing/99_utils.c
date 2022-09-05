@@ -22,11 +22,11 @@ int	is_space(char c)
 	return (0);
 }
 
-int	ft_error(char *error)
+int	ft_error(char *errmsg, int errnum)
 {
 	ft_putstr_fd("Error: ", 2);
-	ft_putstr_fd(error, 2);
-	return (1);
+	ft_putstr_fd(errmsg, 2);
+	return (errnum);
 }
 
 void	print_tok(t_token **token)
@@ -61,11 +61,17 @@ int	print_cmd(t_data *data)
 	while (i < data->nb_cmd)
 	{
 		j = 0;
+		printf("___________________________________________________________\n");
+		printf("CMD[%d]\n", i + 1);
 		while (j < data->cmds[i].ac)
 		{
-			printf("cmd[%d]|av[%d]\t:\t|%s|\n", i, j, data->cmds[i].av[j]);
+			if (j == 0)
+				printf("\tcmd\t:\t|%s|\n", data->cmds[i].av[j]);
+			else
+				printf("\tav[%d]\t:\t|%s|\n", j, data->cmds[i].av[j]);
 			j++;
 		}
+		printf("___________________________________________________________\n");
 		i++;
 	}
 	return (0);

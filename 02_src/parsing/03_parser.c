@@ -70,7 +70,6 @@ int	parser(t_data *data)
 
 	i = 0;
 	data->token = remove_quotes(data);
-	print_tok(&data->token);
 	tmp = data->token;
 	data->cmds = malloc(sizeof(t_cmd) * data->nb_cmd);
 	while (i < data->nb_cmd)
