@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/04 00:19:50 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:44:20 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,11 @@ int	empty_export(t_data *data, t_pipes *p)
 		write(p->f_out, "\n", 1);
 		tmp = tmp->next;
 	}
+	free(tmp);
 	return (0);
 }
 
-int	exec_export(t_cmd command, t_data *data, t_pipes *p)
+int	exec_export(t_cmd command, t_data *data, t_pipes *p)  // if (!tmp) return(1)?
 {
 	char *name;
 	t_list *tmp;
@@ -75,5 +76,7 @@ int	exec_export(t_cmd command, t_data *data, t_pipes *p)
 		tmp = tmp->next;
 	}
 	ft_lstadd_back(&data->env, ft_lstnew(command.av[1]));
+	free(name);
+	free(tmp);
 	return (0);
 }

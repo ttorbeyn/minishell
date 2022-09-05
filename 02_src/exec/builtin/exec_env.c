@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/09/04 03:34:22 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:42:06 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	exec_env(t_cmd command, t_data *data, t_pipes *p)
 	tmp = data->env;
 	 if (command.ac > 1)
 	 {
-	 	return_error("Error: Path not found", NULL, 0);
+	 	return_error("env: No arguments allowed", NULL, 0);
 	 	return (1);
 	 }
 	if (!tmp)
@@ -29,5 +29,6 @@ int	exec_env(t_cmd command, t_data *data, t_pipes *p)
 		ft_putendl_fd(tmp->content, p->f_out);
 		tmp = tmp->next;
 	}
+	free(tmp);
 	return (0);
 }

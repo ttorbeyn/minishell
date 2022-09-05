@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_unset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/02 15:43:39 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:59:37 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,26 @@
 void	unset_from_env(t_list **env, int i)
 {
 	t_list	*previous;
-//	t_list	*current;
+	t_list	*current;
 	t_list	*next;
 
 	previous = ft_lstget(*env, i - 1);
-//	current = ft_lstget(*env, i);
+	current = ft_lstget(*env, i);
 	next = ft_lstget(*env, i + 1);
 	if (previous && next)
 		previous->next = next;
 	else if (previous && !next)
 		previous->next = NULL;
-//	else if (!previous && next)
-//		current = next;
-//	else
-//		current = NULL;
+	else if (!previous && next)
+		current = next;
+	else
+		current = NULL;
+	// free(current);
+	// free(previous);
+	// free(next);
 }
 
-// doesnt work on first of the list
-// unset TEST= should return an error (unset TEST -> OK)
+// doesnt work on first of the list //
 
 int	exec_unset(t_cmd command, t_data *data)
 {
@@ -41,15 +43,15 @@ int	exec_unset(t_cmd command, t_data *data)
 	t_list *tmp;
 
 	i = 0;
+	if (!command.av[1])
+		return(return_error("unset: not enough arguments", NULL, 2));
 	tmp = data->env;
 	name = get_env_name(command.av[1]);
-	// printf("%s\n", get_env_name(tmp->content));
 	while (tmp)
 	{
 		if (!ft_strncmp(tmp->content, name, ft_strlen(name)))
 		{
 			unset_from_env(&data->env, i);
-			// print_lst(&data->env);
 			return (0);
 		}
 		i++;
