@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/05 18:32:20 by ttorbeyn          #+#    #+#             */
+/*   Updated: 2022/09/05 18:32:21 by ttorbeyn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -22,43 +34,64 @@
 # define IN 6
 # define OUT 7
 
+
+//main
 void	envp_init(t_data *data, char **env);
 
+//PARSING
+
 //00_init
-void	data_set(t_data *data, t_list **envp, char **env);
 char	*get_line(t_data *data);
+void	data_set(t_data *data, t_list **envp, char **env);
 
 //01_lexer
-int	lex(t_data *data);
+int		check_separator(t_token **token);
+int		count_cmd(t_token **token);
+int		lex(t_data *data);
 
 //02_ft_strtok
-char *create_token(t_token **token, char *begin, char *end);
+int		token_type(char *token);
+char	*create_token(t_token **token, char *begin, char *end);
 t_token	*ft_strtok(char *line);
 
 //02_ft_strtok_utils
-int	is_space(char c);
-int	is_delim(char c, char *delim);
-int	is_separator(char *line);
-int	check_quotes(int i, char *line);
+t_token	*ft_toknew(char *content, int type);
+void	ft_tokadd_back(t_token **token, t_token *new);
+int		is_separator(char *line);
+int		check_quotes(int i, char *line);
 
 //03_parser
-int	parser(t_data *data);
+void	cmd_init(t_cmd *cmd);
+t_token	*count_arg(t_token *token, t_cmd *cmd);
+t_token	*make_av(t_token *token, t_cmd *cmd);
+int		parser(t_data *data);
 
 //04_quotes
-t_token *remove_quotes(t_data *data);
+int		remove_simple_quotes(t_token *token, int i);
+char	*replace_env(char *quote, t_data *data);
+int		remove_double_quotes(t_data *data, t_token *token, int i);
+t_token	*remove_quotes(t_data *data);
+
+//04_quotes_utils
+char	*double_join(char*s1, char *s2);
+char	*triple_join(char *s1, char *s2, char *s3);
 
 //04_redirection
-t_token *redirection(t_token *token, t_cmd *cmd);
+t_here	*ft_herenew(char *limit);
+void	ft_hereadd_back(t_here **token, t_here *new);
+t_token	*cmd_redirection(t_token *token, t_redir redir, int chmod);
+t_token	*redirection(t_token *token, t_cmd *cmd);
 
 //99_utils
+int		is_space(char c);
 int		ft_error(char *error);
 void	print_tok(t_token **token);
-
+int	print_cmd(t_data *data);
 
 /// EXEC ///
 int		cmd_switch(t_data *data);
 int		exec_builtin(t_data *data, int i, t_pipes *pipe);
-int	exec_old_builtin(t_data *data, int i);
+int		exec_old_builtin(t_data *data, int i);
 void	executer(t_cmd cmd, t_data *data);
 
 ///PIPES ///
@@ -87,13 +120,11 @@ int		exec_export(t_cmd command, t_data *data);
 int		exec_unset(t_cmd command, t_data *data);
 int		exec_exit(t_cmd cmd);
 
-
 /// UTILS ///
 int		check_builtin(char *cmd);
 char	*check_path(char **env, char *cmd);
 int		return_error(char *msg, char *msg2, int system);
 void	ft_abort(char *str, int system);
 void	print_lst(t_list **env);
-
 
 #endif

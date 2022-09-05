@@ -1,78 +1,93 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   04_quotes.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/05 18:06:03 by ttorbeyn          #+#    #+#             */
+/*   Updated: 2022/09/05 18:06:05 by ttorbeyn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../01_include/minishell.h"
-
-char	*triple_join(char *s1, char *s2, char *s3)
-{
-	char *new;
-
-	new = NULL;
-	if (s1 && s2 && s3)
-	{
-		new = ft_strjoin(s1, s2);
-		new = ft_strjoin(new, s3);
-	}
-	if (!s1 && s2 && s3)
-		new = ft_strjoin(s2, s3);
-	if (s1 && !s2 && s3)
-		new = ft_strjoin(s1, s3);
-	if (s1 && s2 && !s3)
-		new = ft_strjoin(s1, s2);
-	if (!s1 && !s2)
-		return (s3);
-	if (!s1 && !s3)
-		return (s2);
-	if (!s2 && !s3)
-		return (s1);
-	return (new);
-}
 
 int	remove_simple_quotes(t_token *token, int i)
 {
 	int	start;
 
-	token->content[i] = '\0';
-	start = ++i;
+	token->content[i++] = '\0';
+	start = i;
 	while (token->content[i] && token->content[i] != '\'')
 		i++;
-	token->content[i] = '\0';
-	token->content = triple_join(token->content, &token->content[start], &token->content[i + 1]);
+	token->content[i++] = '\0';
+	if (token->content[i])
+		token->content = triple_join(token->content,
+				&token->content[start], &token->content[i]);
+	else
+		token->content = double_join(token->content, &token->content[start]);
 	return (i);
+}
+
+char	*replace_env(char *quote, t_data *data)
+{
+	int		i;
+	int		start;
+	char	*var;
+
+	i = 0;
+	while (quote[i])
+	{
+		if (quote[i] == '$')
+		{
+			quote[i++] = '\0';
+			start = i;
+			while (quote[i] && quote[i] != ' ' && quote[i] != '\'')
+				i++;
+			var = get_env_content(ft_strndup(&quote[start], i - start),
+					data->env);
+			if (quote[i])
+				quote = triple_join(quote, var, &quote[i]);
+			else
+				quote = double_join(quote, var);
+			i = start + ft_strlen(var) - 2;
+		}
+		i++;
+	}
+	return (quote);
 }
 
 int	remove_double_quotes(t_data *data, t_token *token, int i)
 {
-	int	start;
-	char *env;
+	int		start;
+	char	*quote;
 
-	token->content[i] = '\0';
-	start = ++i;
-	while (token->content[i] && token->content[i] != '\"')
-	{
-		if (token->content[i] == '$')
-		{
-			start = ++i;
-			while (!is_space(token->content[i]) && token->content[i] != '\"')
-				i++;
-			env = get_env_content(ft_strndup(&token->content[start], i - start), data->env);
-			token->content = triple_join(token->content, env, &token->content[i]);
-			i = -1;
-		}
+	(void )data;
+	token->content[i++] = '\0';
+	start = i;
+	while (token->content[i] != '\"')
 		i++;
-	}
-	token->content[i] = '\0';
-	token->content = triple_join(token->content, &token->content[start], &token->content[i + 1]);
+	token->content[i++] = '\0';
+	quote = replace_env(ft_strdup(&token->content[start]), data);
+	if (token->content[i])
+		token->content = triple_join(token->content, quote, &token->content[i]);
+	else
+		token->content = ft_strjoin(token->content, quote);
+	i = start + ft_strlen(quote) - 2;
 	return (i);
 }
 
-t_token *remove_quotes(t_data *data)
+t_token	*remove_quotes(t_data *data)
 {
-	int i;
-	t_token *head;
+	int		i;
+	t_token	*head;
 
 	head = data->token;
 	while (data->token)
 	{
 		if (data->token->type == WORD)
 		{
+			printf("token de base\t:\t|%s|\n", data->token->content);
 			i = 0;
 			while (data->token->content[i])
 			{

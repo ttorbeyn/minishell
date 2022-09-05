@@ -1,38 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/05 18:37:15 by ttorbeyn          #+#    #+#             */
+/*   Updated: 2022/09/05 18:37:16 by ttorbeyn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../01_include/minishell.h"
 
 void	envp_init(t_data *data, char **env)
 {
-	int i;
-	int len;
+	int	i;
+	int	len;
 
 	i = 0;
 	len = 0;
 	while (env[len])
 		len++;
-	data->envp = malloc(sizeof(char*) * len +1);
+	data->envp = malloc(sizeof(char *) * len + 1);
 	while (env[i])
 	{
 		data->envp[i] = ft_strdup(env[i]);
 		i++;
 	}
-	return;
-}
-
-int	print_cmd(t_data *data)
-{
-	int i = 0;
-	int j;
-	while (i < data->nb_cmd)
-	{
-		j = 0;
-		while (j < data->cmds[i].ac)
-		{
-			printf("cmd[%d]|av[%d]\t:\t|%s|\n", i, j, data->cmds[i].av[j]);
-			j++;
-		}
-		i++;
-	}
-	return (0);
+	return ;
 }
 
 int	main(int ac, char **av, char **env)
@@ -48,10 +43,9 @@ int	main(int ac, char **av, char **env)
 	{
 		data.line = get_line(&data);
 		if (lex(&data) || parser(&data))
-			continue;
+			continue ;
 		print_cmd(&data);
 //		cmd_switch(&data);
 	}
-
 	return (0);
 }

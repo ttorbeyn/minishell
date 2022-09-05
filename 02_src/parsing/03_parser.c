@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   03_parser.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/05 18:05:57 by ttorbeyn          #+#    #+#             */
+/*   Updated: 2022/09/05 18:05:58 by ttorbeyn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../01_include/minishell.h"
 
-void cmd_init(t_cmd *cmd)
+void	cmd_init(t_cmd *cmd)
 {
 	cmd->ac = 0;
 	cmd->av = NULL;
@@ -12,7 +24,7 @@ void cmd_init(t_cmd *cmd)
 	cmd->out.doc = NULL;
 }
 
-t_token *count_arg(t_token *token, t_cmd *cmd)
+t_token	*count_arg(t_token *token, t_cmd *cmd)
 {
 	if (!token)
 		return (0);
@@ -31,16 +43,15 @@ t_token *count_arg(t_token *token, t_cmd *cmd)
 	return (token);
 }
 
-t_token *make_av(t_token *token, t_cmd *cmd)
+t_token	*make_av(t_token *token, t_cmd *cmd)
 {
-	int i;
-	t_token *tmp;
-
+	int		i;
+	t_token	*tmp;
 
 	tmp = token;
 	cmd_init(cmd);
 	token = count_arg(token, cmd);
-	cmd->av = malloc(sizeof(char*) * (cmd->ac + 1));
+	cmd->av = malloc(sizeof(char *) * (cmd->ac + 1));
 	i = 0;
 	while (i < cmd->ac)
 	{
@@ -54,13 +65,12 @@ t_token *make_av(t_token *token, t_cmd *cmd)
 
 int	parser(t_data *data)
 {
-	t_token *tmp;
-	int i;
+	t_token	*tmp;
+	int		i;
 
 	i = 0;
 	data->token = remove_quotes(data);
 	print_tok(&data->token);
-
 	tmp = data->token;
 	data->cmds = malloc(sizeof(t_cmd) * data->nb_cmd);
 	while (i < data->nb_cmd)

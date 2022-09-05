@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   00_init.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/05 18:05:21 by ttorbeyn          #+#    #+#             */
+/*   Updated: 2022/09/05 18:05:23 by ttorbeyn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../01_include/minishell.h"
 
 char	*get_line(t_data *data)
@@ -7,7 +19,7 @@ char	*get_line(t_data *data)
 	(void)data;
 	line = readline("Éshell : ");
 	add_history(line);
-	return(line);
+	return (line);
 }
 
 void	data_set(t_data *data, t_list **envp, char **env)

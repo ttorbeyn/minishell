@@ -33,6 +33,7 @@ PARSING			=	./02_src/parsing/00_init.c \
 					./02_src/parsing/02_ft_strtok_utils.c \
 					./02_src/parsing/03_parser.c \
 					./02_src/parsing/04_quotes.c \
+					./02_src/parsing/04_quotes_utils.c \
 					./02_src/parsing/04_redirection.c \
 					./02_src/parsing/99_utils.c \
 					./02_src/main.c \
@@ -54,11 +55,7 @@ EXEC			=	./02_src/exec/builtin/builtin_utils.c \
 
 SRC				=	$(LIBFT) \
 					$(PARSING) \
-					$(EXEC) \
-#					./02_src/exec_main.c
-#					./02_src/main.c\
-					./02_src/parsing/init.c
-
+					$(EXEC)
 
 OBJS			=	$(SRC:.c=.o)
 
