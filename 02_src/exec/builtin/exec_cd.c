@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:40:09 by vic               #+#    #+#             */
-/*   Updated: 2022/09/05 15:39:39 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:45:04 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ char	*get_path(t_cmd command, t_data *data)
 	}
 	else
 		chdir(home);
-	// if (home)
-	// 	free(&home);
 	return (path);
 }
 

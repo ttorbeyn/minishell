@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_unset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/05 15:59:37 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:18:14 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ void	unset_from_env(t_list **env, int i)
 	previous = ft_lstget(*env, i - 1);
 	current = ft_lstget(*env, i);
 	next = ft_lstget(*env, i + 1);
+	if (i < 1)
+	{
+		current = *env;
+		current = current->next;
+		*env = current;
+		return;
+	}
 	if (previous && next)
 		previous->next = next;
 	else if (previous && !next)
@@ -29,12 +36,7 @@ void	unset_from_env(t_list **env, int i)
 		current = next;
 	else
 		current = NULL;
-	// free(current);
-	// free(previous);
-	// free(next);
 }
-
-// doesnt work on first of the list //
 
 int	exec_unset(t_cmd command, t_data *data)
 {
