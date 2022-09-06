@@ -85,7 +85,7 @@ t_token	*redirection(t_token *token, t_cmd *cmd);
 
 //99_utils
 int		is_space(char c);
-int	ft_error(char *errmsg, int errnum);
+int		ft_error(char *errmsg, int errnum);
 void	print_tok(t_token **token);
 int		print_cmd(t_data *data);
 

@@ -19,7 +19,7 @@ int	ft_tolower(int c)
 	return (c);
 }
 
-char *ft_tolower_str(char *str)
+char	*ft_tolower_str(char *str)
 {
 	int	i;
 

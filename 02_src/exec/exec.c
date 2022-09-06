@@ -48,15 +48,19 @@ void	executer(t_cmd cmd, t_data *data)
 	char	*path;
 	int		ret;
 
-	path = check_path(data->envp, cmd.av[0]);
-	ret = execve(path, cmd.av, data->envp);
-	if (!path)
+	ret = execve(cmd.av[0], cmd.av, data->envp);
+	if (ret == -1)
 	{
-		return_error(cmd.av[0], ": Command not found", 0);
-		return ;
+		path = check_path(data->envp, cmd.av[0]);
+		ret = execve(path, cmd.av, data->envp);
+		if (!path)
+		{
+			return_error(cmd.av[0], ": Command not found", 0);
+			return ;
+		}
+		else
+			free(path);
 	}
-	else
-		free(path);
 	if (ret == -1)
 	{
 		return_error("Execution error", NULL, 127);
