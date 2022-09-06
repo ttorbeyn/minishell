@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/05 14:16:05 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:32:20 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../01_include/minishell.h"
-
 
 void	child_process(t_data *data, t_pipes *pipe, int i)
 {
@@ -20,19 +19,17 @@ void	child_process(t_data *data, t_pipes *pipe, int i)
 		short_dup(pipe->f_in, 0);
 	if (pipe->f_out != 1)
 		short_dup(pipe->f_out, 1);
-
 	if (i > 0)
 		dup_close_pipe(pipe->old_end[0], pipe->f_in, pipe->old_end);
 	if (i + 1 < data->nb_cmd)
 		dup_close_pipe(pipe->new_end[1], pipe->f_out, pipe->new_end);
-
 	if (check_builtin(data->cmds[i].av[0]))
 	{
-			exec_builtin(data, i, pipe);
-			exit(0);
+		exec_builtin(data, i, pipe);
+		exit(0);
 	}
 	else
-			executer(data->cmds[i], data);
+		executer(data->cmds[i], data);
 	return ;
 }
 
@@ -50,7 +47,7 @@ void	parent_process(t_data *data, t_pipes *pipe, int pid, int i)
 
 void	ft_fork(t_data *data, t_pipes *pipe, int i)
 {
-	int pid;
+	int	pid;
 
 	pid = fork();
 	if (pid == -1)
@@ -67,8 +64,7 @@ void	ft_fork(t_data *data, t_pipes *pipe, int i)
 
 void	lauching_process(t_data *data, t_pipes *p)
 {
-	int i;
-	// t_pipes p;
+	int	i;
 
 	i = 0;
 	while (i < data->nb_cmd)

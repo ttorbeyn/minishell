@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/09/05 14:15:42 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:31:11 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	cmd_switch(t_data *data)
 {
-	t_pipes p;
+	t_pipes	p;
 
-	if (data->nb_cmd == 1 && check_builtin(data->cmds[0].av[0]))
+	if (data->nb_cmd == 1 && check_builtin(data->cmds[0].av[0])
+		&& !data->cmds[0].in.doc)
 		exec_builtin(data, 0, &p);
 	else
 		lauching_process(data, &p);
@@ -45,21 +46,21 @@ int	exec_builtin(t_data *data, int i, t_pipes *pipe)
 void	executer(t_cmd cmd, t_data *data)
 {
 	char	*path;
-	int ret;
+	int		ret;
 
 	path = check_path(data->envp, cmd.av[0]);
 	ret = execve(path, cmd.av, data->envp);
 	if (!path)
 	{
 		return_error(cmd.av[0], ": Command not found", 0);
-		return;
+		return ;
 	}
 	else
 		free(path);
 	if (ret == -1)
 	{
 		return_error("Execution error", NULL, 127);
-		return;
+		return ;
 	}
 	return ;
 }

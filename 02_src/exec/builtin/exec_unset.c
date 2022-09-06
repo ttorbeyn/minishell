@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/06 15:18:14 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:22:59 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	unset_from_env(t_list **env, int i)
 		current = *env;
 		current = current->next;
 		*env = current;
-		return;
+		return ;
 	}
 	if (previous && next)
 		previous->next = next;
@@ -40,13 +40,13 @@ void	unset_from_env(t_list **env, int i)
 
 int	exec_unset(t_cmd command, t_data *data)
 {
-	int	i;
-	char *name;
-	t_list *tmp;
+	int		i;
+	char	*name;
+	t_list	*tmp;
 
 	i = 0;
 	if (!command.av[1])
-		return(return_error("unset: not enough arguments", NULL, 2));
+		return (return_error("unset: not enough arguments", NULL, 2));
 	tmp = data->env;
 	name = get_env_name(command.av[1]);
 	while (tmp)

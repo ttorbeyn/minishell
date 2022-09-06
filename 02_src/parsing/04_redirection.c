@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04_redirection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:06:11 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/05 18:06:12 by ttorbeyn         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:49:38 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ t_token	*redirection(t_token *token, t_cmd *cmd)
 	{
 		token = token->next;
 		ft_hereadd_back(&cmd->in.doc, ft_herenew(token->content));
-		printf("heredoc created\n");
 	}
 	return (token);
 }

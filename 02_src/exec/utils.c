@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:38:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/04 02:40:22 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:35:20 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 void	print_lst(t_list **env)
 {
-	t_list *first;
+	t_list	*first;
+	int		len;
+	int		i;
 
 	first = *env;
-	int len = ft_lstsize(env);
-
-	int i = 0;
+	len = ft_lstsize(env);
+	i = 0;
 	while (i < len)
 	{
-		printf("%d:	%s\n", i, (char*)first->content);
-		// ft_putstr_fd((char*)first->content, 2);
-		// write(2, "\n", 1);
+		printf("%d:	%s\n", i, (char *)first->content);
 		first = first->next;
 		i++;
 	}
@@ -51,7 +50,8 @@ int	check_builtin(char *cmd)
 
 /*
 check_path:
-	Tests all paths in envp for a specific cmd. Rutruns either the path or NULL if none found.
+	Tests all paths in envp for a specific cmd. 
+	Rutruns either the path or NULL if none found.
 */
 char	*check_path(char **env, char *cmd)
 {
@@ -85,14 +85,9 @@ char	*check_path(char **env, char *cmd)
 int	return_error(char *msg, char *msg2, int system)
 {
 	ft_putstr_fd("Minishell: ", 2);
-	// if (system)
-	// 	// perror(msg);
-	// else
-	// {
 	ft_putstr_fd(msg, 2);
 	if (msg2)
 		ft_putstr_fd(msg2, 2);
-	// }
 	write(2, "\n", 1);
 	g_exit = system;
 	return (1);

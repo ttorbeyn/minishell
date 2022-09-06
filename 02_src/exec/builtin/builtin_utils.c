@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 22:33:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/05 15:31:14 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:28:01 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,35 @@ char	*get_pwd(void)
 
 char	*get_env_content(char *name, t_list *env)
 {
-	char *tmp;
-	char *target;
-	char *content;
+	char	*tmp;
+	char	*target;
+	char	*content;
 
 	target = NULL;
 	tmp = ft_strjoin(name, "=");
 	while (env)
 	{
-		content = (char*)env->content;
+		content = (char *)env->content;
 		if (!ft_strncmp(content, tmp, ft_strlen(tmp)))
-			target = ft_strdup(&content[ft_strlen(name) + 1]); //(=HOME)
+			target = ft_strdup(&content[ft_strlen(name) + 1]);
 		env = env->next;
 	}
 	free(tmp);
-	// free(content);
 	return (target);
 }
 
 char	*get_env_name(char *str)
 {
-	int i;
-	int len;
-	char *cpy;
+	int		i;
+	int		len;
+	char	*cpy;
 
 	i = 0;
 	len = 0;
 	while (str[len])
 	{
 		if (str[len] == '=')
-			break;
+			break ;
 		len++;
 	}
 	cpy = malloc(sizeof(char) * len + 1);

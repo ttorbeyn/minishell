@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/09/05 15:42:06 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:28:33 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	exec_env(t_cmd command, t_data *data, t_pipes *p)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = data->env;
-	 if (command.ac > 1)
-	 {
-	 	return_error("env: No arguments allowed", NULL, 0);
-	 	return (1);
-	 }
+	if (command.ac > 1)
+	{
+		return_error("env: No arguments allowed", NULL, 0);
+		return (1);
+	}
 	if (!tmp)
 		return (1);
 	while (tmp)

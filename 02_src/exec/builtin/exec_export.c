@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/05 14:44:20 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:25:23 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
 
-static int check_valid(char *av)
+static int	check_valid(char *av)
 {
 	int	i;
 
@@ -38,7 +38,7 @@ static int check_valid(char *av)
 
 int	empty_export(t_data *data, t_pipes *p)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = data->env;
 	if (!tmp)
@@ -53,10 +53,10 @@ int	empty_export(t_data *data, t_pipes *p)
 	return (0);
 }
 
-int	exec_export(t_cmd command, t_data *data, t_pipes *p)  // if (!tmp) return(1)?
+int	exec_export(t_cmd command, t_data *data, t_pipes *p)
 {
-	char *name;
-	t_list *tmp;
+	char	*name;
+	t_list	*tmp;
 
 	if (!data->env)
 		return (1);
@@ -71,7 +71,7 @@ int	exec_export(t_cmd command, t_data *data, t_pipes *p)  // if (!tmp) return(1)
 		if (!ft_strncmp(tmp->content, name, ft_strlen(name)))
 		{
 			tmp->content = ft_strdup(command.av[1]);
-			return(0);
+			return (0);
 		}
 		tmp = tmp->next;
 	}

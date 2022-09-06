@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:40:09 by vic               #+#    #+#             */
-/*   Updated: 2022/09/06 14:45:04 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:26:10 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,12 @@ void	update_env(t_data *data, char *name)
 		}
 		tmp = tmp->next;
 	}
-	// free(tmp);
-	return;
+	return ;
 }
 
 int	exec_cd(t_cmd command, t_data *data)
 {
-	char *path;
+	char	*path;
 
 	update_env(data, "OLDPWD=");
 	path = get_path(command, data);
@@ -73,6 +72,5 @@ int	exec_cd(t_cmd command, t_data *data)
 		return (1);
 	}
 	update_env(data, "PWD=");
-	// print_lst(&data->env);
 	return (0);
 }

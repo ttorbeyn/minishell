@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:42:17 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/04 01:58:00 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 16:37:39 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	search_limit(char *input, char *limit)
 {
-	int	len;
-	
+	int		len;
+
 	len = ft_strlen(input);
-	if (!ft_strncmp(input, limit, len) && !input[len] && !limit[len])		//MIGHT BE LEN+1
-			return (1);
+	if (!ft_strncmp(input, limit, len) && !input[len] && !limit[len]) //MIGHT BE LEN+1
+		return (1);
 	return (0);
 }
 
@@ -30,7 +30,8 @@ int	found_limit(t_here **doc, char *input, int *fd)
 		close(*fd);
 		*fd = open("heredoc", O_RDONLY, 0666);
 		if (*fd < 0)
-			return_error("Error : No such file or directory : heredoc", NULL, 1);
+			return_error("Error : No such file or directory : heredoc",
+				NULL, 1);
 		if (unlink("heredoc"))
 			ft_abort("Error : Unlink failed");
 		return (1);
@@ -64,7 +65,10 @@ int	open_heredoc(t_here *doc)
 			exit(0);
 		}
 		if (*input && search_limit(input, doc->limit))
-			found_limit(&doc, input, &fd);
+		{
+			if (found_limit(&doc, input, &fd))
+				return (fd);
+		}
 		else
 			ft_putendl_fd(input, fd);
 		free(input);
