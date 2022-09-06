@@ -37,6 +37,8 @@ int		ft_strncmp(const char *s1, const char *s2, size_t len);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strndup(const char *s1, int len);
 char	*ft_strtrim(char const *s1, char const *set);
+int		ft_tolower(int c);
+char 	*ft_tolower_str(char *str);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstbeforelast(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
