@@ -55,6 +55,8 @@ t_token	*make_av(t_token *token, t_cmd *cmd)
 	i = 0;
 	while (i < cmd->ac)
 	{
+		if (i == 0)
+			tmp->content = ft_tolower_str(tmp->content);
 		cmd->av[i] = ft_strdup(tmp->content);
 		tmp = tmp->next;
 		i++;
