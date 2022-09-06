@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/06 16:32:20 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:34:56 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	child_process(t_data *data, t_pipes *pipe, int i)
 		dup_close_pipe(pipe->new_end[1], pipe->f_out, pipe->new_end);
 	if (check_builtin(data->cmds[i].av[0]))
 	{
-		exec_builtin(data, i, pipe);
+		if (exec_builtin(data, 0, pipe) == 42)
+			return_error(data->cmds[0].av[0], ": Command not found", 0);
 		exit(0);
 	}
 	else
