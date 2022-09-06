@@ -1,32 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   02_ft_strtok_utils.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/05 18:05:50 by ttorbeyn          #+#    #+#             */
+/*   Updated: 2022/09/05 18:05:51 by ttorbeyn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../01_include/minishell.h"
 
-int	is_space(char c)
+t_token	*ft_toknew(char *content, int type)
 {
-	char *space;
+	t_token	*new;
 
-	space = ft_strdup(" \n\t\v\f\r");
-	if (ft_strchr(space, c))
-		return (1);
-	return (0);
+	new = malloc(sizeof(t_token));
+	if (new == NULL)
+		ft_panic("Error : malloc ft_toknew\n");
+	new->content = content;
+	new->type = type;
+	new->next = NULL;
+	return (new);
 }
 
-int	is_delim(char c, char *delim)
+void	ft_tokadd_back(t_token **token, t_token *new)
 {
-	int	i;
+	t_token	*current;
 
-	i = 0;
-	while (delim[i])
+	current = *token;
+	if (token == NULL || new == NULL)
+		ft_panic("Error : malloc ft_tokadd_back\n");
+	if (*token == NULL)
+		*token = new;
+	else
 	{
-		if (c == delim[i])
-			return (1);
-		i++;
+		while (current->next)
+			current = current->next;
+		current->next = new;
+		new->next = 0;
 	}
-	return (0);
 }
 
 int	is_separator(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (line[i] == '|')
@@ -41,7 +60,7 @@ int	is_separator(char *line)
 
 int	check_quotes(int i, char *line)
 {
-	char quote_type;
+	char	quote_type;
 
 	quote_type = line[i];
 	while (line[i])
@@ -50,6 +69,5 @@ int	check_quotes(int i, char *line)
 		if (line[i] == quote_type)
 			return (i);
 	}
-	ft_error("Quote not closed\n");
-	return (-1);
+	return (ft_error("Quote not closed\n", -1));
 }

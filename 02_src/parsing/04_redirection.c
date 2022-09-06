@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   04_redirection.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/05 18:06:11 by ttorbeyn          #+#    #+#             */
+/*   Updated: 2022/09/05 18:06:12 by ttorbeyn         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../01_include/minishell.h"
 
-t_here *ft_herenew(char *limit)
+t_here	*ft_herenew(char *limit)
 {
-	t_here *new;
+	t_here	*new;
 
 	new = malloc(sizeof(t_token));
 	if (new == NULL)
@@ -14,7 +26,7 @@ t_here *ft_herenew(char *limit)
 
 void	ft_hereadd_back(t_here **token, t_here *new)
 {
-	t_here *current;
+	t_here	*current;
 
 	current = *token;
 	if (token == NULL || new == NULL)
@@ -30,9 +42,9 @@ void	ft_hereadd_back(t_here **token, t_here *new)
 	}
 }
 
-t_token *cmd_redirection(t_token *token, t_redir redir, int chmod)
+t_token	*cmd_redirection(t_token *token, t_redir redir, int chmod)
 {
-	int fd;
+	int	fd;
 
 	token = token->next;
 	redir.path = token->content;
@@ -42,14 +54,16 @@ t_token *cmd_redirection(t_token *token, t_redir redir, int chmod)
 	return (token);
 }
 
-t_token *redirection(t_token *token, t_cmd *cmd)
+t_token	*redirection(t_token *token, t_cmd *cmd)
 {
 	if (token->type == GREAT)
-		token = cmd_redirection(token, cmd->out, (O_WRONLY | O_TRUNC | O_CREAT));
+		token = cmd_redirection(token, cmd->out,
+				(O_WRONLY | O_TRUNC | O_CREAT));
 	else if (token->type == LESS)
 		token = cmd_redirection(token, cmd->in, (O_RDONLY));
 	else if (token->type == DGREAT)
-		token = cmd_redirection(token, cmd->out, (O_WRONLY | O_APPEND | O_CREAT));
+		token = cmd_redirection(token, cmd->out,
+				(O_WRONLY | O_APPEND | O_CREAT));
 	else if (token->type == DLESS)
 	{
 		token = token->next;

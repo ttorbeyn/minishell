@@ -52,7 +52,7 @@ static size_t	ft_checkend(char const *s1, char const *set)
 	return (len);
 }
 
-char			*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*new;
 	size_t	i;
@@ -64,11 +64,11 @@ char			*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	i = ft_checkstart(s1, set);
 	len = ft_checkend(s1, set);
+	a = len;
 	if (len > i)
 		a = len - i;
-	else
-		a = len;
-	if (!(new = malloc((sizeof(char)) * (a + 2))))
+	new = malloc((sizeof(char)) * (a + 2));
+	if (!new)
 		return (NULL);
 	x = 0;
 	while (s1[i] && i <= len)
