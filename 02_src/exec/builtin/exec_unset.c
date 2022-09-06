@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/06 16:22:59 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 20:19:43 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	exec_unset(t_cmd command, t_data *data)
 		if (!ft_strncmp(tmp->content, name, ft_strlen(name)))
 		{
 			unset_from_env(&data->env, i);
+			update_envp(data);
 			return (0);
 		}
 		i++;

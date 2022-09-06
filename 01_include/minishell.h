@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:32:20 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/06 15:25:07 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 20:18:17 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		g_exit;
 
 //main
 void	envp_init(t_data *data, char **env);
+void	update_envp(t_data *data);
 
 //PARSING
 

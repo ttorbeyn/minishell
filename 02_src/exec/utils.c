@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:38:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/06 16:35:20 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 20:37:05 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ check_path:
 	Tests all paths in envp for a specific cmd. 
 	Rutruns either the path or NULL if none found.
 */
-char	*check_path(char **env, char *cmd)
+char	*check_path(char **envp, char *cmd)
 {
 	int		x;
 	char	*tmp;
@@ -61,9 +61,9 @@ char	*check_path(char **env, char *cmd)
 	char	**path_tab;
 
 	x = 0;
-	while (ft_strncmp(env[x], "PATH=", 5) != 0)
+	while (ft_strncmp(envp[x], "PATH=", 5) != 0 && envp[x])
 		x++;
-	path_tab = ft_split(env[x] + 5, ':');
+	path_tab = ft_split(envp[x] + 5, ':');
 	x = 0;
 	while (path_tab[x])
 	{

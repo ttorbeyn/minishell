@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/06 16:25:23 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 20:41:22 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static int	check_valid(char *av)
 		return (1);
 	while (ft_strncmp(&av[i], "=", 1) && av[i])
 	{
-		if (!ft_isdigit((int)av[i]))
-			return (1);
 		if (av[i] == '-' || av[i] == '.' || av[i] == '{' || av[i] == '}'
 			|| av[i] == '*' || av[i] == '#' || av[i] == '@' || av[i] == '!'
 			|| av[i] == '^' || av[i] == '~' || av[i] == '\"' || av[i] == '|'
@@ -49,7 +47,7 @@ int	empty_export(t_data *data, t_pipes *p)
 		write(p->f_out, "\n", 1);
 		tmp = tmp->next;
 	}
-	free(tmp);
+	update_envp(data);
 	return (0);
 }
 
@@ -76,6 +74,7 @@ int	exec_export(t_cmd command, t_data *data, t_pipes *p)
 		tmp = tmp->next;
 	}
 	ft_lstadd_back(&data->env, ft_lstnew(command.av[1]));
+	update_envp(data);
 	free(name);
 	free(tmp);
 	return (0);
