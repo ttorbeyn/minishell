@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:59:37 by vic               #+#    #+#             */
-/*   Updated: 2022/09/06 16:26:31 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:44:54 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ int	exec_echo(t_cmd command)
 		write(1, "\n", 1);
 		return (0);
 	}
-	if (command.av[i] && command.av[i][0] == '-' && command.av[i][1] == 'n')
+	if (!ft_strncmp(command.av[i], "-n", 2))
 	{
+		if (ft_strlen(command.av[i]) > 2)
+			return_error(command.av[i], ": flag not found", 2);
 		flag++;
 		i++;
 	}
