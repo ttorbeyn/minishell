@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/09/06 17:33:10 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:06:46 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,26 @@ int	cmd_switch(t_data *data)
 
 int	exec_builtin(t_data *data, int i, t_pipes *pipe)
 {
-	if (!ft_strncmp(data->cmds[i].av[0], "cd", 2) && ft_strlen(data->cmds[i].av[0]) == 2)
+	if (!ft_strncmp(data->cmds[i].av[0], "cd", 2)
+		&& ft_strlen(data->cmds[i].av[0]) == 2)
 		return (exec_cd(data->cmds[i], data));
-	if (!ft_strncmp(data->cmds[i].av[0], "echo", 4) && ft_strlen(data->cmds[i].av[0]) == 4)
+	if (!ft_strncmp(data->cmds[i].av[0], "echo", 4)
+		&& ft_strlen(data->cmds[i].av[0]) == 4)
 		return (exec_echo(data->cmds[i]));
-	if (!ft_strncmp(data->cmds[i].av[0], "exit", 4) && ft_strlen(data->cmds[i].av[0]) == 4)
+	if (!ft_strncmp(data->cmds[i].av[0], "exit", 4)
+		&& ft_strlen(data->cmds[i].av[0]) == 4)
 		return (exec_exit(data->cmds[i]));
-	if (!ft_strncmp(data->cmds[i].av[0], "env", 3) && ft_strlen(data->cmds[i].av[0]) == 3)
+	if (!ft_strncmp(data->cmds[i].av[0], "env", 3)
+		&& ft_strlen(data->cmds[i].av[0]) == 3)
 		return (exec_env(data->cmds[i], data, pipe));
-	if (!ft_strncmp(data->cmds[i].av[0], "pwd", 3) && ft_strlen(data->cmds[i].av[0]) == 3)
+	if (!ft_strncmp(data->cmds[i].av[0], "pwd", 3)
+		&& ft_strlen(data->cmds[i].av[0]) == 3)
 		return (exec_pwd(data, pipe));
-	if (!ft_strncmp(data->cmds[i].av[0], "export", 6) && ft_strlen(data->cmds[i].av[0]) == 6)
+	if (!ft_strncmp(data->cmds[i].av[0], "export", 6)
+		&& ft_strlen(data->cmds[i].av[0]) == 6)
 		return (exec_export(data->cmds[i], data, pipe));
-	if (!ft_strncmp(data->cmds[i].av[0], "unset", 5) && ft_strlen(data->cmds[i].av[0]) == 5)
+	if (!ft_strncmp(data->cmds[i].av[0], "unset", 5)
+		&& ft_strlen(data->cmds[i].av[0]) == 5)
 		return (exec_unset(data->cmds[i], data));
 	return (42);
 }
