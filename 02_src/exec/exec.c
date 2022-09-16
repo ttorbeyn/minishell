@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/09/16 23:19:00 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/16 23:57:55 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	cmd_switch(t_data *data)
 	t_pipes	p;
 
 	if (data->nb_cmd == 1 && check_builtin(data->cmds[0].av[0])
-		&& !data->cmds[0].in.doc)
+		&& !data->cmds[0].in.doc && !data->cmds[0].in.path
+		&& !data->cmds[0].out.path)
 	{
 		if (exec_builtin(data, 0, &p) == 42)
 			return_error(data->cmds[0].av[0], ": Command not found", 0);
