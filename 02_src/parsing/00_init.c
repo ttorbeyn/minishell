@@ -17,7 +17,8 @@ char	*get_line(void)
 	char	*line;
 
 	line = readline("Éshell : ");
-	add_history(line);
+	if (ft_strlen(line) && !ft_is_only_space_str(line))
+		add_history(line);
 	return (line);
 }
 

@@ -19,3 +19,18 @@ int	ft_isspace(char str)
 		return (1);
 	return (0);
 }
+
+int	ft_is_only_space_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isspace(str[i]))
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
