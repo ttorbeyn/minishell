@@ -30,15 +30,20 @@ char	*get_env_content(char *name, t_list *env)
 	char	*content;
 
 	target = NULL;
-	tmp = ft_strjoin(name, "=");
-	while (env)
+	if (ft_strlen(name) == 1 && *name == '?')
+		target = ft_itoa(g_exit);
+	else
 	{
-		content = (char *)env->content;
-		if (!ft_strncmp(content, tmp, ft_strlen(tmp)))
-			target = ft_strdup(&content[ft_strlen(name) + 1]);
-		env = env->next;
+		tmp = ft_strjoin(name, "=");
+		while (env)
+		{
+			content = (char *)env->content;
+			if (!ft_strncmp(content, tmp, ft_strlen(tmp)))
+				target = ft_strdup(&content[ft_strlen(name) + 1]);
+			env = env->next;
+		}
+		free(tmp);
 	}
-	free(tmp);
 	return (target);
 }
 

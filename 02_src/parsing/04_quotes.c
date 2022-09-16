@@ -42,10 +42,6 @@ char	*replace_env(char *quote, t_data *data)
 		{
 			quote[i++] = '\0';
 			start = i;
-			if	(quote[i] == '?' && quote[i++] == ' ')
-				var = "[error_code]";
-//			var = ft_itoa(g_exit);
-			else
 			{
 				while (quote[i] && quote[i] != ' ' && quote[i] != '\'')
 					i++;
