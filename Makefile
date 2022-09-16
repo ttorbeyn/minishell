@@ -7,6 +7,7 @@ INCLUDE			=	-I include
 LIBFT			=	./00_libft/ft_atoi.c \
 					./00_libft/ft_isdigit.c \
 					./00_libft/ft_isspace.c \
+					./00_libft/ft_itoa.c \
 					./00_libft/ft_isascii.c \
 					./00_libft/ft_lstadd_back.c \
 					./00_libft/ft_lstbefore_last.c \

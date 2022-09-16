@@ -27,6 +27,7 @@ int		ft_isdigit(int c);
 int		isdigit_check(char *s);
 int		ft_isspace(char str);
 int		ft_is_only_space_str(char *str);
+char	*ft_itoa(int n);
 int		ft_isascii(int c);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);
