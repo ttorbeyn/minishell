@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/09/16 22:03:31 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/16 23:19:00 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	exec_builtin(t_data *data, int i, t_pipes *pipe)
 		return (exec_cd(data->cmds[i], data));
 	if (!ft_strncmp(data->cmds[i].av[0], "echo", 4)
 		&& ft_strlen(data->cmds[i].av[0]) == 4)
-		return (exec_echo(data->cmds[i]));
+		return (exec_echo(data->cmds[i], pipe));
 	if (!ft_strncmp(data->cmds[i].av[0], "exit", 4)
 		&& ft_strlen(data->cmds[i].av[0]) == 4)
 		return (exec_exit(data->cmds[i]));
@@ -46,7 +46,7 @@ int	exec_builtin(t_data *data, int i, t_pipes *pipe)
 		return (exec_pwd(data, pipe));
 	if (!ft_strncmp(data->cmds[i].av[0], "export", 6)
 		&& ft_strlen(data->cmds[i].av[0]) == 6)
-		return (exec_export(data->cmds[i], data, pipe));
+		return (exec_export(data->cmds[i], data));
 	if (!ft_strncmp(data->cmds[i].av[0], "unset", 5)
 		&& ft_strlen(data->cmds[i].av[0]) == 5)
 		return (exec_unset(data->cmds[i], data));

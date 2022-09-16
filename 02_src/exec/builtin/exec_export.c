@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/16 21:58:18 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/16 22:58:02 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	empty_export(t_data *data, t_pipes *p)
 	tmp = data->env;
 	if (!tmp)
 		return (1);
-	while (i < ft_lstsize(&tmp))
+	while (i < ft_lstsize(&tmp) && tmp->next)
 	{
 		write(p->f_out, tmp->content, ft_strlen(tmp->content));
 		write(p->f_out, "\n", 1);
@@ -53,23 +53,7 @@ int	empty_export(t_data *data, t_pipes *p)
 	return (0);
 }
 
-// int	empty_export(t_data *data, t_pipes *p)		SEGFAULT
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (!data->envp)
-// 		return (1);
-// 	while (data->envp[i])
-// 	{
-// 		ft_putendl_fd(data->envp[i], p->f_out);
-// 		i++;
-// 	}
-// 	update_envp(data);
-// 	return (0);
-// }
-
-int	exec_export(t_cmd command, t_data *data, t_pipes *p)
+int	exec_export(t_cmd command, t_data *data)
 {
 	char	*name;
 	t_list	*tmp;
@@ -77,7 +61,7 @@ int	exec_export(t_cmd command, t_data *data, t_pipes *p)
 	if (!data->env)
 		return (1);
 	if (!command.av[1])
-		return (empty_export(data, p));
+		return (0);
 	if (check_valid(command.av[1]))
 		return (1);
 	tmp = data->env;
