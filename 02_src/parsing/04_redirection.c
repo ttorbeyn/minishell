@@ -59,12 +59,12 @@ t_token	*redirection(t_token *token, t_cmd *cmd)
 {
 	if (token->type == GREAT)
 		token = cmd_redirection(token, cmd->out,
-				(O_WRONLY | O_TRUNC | O_CREAT));
+				(O_RDWR | O_TRUNC | O_CREAT));
 	else if (token->type == LESS)
 		token = cmd_redirection(token, cmd->in, (O_RDONLY));
 	else if (token->type == DGREAT)
 		token = cmd_redirection(token, cmd->out,
-				(O_WRONLY | O_APPEND | O_CREAT));
+				(O_RDWR | O_APPEND | O_CREAT));
 	else if (token->type == DLESS)
 	{
 		token = token->next;
