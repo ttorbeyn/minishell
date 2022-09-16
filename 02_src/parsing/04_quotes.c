@@ -62,7 +62,6 @@ int	remove_double_quotes(t_data *data, t_token *token, int i)
 	int		start;
 	char	*quote;
 
-	(void )data;
 	token->content[i++] = '\0';
 	start = i;
 	while (token->content[i] != '\"')
@@ -72,7 +71,20 @@ int	remove_double_quotes(t_data *data, t_token *token, int i)
 	if (token->content[i])
 		token->content = triple_join(token->content, quote, &token->content[i]);
 	else
-		token->content = ft_strjoin(token->content, quote);
+		token->content = double_join(token->content, quote);
+	i = start + ft_strlen(quote) - 2;
+	return (i);
+}
+
+int	change_env(t_data *data, t_token *token, int i)
+{
+	int		start;
+	char	*quote;
+
+	start = i;
+	quote = replace_env(ft_strdup(&token->content[start]), data);
+	token->content[i++] = '\0';
+	token->content = double_join(token->content, quote);
 	i = start + ft_strlen(quote) - 2;
 	return (i);
 }
@@ -94,6 +106,8 @@ t_token	*remove_quotes(t_data *data)
 					i = remove_simple_quotes(data->token, i);
 				if (data->token->content[i] == '\"')
 					i = remove_double_quotes(data, data->token, i);
+				if (data->token->content[i] == '$')
+					i = change_env(data, data->token, i);
 				i++;
 			}
 		}
