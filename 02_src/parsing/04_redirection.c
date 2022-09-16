@@ -42,13 +42,13 @@ void	ft_hereadd_back(t_here **token, t_here *new)
 	}
 }
 
-t_token	*cmd_redirection(t_token *token, t_redir redir, int chmod)
+t_token	*cmd_redirection(t_token *token, t_redir *redir, int chmod)
 {
 	int	fd;
 
 	token = token->next;
-	redir.path = token->content;
-	redir.chmod = chmod;
+	redir->path = token->content;
+	redir->chmod = chmod;
 	fd = open(token->content, chmod);
 	close (fd);
 	token = token->next;
@@ -58,12 +58,12 @@ t_token	*cmd_redirection(t_token *token, t_redir redir, int chmod)
 t_token	*redirection(t_token *token, t_cmd *cmd)
 {
 	if (token->type == GREAT)
-		token = cmd_redirection(token, cmd->out,
+		token = cmd_redirection(token, &cmd->out,
 				(O_RDWR | O_TRUNC | O_CREAT));
 	else if (token->type == LESS)
-		token = cmd_redirection(token, cmd->in, (O_RDONLY));
+		token = cmd_redirection(token, &cmd->in, (O_RDONLY));
 	else if (token->type == DGREAT)
-		token = cmd_redirection(token, cmd->out,
+		token = cmd_redirection(token, &cmd->out,
 				(O_RDWR | O_APPEND | O_CREAT));
 	else if (token->type == DLESS)
 	{

@@ -81,8 +81,10 @@ char	*triple_join(char *s1, char *s2, char *s3);
 //04_redirection
 t_here	*ft_herenew(char *limit);
 void	ft_hereadd_back(t_here **token, t_here *new);
-t_token	*cmd_redirection(t_token *token, t_redir redir, int chmod);
+//t_token	*cmd_redirection(t_token *token, t_redir redir, int chmod);
+t_token	*cmd_redirection(t_token *token, t_redir *redir, int chmod);
 t_token	*redirection(t_token *token, t_cmd *cmd);
+
 
 //99_utils
 int		is_space(char c);

@@ -54,7 +54,7 @@ void	redirections(t_data *data, t_pipes *pipe, int i)
 	}
 	if (out)
 	{
-		pipe->f_in = open(data->cmds[i].out.path, data->cmds[i].out.chmod);
+		pipe->f_out = open(data->cmds[i].out.path, data->cmds[i].out.chmod);
 		if (pipe->f_out < 0)
 			return_error(out, ": No such file or directory", 1);
 	}

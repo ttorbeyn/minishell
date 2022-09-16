@@ -71,6 +71,12 @@ int	print_cmd(t_data *data)
 				printf("\tav[%d]\t:\t|%s|\n", j, data->cmds[i].av[j]);
 			j++;
 		}
+		printf("REDIR IN\n");
+		printf("\tpath\t:|%s|\n", data->cmds[i].in.path);
+		printf("\tchmod\t:|%d|\n", data->cmds[i].in.chmod);
+		printf("REDIR OUT\n");
+		printf("\tpath\t:|%s|\n", data->cmds[i].out.path);
+		printf("\tchmod\t:|%d|\n", data->cmds[i].out.chmod);
 		printf("___________________________________________________________\n");
 		i++;
 	}
