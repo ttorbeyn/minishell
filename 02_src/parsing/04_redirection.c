@@ -51,6 +51,7 @@ t_token	*cmd_redirection(t_token *token, t_redir redir, int chmod)
 	redir.chmod = chmod;
 	fd = open(token->content, chmod);
 	close (fd);
+	token = token->next;
 	return (token);
 }
 

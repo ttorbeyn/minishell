@@ -22,6 +22,8 @@ void	envp_init(t_data *data, char **env)
 	while (env[len])
 		len++;
 	data->envp = malloc(sizeof(char *) * len + 1);
+	if (!data->envp)
+		return ;
 	while (env[i])
 	{
 		data->envp[i] = ft_strdup(env[i]);
@@ -49,5 +51,5 @@ int	main(int ac, char **av, char **env)
 //		print_cmd(&data);
 		cmd_switch(&data);
 	}
-	return (0);
+	return (g_exit);
 }
