@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/09/16 22:25:21 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/16 22:56:19 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,13 @@ void	update_envp(t_data *data)
 
 	tmp = data->env;
 	len = ft_lstsize(&data->env);
-	i = 0;
+	i = -1;
 	if (data->envp)
+	{
+		while (data->envp[++i])
+			free(data->envp[i]);
 		free(data->envp);
+	}
 	data->envp = malloc(sizeof(char *) * len);
 	if (!data->envp)
 	{
@@ -45,6 +49,7 @@ void	update_envp(t_data *data)
 		data->envp[i] = ft_strdup(tmp->content);
 		tmp = tmp->next;
 	}
+	print_envp(data->envp);
 }
 
 int	exec_env(t_cmd command, t_data *data, t_pipes *p)

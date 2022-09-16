@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:32:20 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/15 15:58:48 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/16 23:19:18 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,10 @@ char	*get_env_content(char *name, t_list *env);
 char	*get_env_name(char *str);
 
 int		exec_cd(t_cmd command, t_data *data);
-int		exec_echo(t_cmd command);
+int		exec_echo(t_cmd command, t_pipes *p);
 int		exec_env(t_cmd command, t_data *data, t_pipes *p);
 int		exec_pwd(t_data *data, t_pipes *p);
-int		exec_export(t_cmd command, t_data *data, t_pipes *p);
+int		exec_export(t_cmd command, t_data *data);
 int		exec_unset(t_cmd command, t_data *data);
 int		exec_exit(t_cmd cmd);
 

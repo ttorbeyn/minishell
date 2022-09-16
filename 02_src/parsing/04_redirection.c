@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:06:11 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/06 15:49:38 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/16 23:20:24 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ t_token	*redirection(t_token *token, t_cmd *cmd)
 {
 	if (token->type == GREAT)
 		token = cmd_redirection(token, cmd->out,
-				(O_WRONLY | O_TRUNC | O_CREAT));
+				(O_RDWR | O_TRUNC | O_CREAT));
 	else if (token->type == LESS)
 		token = cmd_redirection(token, cmd->in, (O_RDONLY));
 	else if (token->type == DGREAT)
 		token = cmd_redirection(token, cmd->out,
-				(O_WRONLY | O_APPEND | O_CREAT));
+				(O_RDWR | O_APPEND | O_CREAT));
 	else if (token->type == DLESS)
 	{
 		token = token->next;
