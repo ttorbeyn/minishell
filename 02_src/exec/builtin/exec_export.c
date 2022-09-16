@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/06 20:41:22 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/16 21:58:18 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ static int	check_valid(char *av)
 int	empty_export(t_data *data, t_pipes *p)
 {
 	t_list	*tmp;
+	int		i;
 
+	i = 0;
 	tmp = data->env;
 	if (!tmp)
 		return (1);
-	while (tmp->next)
+	while (i < ft_lstsize(&tmp))
 	{
 		write(p->f_out, tmp->content, ft_strlen(tmp->content));
 		write(p->f_out, "\n", 1);
@@ -50,6 +52,22 @@ int	empty_export(t_data *data, t_pipes *p)
 	update_envp(data);
 	return (0);
 }
+
+// int	empty_export(t_data *data, t_pipes *p)		SEGFAULT
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	if (!data->envp)
+// 		return (1);
+// 	while (data->envp[i])
+// 	{
+// 		ft_putendl_fd(data->envp[i], p->f_out);
+// 		i++;
+// 	}
+// 	update_envp(data);
+// 	return (0);
+// }
 
 int	exec_export(t_cmd command, t_data *data, t_pipes *p)
 {

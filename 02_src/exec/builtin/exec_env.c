@@ -6,11 +6,21 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/09/15 16:11:20 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/16 22:25:21 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
+
+void	print_envp(char **envp)
+{
+	int	i;
+
+	i = -1;
+	while (envp[++i])
+		ft_putendl_fd(envp[i], 1);
+	return ;
+}
 
 void	update_envp(t_data *data)
 {
@@ -18,8 +28,8 @@ void	update_envp(t_data *data)
 	int		len;
 	t_list	*tmp;
 
-	len = ft_lstsize(&data->env);
 	tmp = data->env;
+	len = ft_lstsize(&data->env);
 	i = 0;
 	if (data->envp)
 		free(data->envp);
@@ -30,7 +40,7 @@ void	update_envp(t_data *data)
 		return ;
 	}
 	i = -1;
-	while (++i < len)
+	while (++i < len && tmp->next)
 	{
 		data->envp[i] = ft_strdup(tmp->content);
 		tmp = tmp->next;
