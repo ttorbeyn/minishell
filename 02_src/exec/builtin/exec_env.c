@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/09/06 20:42:02 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:11:20 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,7 @@ void	update_envp(t_data *data)
 	tmp = data->env;
 	i = 0;
 	if (data->envp)
-	{
-		// while (data->envp[i++])
-		// 	free(data->envp[i]);
 		free(data->envp);
-	}
 	data->envp = malloc(sizeof(char *) * len);
 	if (!data->envp)
 	{

@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:37:15 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/06 15:24:30 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/15 15:25:19 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,12 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	data_set(&data, &data.env, env);
-	signal(SIGQUIT, SIG_IGN);
+	// signal(SIGQUIT, SIG_IGN);
 	data.line = "rien";
 	while (data.line)
 	{
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, signal_handler);
 		data.line = get_line();
 		if (lex(&data) || parser(&data))
 			continue ;

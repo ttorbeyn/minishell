@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/06 17:34:56 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/15 15:26:00 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	ft_fork(t_data *data, t_pipes *pipe, int i)
 		return_error("Error : fork error", NULL, 2);
 	if (pid == 0)
 	{
+		if (!data->cmds[i].in.doc)
+			signal(SIGQUIT, SIG_DFL);
 		child_process(data, pipe, i);
 		exit (0);
 	}
@@ -78,6 +80,9 @@ void	lauching_process(t_data *data, t_pipes *p)
 				return ;
 			}
 		}
+		if (data->cmds[i].in.doc)
+			signal(SIGQUIT, SIG_DFL);
+		signal(SIGINT, signal_handler);
 		ft_fork(data, p, i);
 		i++;
 	}

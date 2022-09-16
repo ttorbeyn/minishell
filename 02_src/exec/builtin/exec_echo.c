@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:59:37 by vic               #+#    #+#             */
-/*   Updated: 2022/09/06 17:44:54 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:03:13 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int	exec_echo(t_cmd command)
 	i = 1;
 	flag = 0;
 	if (!command.av[1])
-	{
-		write(1, "\n", 1);
-		return (0);
-	}
+		return (write(1, "\n", 1));
 	if (!ft_strncmp(command.av[i], "-n", 2))
 	{
 		if (ft_strlen(command.av[i]) > 2)
