@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:07:39 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/16 23:14:58 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/16 23:50:29 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,19 @@ void	redirections(t_data *data, t_pipes *pipe, int i)
 		pipe->f_in = open_heredoc(data->cmds[i].in.doc);
 	in = data->cmds[i].in.path;
 	out = data->cmds[i].out.path;
+	printf("\n%s\n", out);
+
 	if (in)
 	{
-		pipe->f_in = open(data->cmds[i].in.path, data->cmds[i].in.chmod);
+		printf("\nGOT IT1\n");
+		pipe->f_in = open(in, data->cmds[i].in.chmod);
 		if (pipe->f_in < 0)
 			return_error(in, ": No such file or directory", 1);
 	}
 	if (out)
 	{
-		pipe->f_out = open(data->cmds[i].out.path, data->cmds[i].out.chmod);
+		printf("\nGOT IT2\n");
+		pipe->f_out = open(out, data->cmds[i].out.chmod);
 		if (pipe->f_out < 0)
 			return_error(out, ": No such file or directory", 1);
 	}

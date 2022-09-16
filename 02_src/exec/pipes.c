@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/15 15:26:00 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/16 23:40:54 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	child_process(t_data *data, t_pipes *pipe, int i)
 	if (pipe->f_in != 0)
 		short_dup(pipe->f_in, 0);
 	if (pipe->f_out != 1)
+	{
 		short_dup(pipe->f_out, 1);
+		printf("\nGOT IT\n");
+	}
 	if (i > 0)
 		dup_close_pipe(pipe->old_end[0], pipe->f_in, pipe->old_end);
 	if (i + 1 < data->nb_cmd)
