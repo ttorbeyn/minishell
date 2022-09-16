@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:07:39 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/16 23:14:58 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/16 23:58:18 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void	redirections(t_data *data, t_pipes *pipe, int i)
 	out = data->cmds[i].out.path;
 	if (in)
 	{
-		pipe->f_in = open(data->cmds[i].in.path, data->cmds[i].in.chmod);
+		pipe->f_in = open(in, data->cmds[i].in.chmod);
 		if (pipe->f_in < 0)
 			return_error(in, ": No such file or directory", 1);
 	}
 	if (out)
 	{
-		pipe->f_out = open(data->cmds[i].out.path, data->cmds[i].out.chmod);
+		pipe->f_out = open(out, data->cmds[i].out.chmod);
 		if (pipe->f_out < 0)
 			return_error(out, ": No such file or directory", 1);
 	}
