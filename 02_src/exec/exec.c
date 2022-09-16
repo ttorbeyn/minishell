@@ -65,7 +65,7 @@ void	executer(t_cmd cmd, t_data *data)
 		ret = execve(path, cmd.av, data->envp);
 		if (!path)
 		{
-			return_error(cmd.av[0], ": Command not found", 0);
+			return_error(cmd.av[0], ": Command not found", 127);
 			return ;
 		}
 		else
