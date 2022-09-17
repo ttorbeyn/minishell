@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   99_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:18:37 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/05 18:18:40 by ttorbeyn         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:01:57 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,12 @@ void	ft_free_cmd(t_data *data)
 	while (i < data->nb_cmd)
 	{
 		j = 0;
-		while (data->cmds[i].av[j])
-			free(data->cmds[i].av[j++]);
+		while (data->cmds[i].av[j++])
+			free(data->cmds[i].av[j]);
 		if (data->cmds[i].in.path)
 			free(data->cmds[i].in.path);
-		if (data->cmds[i].in.doc->limit)
-			free(data->cmds[i].in.doc->limit);
 		if (data->cmds[i].out.path)
 			free(data->cmds[i].out.path);
-		if (data->cmds[i].out.doc->limit)
-			free(data->cmds[i].out.doc->limit);
 		if (data->cmds[i].av)
 			free(data->cmds[i].av);
 		i++;
