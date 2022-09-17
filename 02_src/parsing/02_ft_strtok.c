@@ -104,5 +104,6 @@ t_token	*ft_strtok(char *line)
 	if (i == -1)
 		return (NULL);
 	create_token(&token, tmp, &line[i]);
+	free(line);
 	return (token);
 }
