@@ -70,10 +70,14 @@ int	tok_sep(t_token **token, char **tmp, char *line, int i)
 
 int	init_token(char **line, char **tmp, t_token **token)
 {
+	char *line_tmp;
+
+	line_tmp = *line;
 	*token = NULL;
 	if (!*line)
 		return (0);
-	*line = ft_strtrim(*line, " ");
+	*line = ft_strtrim(line_tmp, " ");
+	free(line_tmp);
 	if (!*line)
 		return (ft_error("trim error\n", 1));
 	*tmp = *line;
