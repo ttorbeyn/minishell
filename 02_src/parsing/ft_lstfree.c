@@ -40,8 +40,8 @@ void	ft_tokfree(t_token **tok)
 	current = *tok;
 	while (current != 0)
 	{
-//		if (current->content)
-		free(current->content);
+		if (current->content)
+			free(current->content);
 		tmp = current;
 		current = current->next;
 		free(tmp);

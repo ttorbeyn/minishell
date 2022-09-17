@@ -19,7 +19,7 @@ t_token	*ft_toknew(char *content, int type)
 	new = malloc(sizeof(t_token));
 	if (new == NULL)
 		ft_panic("Error : malloc ft_toknew\n");
-	new->content = content;
+	new->content = ft_strdup(content);
 	new->type = type;
 	new->next = NULL;
 	return (new);

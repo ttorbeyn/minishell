@@ -28,7 +28,7 @@ int	ft_error(char *errmsg, int errnum)
 
 void	ft_free_data(t_data *data)
 {
-//	print_tok(&data->token);
+	print_tok(&data->token);
 	if (data->token)
 		ft_tokfree(&data->token);
 	ft_free_cmd(data);
@@ -45,10 +45,6 @@ void	ft_free_cmd(t_data *data)
 		j = 0;
 		while (data->cmds[i].av[j])
 			free(data->cmds[i].av[j++]);
-		if (data->cmds[i].in.path)
-			free(data->cmds[i].in.path);
-		if (data->cmds[i].out.path)
-			free(data->cmds[i].out.path);
 		if (data->cmds[i].av)
 			free(data->cmds[i].av);
 		i++;

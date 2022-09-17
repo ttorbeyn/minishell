@@ -70,7 +70,6 @@ t_token	*make_av(t_token *token, t_cmd *cmd)
 		i++;
 	}
 	cmd->av[i] = NULL;
-//	ft_tokfree(&tmp);
 	return (token);
 }
 
@@ -88,6 +87,6 @@ int	parser(t_data *data)
 		tmp = make_av(tmp, &data->cmds[i]);
 		i++;
 	}
-//	ft_tokfree(&tmp);
+//	free(tmp);
 	return (0);
 }

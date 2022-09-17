@@ -55,6 +55,8 @@ char	*replace_env(char *quote, t_data *data)
 		}
 		i++;
 	}
+	free(var);
+//	free(quote);
 	return (quote);
 }
 
@@ -62,18 +64,21 @@ int	remove_double_quotes(t_data *data, t_token *token, int i)
 {
 	int		start;
 	char	*quote;
+	char	*tmp;
 
 	token->content[i++] = '\0';
 	start = i;
 	while (token->content[i] != '\"')
 		i++;
 	token->content[i++] = '\0';
-	quote = replace_env(ft_strdup(&token->content[start]), data);
-	if (token->content[i])
-		token->content = triple_join(token->content, quote, &token->content[i]);
-	else
-		token->content = double_join(token->content, quote);
+	tmp = ft_strdup(&token->content[start]);
+	quote = replace_env(ft_strdup(tmp), data);
+//	if (token->content[i])
+//		token->content = triple_join(token->content, quote, &token->content[i]);
+//	else
+//		token->content = double_join(token->content, quote);
 	i = start + ft_strlen(quote) - 2;
+	free(tmp);
 	return (i);
 }
 
@@ -87,6 +92,7 @@ int	change_env(t_data *data, t_token *token, int i)
 	token->content[i++] = '\0';
 	token->content = double_join(token->content, quote);
 	i = start + ft_strlen(quote) - 2;
+	free(quote);
 	return (i);
 }
 
@@ -114,6 +120,5 @@ t_token	*remove_quotes(t_data *data)
 		}
 		data->token = data->token->next;
 	}
-//	free(data->token);
 	return (head);
 }
