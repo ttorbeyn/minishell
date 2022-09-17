@@ -54,6 +54,7 @@ char	*create_token(t_token **token, char *begin, char *end)
 	type = token_type(tmp);
 	if (len)
 		ft_tokadd_back(token, ft_toknew(tmp, type));
+	free(tmp);
 	return (begin);
 }
 
