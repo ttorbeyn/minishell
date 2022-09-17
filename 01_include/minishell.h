@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:32:20 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/16 23:19:18 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 13:49:58 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <limits.h>
 # include <time.h>
 # include <stdlib.h>
+# include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -98,7 +99,7 @@ void	executer(t_cmd cmd, t_data *data);
 
 ///PIPES ///
 void	child_process(t_data *data, t_pipes *pipe, int i);
-void	parent_process(t_data *data, t_pipes *pipe, int pid, int i);
+void	parent_process(t_data *data, t_pipes *pipe, pid_t pid, int i);
 void	ft_fork(t_data *data, t_pipes *pipe, int i);
 void	lauching_process(t_data *data, t_pipes *p);
 	//PIPES UTILS
@@ -108,6 +109,7 @@ void	dup_close_pipe(int end, int fd, int *ends);
 	//REDIR
 void	redirections(t_data *data, t_pipes *pipe, int i);
 int		open_heredoc(t_here *doc);
+void	rl_replace_line(const char *text, int clear_undo);
 void	signal_handler(int signum);
 void	signal_handler2(int signum);
 
@@ -120,7 +122,7 @@ int		exec_cd(t_cmd command, t_data *data);
 int		exec_echo(t_cmd command, t_pipes *p);
 void	update_envp(t_data *data);
 int		exec_env(t_cmd command, t_data *data, t_pipes *p);
-int		exec_pwd(t_data *data, t_pipes *p);
+int		exec_pwd(t_data *data, t_pipes *p, int i);
 int		exec_export(t_cmd command, t_data *data);
 int		exec_unset(t_cmd command, t_data *data);
 int		exec_exit(t_cmd cmd);
@@ -129,6 +131,7 @@ int		exec_exit(t_cmd cmd);
 int		check_builtin(char *cmd);
 char	*check_path(char **env, char *cmd);
 int		return_error(char *msg, char *msg2, int system);
+int		return_error_exit(char *msg, char *msg2, int system);
 void	ft_abort(char *str);
 void	print_lst(t_list **env);
 
