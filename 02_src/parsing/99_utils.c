@@ -48,6 +48,7 @@ void	ft_free_cmd(t_data *data)
 			free(data->cmds[i].av);
 		i++;
 	}
+	free(data->line);
 	free(data->cmds);
 }
 
