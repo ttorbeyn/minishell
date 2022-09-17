@@ -49,8 +49,8 @@ t_token	*cmd_redirection(t_token *token, t_redir *redir, int chmod)
 	token = token->next;
 	redir->path = token->content;
 	redir->chmod = chmod;
-	fd = open(token->content, chmod);
-	close (fd);
+	fd = open(token->content, chmod, 0644);
+	close(fd);
 	token = token->next;
 	return (token);
 }
@@ -59,12 +59,12 @@ t_token	*redirection(t_token *token, t_cmd *cmd)
 {
 	if (token->type == GREAT)
 		token = cmd_redirection(token, &cmd->out,
-				(O_RDWR | O_TRUNC | O_CREAT));
+				(O_CREAT | O_TRUNC | O_RDWR));
 	else if (token->type == LESS)
 		token = cmd_redirection(token, &cmd->in, (O_RDONLY));
 	else if (token->type == DGREAT)
 		token = cmd_redirection(token, &cmd->out,
-				(O_RDWR | O_APPEND | O_CREAT));
+				(O_CREAT | O_APPEND | O_RDWR));
 	else if (token->type == DLESS)
 	{
 		token = token->next;

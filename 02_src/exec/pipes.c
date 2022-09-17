@@ -26,7 +26,7 @@ void	child_process(t_data *data, t_pipes *pipe, int i)
 	if (check_builtin(data->cmds[i].av[0]))
 	{
 		if (exec_builtin(data, 0, pipe) == 42)
-			return_error(data->cmds[0].av[0], ": Command not found", 0);
+			return_error(data->cmds[0].av[0], ": command not found", 0);
 		exit(0);
 	}
 	else

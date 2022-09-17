@@ -89,8 +89,7 @@ int	return_error(char *msg, char *msg2, int system)
 	if (msg2)
 		ft_putstr_fd(msg2, 2);
 	write(2, "\n", 1);
-	g_exit = system;
-	return (1);
+	return (g_exit = system);
 }
 
 void	ft_abort(char *str)

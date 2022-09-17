@@ -39,8 +39,8 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	data_set(&data, &data.env, env);
-	// signal(SIGQUIT, SIG_IGN);
 	data.line = "rien";
+	g_exit = 0;
 	while (data.line)
 	{
 		signal(SIGQUIT, SIG_IGN);
@@ -52,5 +52,5 @@ int	main(int ac, char **av, char **env)
 		cmd_switch(&data);
 		printf("%d\n", g_exit);
 	}
-	return (g_exit);
+	return (0);
 }
