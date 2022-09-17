@@ -70,27 +70,24 @@ t_token	*make_av(t_token *token, t_cmd *cmd)
 		i++;
 	}
 	cmd->av[i] = NULL;
-	free(tmp);
+//	ft_tokfree(&tmp);
 	return (token);
 }
 
 int	parser(t_data *data)
 {
 	t_token	*tmp;
-//	t_token *head;
 	int		i;
 
 	i = 0;
 	data->token = remove_quotes(data);
 	tmp = data->token;
-//	head = tmp;
 	data->cmds = malloc(sizeof(t_cmd) * data->nb_cmd);
 	while (i < data->nb_cmd)
 	{
 		tmp = make_av(tmp, &data->cmds[i]);
 		i++;
 	}
-	free(tmp);
-	free(data->token);
+//	ft_tokfree(&tmp);
 	return (0);
 }

@@ -38,6 +38,7 @@ PARSING			=	./02_src/parsing/00_init.c \
 					./02_src/parsing/04_quotes_utils.c \
 					./02_src/parsing/04_redirection.c \
 					./02_src/parsing/99_utils.c \
+					./02_src/parsing/ft_lstfree.c \
 					./02_src/main.c \
 
 EXEC			=	./02_src/exec/builtin/builtin_utils.c \

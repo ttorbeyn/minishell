@@ -16,9 +16,9 @@ t_here	*ft_herenew(char *limit)
 {
 	t_here	*new;
 
-	new = malloc(sizeof(t_token));
+	new = malloc(sizeof(t_here));
 	if (new == NULL)
-		ft_panic("Error : malloc ft_toknew\n");
+		ft_panic("Error : malloc ft_herenew\n");
 	new->limit = limit;
 	new->next = NULL;
 	return (new);

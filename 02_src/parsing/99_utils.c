@@ -29,6 +29,15 @@ int	ft_error(char *errmsg, int errnum)
 	return (errnum);
 }
 
+void	ft_free_data(t_data *data)
+{
+	if (data->line)
+		free(data->line);
+	if (data->token)
+		ft_tokfree(&data->token);
+	ft_free_cmd(data);
+}
+
 void	ft_free_cmd(t_data *data)
 {
 	int i;
@@ -48,8 +57,8 @@ void	ft_free_cmd(t_data *data)
 			free(data->cmds[i].av);
 		i++;
 	}
-	free(data->line);
-	free(data->cmds);
+	if (data->cmds)
+		free(data->cmds);
 }
 
 void	ft_free_env(t_data *data)
@@ -60,6 +69,8 @@ void	ft_free_env(t_data *data)
 	while (data->envp[i])
 		free(data->envp[i++]);
 	free(data->envp);
+	if (data->env)
+		ft_lstfree(&data->env);
 }
 
 void	print_tok(t_token **token)

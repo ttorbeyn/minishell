@@ -114,5 +114,6 @@ t_token	*remove_quotes(t_data *data)
 		}
 		data->token = data->token->next;
 	}
+//	free(data->token);
 	return (head);
 }
