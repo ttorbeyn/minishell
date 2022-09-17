@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:38:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/06 20:37:05 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 02:15:39 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,21 @@ int	return_error(char *msg, char *msg2, int system)
 	if (msg2)
 		ft_putstr_fd(msg2, 2);
 	write(2, "\n", 1);
+	// g_exit = WTERMSIG(system);
+	return (system);
+}
+
+int	return_error_exit(char *msg, char *msg2, int system)
+{
+	ft_putstr_fd("Minishell: ", 2);
+	ft_putstr_fd(msg, 2);
+	if (msg2)
+		ft_putstr_fd(msg2, 2);
+	write(2, "\n", 1);
 	g_exit = system;
-	return (1);
+	// printf("exit lOL %d\n", g_exit);
+	// g_exit = WTERMSIG(system);
+	exit (g_exit);
 }
 
 void	ft_abort(char *str)

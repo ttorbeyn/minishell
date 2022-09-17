@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:32:20 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/16 23:19:18 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 01:51:06 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ int		exec_exit(t_cmd cmd);
 int		check_builtin(char *cmd);
 char	*check_path(char **env, char *cmd);
 int		return_error(char *msg, char *msg2, int system);
+int		return_error_exit(char *msg, char *msg2, int system);
 void	ft_abort(char *str);
 void	print_lst(t_list **env);
 

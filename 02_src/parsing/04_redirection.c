@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:06:11 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/16 23:20:24 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 00:12:13 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ void	ft_hereadd_back(t_here **token, t_here *new)
 
 t_token	*cmd_redirection(t_token *token, t_redir *redir, int chmod)
 {
-	int	fd;
+	// int	fd;
 
 	token = token->next;
 	redir->path = token->content;
 	redir->chmod = chmod;
-	fd = open(token->content, chmod);
-	close (fd);
+	// fd = open(token->content, chmod);
+	// close (fd);
 	token = token->next;
 	return (token);
 }

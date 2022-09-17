@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/09/16 23:57:55 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 02:07:28 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	cmd_switch(t_data *data)
 		&& !data->cmds[0].out.path)
 	{
 		if (exec_builtin(data, 0, &p) == 42)
-			return_error(data->cmds[0].av[0], ": Command not found", 0);
+			return_error(data->cmds[0].av[0], ": Command not foundP", 127);
 	}
 	else
 		lauching_process(data, &p);
@@ -66,7 +66,7 @@ void	executer(t_cmd cmd, t_data *data)
 		ret = execve(path, cmd.av, data->envp);
 		if (!path)
 		{
-			return_error(cmd.av[0], ": Command not found", 0);
+			return_error_exit(cmd.av[0], ": Command not found", 127);
 			return ;
 		}
 		else
@@ -74,8 +74,8 @@ void	executer(t_cmd cmd, t_data *data)
 	}
 	if (ret == -1)
 	{
-		return_error("Execution error", NULL, 127);
-		return ;
+		return_error_exit("Execution error", NULL, 127);
+		// return ;
 	}
 	return ;
 }

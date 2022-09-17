@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/16 23:53:37 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 02:06:49 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	child_process(t_data *data, t_pipes *pipe, int i)
 	if (check_builtin(data->cmds[i].av[0]))
 	{
 		if (exec_builtin(data, 0, pipe) == 42)
-			return_error(data->cmds[0].av[0], ": Command not found", 0);
+			return_error_exit(data->cmds[0].av[0], ": Command not found", 127);
 		exit(0);
 	}
 	else
@@ -43,6 +43,10 @@ void	parent_process(t_data *data, t_pipes *pipe, int pid, int i)
 		pipe->old_end[0] = pipe->new_end[0];
 		pipe->old_end[1] = pipe->new_end[1];
 	}
+	g_exit = WIFEXITED(g_exit);
+	wait(&g_exit);
+	if (g_exit == 512)
+		g_exit = 127;
 	waitpid(pid, NULL, 0);
 }
 
