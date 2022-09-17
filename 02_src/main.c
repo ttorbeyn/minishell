@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:37:15 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/17 14:20:19 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 14:29:06 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	main(int ac, char **av, char **env)
 			continue ;
 //		print_cmd(&data);
 		cmd_switch(&data);
-		printf("%d\n", g_exit);
 	}
 	return (0);
 }
