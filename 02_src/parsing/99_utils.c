@@ -14,10 +14,7 @@
 
 int	is_space(char c)
 {
-	char	*space;
-
-	space = ft_strdup(" \n\t\v\f\r");
-	if (ft_strchr(space, c))
+	if (ft_strchr(" \n\t\v\f\r", c))
 		return (1);
 	return (0);
 }
@@ -31,11 +28,9 @@ int	ft_error(char *errmsg, int errnum)
 
 void	ft_free_data(t_data *data)
 {
-	if (data->line)
-		free(data->line);
 	if (data->token)
 		ft_tokfree(&data->token);
-	ft_free_cmd(data);
+//	ft_free_cmd(data);
 }
 
 void	ft_free_cmd(t_data *data)

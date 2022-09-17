@@ -27,8 +27,8 @@ int	main(int ac, char **av, char **env)
 		data.line = get_line();
 		if (lex(&data))
 			continue ;
-//		if (parser(&data))
-//			continue ;
+		if (parser(&data))
+			continue ;
 //		cmd_switch(&data);
 //		ft_free_data(&data);
 //		printf("%d\n", g_exit);
