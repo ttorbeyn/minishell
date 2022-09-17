@@ -20,7 +20,7 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	data_set(&data, &data.env, env);
 	data.line = "rien";
-	g_exit = 0;
+
 	while (data.line)
 	{
 		signal(SIGQUIT, SIG_IGN);
@@ -28,9 +28,9 @@ int	main(int ac, char **av, char **env)
 		data.line = get_line();
 		if (lex(&data) || parser(&data))
 			continue ;
-		print_cmd(&data);
-		cmd_switch(&data);
+//		print_cmd(&data);
 		ft_free_cmd(&data);
+//		g_exit = 0;
 //		printf("%d\n", g_exit);
 	}
 	ft_free_env(&data);
