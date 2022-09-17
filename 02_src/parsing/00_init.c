@@ -12,6 +12,26 @@
 
 #include "../../01_include/minishell.h"
 
+void	envp_init(t_data *data, char **env)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
+	while (env[len])
+		len++;
+	data->envp = malloc(sizeof(char *) * len + 1);
+	if (!data->envp)
+		return ;
+	while (env[i])
+	{
+		data->envp[i] = ft_strdup(env[i]);
+		i++;
+	}
+	return ;
+}
+
 char	*get_line(void)
 {
 	char	*line;

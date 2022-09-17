@@ -48,7 +48,7 @@ static int	ft_countdigit(int x)
 
 static int	ft_isnegative(int n)
 {
-	int sign;
+	int	sign;
 
 	sign = 1;
 	if (n < 0)
@@ -56,7 +56,7 @@ static int	ft_isnegative(int n)
 	return (sign);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char			*new;
 	int				i;
@@ -68,7 +68,8 @@ char		*ft_itoa(int n)
 		(n2 = -n);
 	else
 		(n2 = n);
-	if (!(new = malloc((sizeof(char) * (c + (n < 0 ? 2 : 1))))))
+	new = malloc(sizeof(char) * (c + 2));
+	if (!new)
 		return (NULL);
 	i = 0;
 	while (i < c)

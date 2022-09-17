@@ -35,12 +35,11 @@
 int		g_exit;
 
 //main
-void	envp_init(t_data *data, char **env);
-void	update_envp(t_data *data);
 
 //PARSING
 
 //00_init
+void	envp_init(t_data *data, char **env);
 char	*get_line(void);
 void	data_set(t_data *data, t_list **envp, char **env);
 
@@ -83,7 +82,6 @@ void	ft_hereadd_back(t_here **token, t_here *new);
 t_token	*cmd_redirection(t_token *token, t_redir *redir, int chmod);
 t_token	*redirection(t_token *token, t_cmd *cmd);
 
-
 //99_utils
 int		is_space(char c);
 int		ft_error(char *errmsg, int errnum);
@@ -118,6 +116,7 @@ char	*get_env_name(char *str);
 
 int		exec_cd(t_cmd command, t_data *data);
 int		exec_echo(t_cmd command, t_pipes *p);
+void	update_envp(t_data *data);
 int		exec_env(t_cmd command, t_data *data, t_pipes *p);
 int		exec_pwd(t_data *data, t_pipes *p);
 int		exec_export(t_cmd command, t_data *data);
