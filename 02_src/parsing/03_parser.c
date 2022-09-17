@@ -58,6 +58,11 @@ t_token	*make_av(t_token *token, t_cmd *cmd)
 	i = 0;
 	while (i < cmd->ac)
 	{
+		while (tmp->type > 1)
+		{
+			tmp = tmp->next;
+			tmp = tmp->next;
+		}
 		if (i == 0)
 			tmp->content = ft_tolower_str(tmp->content);
 		cmd->av[i] = ft_strdup(tmp->content);
@@ -71,16 +76,19 @@ t_token	*make_av(t_token *token, t_cmd *cmd)
 int	parser(t_data *data)
 {
 	t_token	*tmp;
+	t_token *head;
 	int		i;
 
 	i = 0;
 	data->token = remove_quotes(data);
 	tmp = data->token;
+	head = tmp;
 	data->cmds = malloc(sizeof(t_cmd) * data->nb_cmd);
 	while (i < data->nb_cmd)
 	{
 		tmp = make_av(tmp, &data->cmds[i]);
 		i++;
 	}
+	free(head);
 	return (0);
 }

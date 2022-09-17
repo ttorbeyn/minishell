@@ -28,9 +28,11 @@ int	main(int ac, char **av, char **env)
 		data.line = get_line();
 		if (lex(&data) || parser(&data))
 			continue ;
-//		print_cmd(&data);
+		print_cmd(&data);
 		cmd_switch(&data);
-		printf("%d\n", g_exit);
+		ft_free_cmd(&data);
+//		printf("%d\n", g_exit);
 	}
+	ft_free_env(&data);
 	return (0);
 }

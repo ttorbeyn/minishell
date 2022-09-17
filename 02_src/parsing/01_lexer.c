@@ -17,11 +17,12 @@ int	check_separator(t_token **token)
 	t_token	*tmp;
 
 	tmp = *token;
-	if (tmp && tmp->type != WORD)
+	if (tmp && tmp->type == PIPE)
 		return (1);
 	while (tmp)
 	{
-		if (tmp->type != WORD && (!tmp->next || tmp->next->type != WORD))
+		if (tmp->type != WORD && tmp->type != PIPE
+			&& (!tmp->next || tmp->next->type != WORD))
 			return (1);
 		tmp = tmp->next;
 	}

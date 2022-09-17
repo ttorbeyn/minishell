@@ -42,7 +42,8 @@ char	*replace_env(char *quote, t_data *data)
 		{
 			quote[i++] = '\0';
 			start = i;
-			while (quote[i] && quote[i] != ' ' && quote[i] != '\'')
+			while (quote[i] && quote[i] != ' ' && quote[i] != '\''
+				&& quote[i] != '$')
 				i++;
 			var = get_env_content(ft_strndup(&quote[start], i - start),
 					data->env);
