@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:32:20 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/17 01:51:06 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 12:49:15 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <limits.h>
 # include <time.h>
 # include <stdlib.h>
+# include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -110,6 +111,7 @@ void	dup_close_pipe(int end, int fd, int *ends);
 	//REDIR
 void	redirections(t_data *data, t_pipes *pipe, int i);
 int		open_heredoc(t_here *doc);
+void	rl_replace_line(const char *text, int clear_undo);
 void	signal_handler(int signum);
 void	signal_handler2(int signum);
 

@@ -1,6 +1,6 @@
 CC				=	gcc
 
-CFLAGS			=	-Wall -Wextra -Werror -lreadline
+CFLAGS			=	-Wall -Wextra -Werror -lreadline -L/Users/$(USER)/.brew/opt/readline/lib -I/Users/$(USER)/.brew/opt/include/readline/ -ltermcap
 
 INCLUDE			=	-I include
 

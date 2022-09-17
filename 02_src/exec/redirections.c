@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:07:39 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/16 23:58:18 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 12:45:10 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../01_include/minishell.h"
 
+
+
 void	signal_handler(int signum)
 {
 	if (signum == SIGINT)
 	{
-		// rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		write(1, "\n", 1);
 		rl_on_new_line();
 		rl_redisplay();
@@ -28,7 +30,7 @@ void	signal_handler2(int signum)
 {
 	if (signum == SIGINT)
 	{
-		// rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		write(1, "\n", 1);
 		rl_on_new_line();
 		g_exit = 130;
