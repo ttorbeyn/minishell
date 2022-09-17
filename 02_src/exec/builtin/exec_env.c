@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/09/16 22:56:19 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 16:29:41 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ void	update_envp(t_data *data)
 	}
 	data->envp = malloc(sizeof(char *) * len);
 	if (!data->envp)
-	{
-		return_error("env malloc error", NULL, 2);
 		return ;
-	}
 	i = -1;
 	while (++i < len && tmp->next)
 	{

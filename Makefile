@@ -53,6 +53,7 @@ EXEC			=	./02_src/exec/builtin/builtin_utils.c \
 					./02_src/exec/pipe_utils.c \
 					./02_src/exec/redirections.c \
 					./02_src/exec/heredoc.c \
+					./02_src/exec/exit_utils.c \
 					./02_src/exec/builtin/exec_exit.c 
 
 SRC				=	$(LIBFT) \
