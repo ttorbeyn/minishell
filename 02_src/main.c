@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:37:15 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/17 17:30:33 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:49:48 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int ac, char **av, char **env)
 		ft_free_cmd(&data);
 		// system("leaks minishell");
 		//print_cmd(&data);
-		ft_free_cmd(&data);
+		// ft_free_cmd(&data);
 
 	}
 	ft_free_env(&data);
