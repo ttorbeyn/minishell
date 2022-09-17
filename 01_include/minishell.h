@@ -32,8 +32,6 @@
 # define LESS 3
 # define DGREAT 4
 # define DLESS 5
-# define IN 6
-# define OUT 7
 
 int		g_exit;
 
