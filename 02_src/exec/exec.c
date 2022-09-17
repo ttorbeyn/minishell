@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/09/17 12:30:37 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 14:20:03 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	cmd_switch(t_data *data)
 		&& !data->cmds[0].out.path)
 	{
 		if (exec_builtin(data, 0, &p) == 42)
-			return_error(data->cmds[0].av[0], ": Command not foundP", 127);
+			return_error(data->cmds[0].av[0], ": Command not found", 127);
 	}
 	else
 		lauching_process(data, &p);
@@ -44,7 +44,7 @@ int	exec_builtin(t_data *data, int i, t_pipes *pipe)
 		return (exec_env(data->cmds[i], data, pipe));
 	if (!ft_strncmp(data->cmds[i].av[0], "pwd", 3)
 		&& ft_strlen(data->cmds[i].av[0]) == 3)
-		return (exec_pwd(data, pipe));
+		return (exec_pwd(data, pipe, i));
 	if (!ft_strncmp(data->cmds[i].av[0], "export", 6)
 		&& ft_strlen(data->cmds[i].av[0]) == 6)
 		return (exec_export(data->cmds[i], data));
@@ -67,15 +67,13 @@ void	executer(t_cmd cmd, t_data *data)
 		if (!path)
 		{
 			return_error_exit(cmd.av[0], ": Command not found", 127);
+			g_exit = 127;
 			return ;
 		}
 		else
 			free(path);
 	}
 	if (ret == -1)
-	{
 		return_error_exit("Execution error", NULL, 127);
-		// return ;
-	}
 	return ;
 }

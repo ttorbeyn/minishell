@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/17 12:30:46 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 14:20:35 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	child_process(t_data *data, t_pipes *pipe, int i)
 	{
 		if (exec_builtin(data, 0, pipe) == 42)
 			return_error_exit(data->cmds[0].av[0], ": Command not found", 127);
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	else
 		executer(data->cmds[i], data);
 	return ;
 }
 
-void	parent_process(t_data *data, t_pipes *pipe, int pid, int i)
+void	parent_process(t_data *data, t_pipes *pipe, pid_t pid, int i)
 {
 	if (i > 0)
 		close_pipe(pipe->old_end);
@@ -43,11 +43,12 @@ void	parent_process(t_data *data, t_pipes *pipe, int pid, int i)
 		pipe->old_end[0] = pipe->new_end[0];
 		pipe->old_end[1] = pipe->new_end[1];
 	}
-	g_exit = WIFEXITED(g_exit);
-	wait(&g_exit);
+	if (waitpid(pid, &g_exit, 0) == -1)
+		exit(EXIT_FAILURE);
+	if (WIFEXITED(g_exit))
+		g_exit = WEXITSTATUS(g_exit);
 	if (g_exit == 512)
 		g_exit = 127;
-	waitpid(pid, NULL, 0);
 }
 
 void	ft_fork(t_data *data, t_pipes *pipe, int i)
@@ -62,7 +63,7 @@ void	ft_fork(t_data *data, t_pipes *pipe, int i)
 		if (!data->cmds[i].in.doc)
 			signal(SIGQUIT, SIG_DFL);
 		child_process(data, pipe, i);
-		exit (0);
+		exit(0);
 	}
 	else
 		parent_process(data, pipe, pid, i);

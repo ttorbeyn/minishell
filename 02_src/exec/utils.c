@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:38:24 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/17 02:15:39 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 14:19:11 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	return_error(char *msg, char *msg2, int system)
 	if (msg2)
 		ft_putstr_fd(msg2, 2);
 	write(2, "\n", 1);
-	// g_exit = WTERMSIG(system);
+	g_exit = WEXITSTATUS(system);
 	return (system);
 }
 
@@ -101,9 +101,8 @@ int	return_error_exit(char *msg, char *msg2, int system)
 		ft_putstr_fd(msg2, 2);
 	write(2, "\n", 1);
 	g_exit = system;
-	// printf("exit lOL %d\n", g_exit);
-	// g_exit = WTERMSIG(system);
-	exit (g_exit);
+	WEXITSTATUS(system);
+	exit(system);
 }
 
 void	ft_abort(char *str)

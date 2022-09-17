@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:32:20 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/17 12:49:15 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/17 13:49:58 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	executer(t_cmd cmd, t_data *data);
 
 ///PIPES ///
 void	child_process(t_data *data, t_pipes *pipe, int i);
-void	parent_process(t_data *data, t_pipes *pipe, int pid, int i);
+void	parent_process(t_data *data, t_pipes *pipe, pid_t pid, int i);
 void	ft_fork(t_data *data, t_pipes *pipe, int i);
 void	lauching_process(t_data *data, t_pipes *p);
 	//PIPES UTILS
@@ -123,7 +123,7 @@ char	*get_env_name(char *str);
 int		exec_cd(t_cmd command, t_data *data);
 int		exec_echo(t_cmd command, t_pipes *p);
 int		exec_env(t_cmd command, t_data *data, t_pipes *p);
-int		exec_pwd(t_data *data, t_pipes *p);
+int		exec_pwd(t_data *data, t_pipes *p, int i);
 int		exec_export(t_cmd command, t_data *data);
 int		exec_unset(t_cmd command, t_data *data);
 int		exec_exit(t_cmd cmd);
