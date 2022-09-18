@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:59:37 by vic               #+#    #+#             */
-/*   Updated: 2022/09/17 19:07:12 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:11:20 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int	exec_echo(t_cmd command, t_pipes *p)
 	i = 1;
 	flag = 0;
 	if (!command.av[1])
-		return (write(p->f_out, "\n", 1));
+	{
+		write(p->f_out, "\n", 1);
+		return (0);
+	}
 	i = norm_bs2(command, i, &flag);
 	while (i < command.ac)
 	{

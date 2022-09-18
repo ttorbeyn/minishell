@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:40:09 by vic               #+#    #+#             */
-/*   Updated: 2022/09/06 16:26:10 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:39:08 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,12 @@ int	exec_cd(t_cmd command, t_data *data)
 	if (!path && !command.av[1])
 	{
 		update_env(data, "PWD=");
-		return (1);
+		return (0);
 	}
-	if (chdir(path) < 0)
+	if (chdir(path) < 0 && command.av[1])
 	{
-		return_error("Error: Path not found", NULL, 0);
 		free(path);
-		return (1);
+		return (return_error("Error: Path not found", NULL, 1));
 	}
 	update_env(data, "PWD=");
 	return (0);

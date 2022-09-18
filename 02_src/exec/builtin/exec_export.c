@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/16 22:58:02 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:24:01 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	exec_export(t_cmd command, t_data *data)
 	if (!command.av[1])
 		return (0);
 	if (check_valid(command.av[1]))
-		return (1);
+		return (0);
 	tmp = data->env;
 	name = get_env_name(command.av[1]);
 	while (tmp)

@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:32:20 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/17 13:49:58 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:23:58 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int		exec_cd(t_cmd command, t_data *data);
 int		exec_echo(t_cmd command, t_pipes *p);
 void	update_envp(t_data *data);
 int		exec_env(t_cmd command, t_data *data, t_pipes *p);
-int		exec_pwd(t_data *data, t_pipes *p, int i);
+int		exec_pwd(t_data *data, t_pipes *p);
 int		exec_export(t_cmd command, t_data *data);
 int		exec_unset(t_cmd command, t_data *data);
 int		exec_exit(t_cmd cmd);
