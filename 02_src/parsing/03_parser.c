@@ -30,22 +30,16 @@ t_token	*count_arg(t_token *token, t_cmd *cmd)
 		return (0);
 	while (token && token->type != PIPE)
 	{
-		while (token && token->type == WORD && token->type != PIPE)
+		if (token && token->type > 1)
+			token = redirection(token, cmd);
+		else
 		{
 			cmd->ac++;
 			token = token->next;
 		}
-		if (token && token->type > 1)
-		{
-			token = redirection(token, cmd);
-			token = token->next;
-		}
 	}
 	if (token && token->type == PIPE)
-	{
 		token = token->next;
-		return (token);
-	}
 	return (token);
 }
 

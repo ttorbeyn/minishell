@@ -94,6 +94,7 @@ int		print_cmd(t_data *data);
 //free
 void	ft_lstfree(t_list **lst);
 void	ft_tokfree(t_token **tok);
+void	ft_herefree(t_here **here);
 
 /// EXEC ///
 int		cmd_switch(t_data *data);
