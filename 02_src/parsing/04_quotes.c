@@ -109,7 +109,7 @@ t_token	*clean_tok(t_data *data)
 		if (data->token->type == WORD)
 		{
 			i = 0;
-			while (data->token->content[i])
+			while (data->token->content && data->token->content[i])
 			{
 				if (data->token->content[i] == '\'')
 					i = remove_quotes(data->token, i, '\'', data);

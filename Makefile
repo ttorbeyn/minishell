@@ -37,9 +37,9 @@ PARSING			=	./02_src/parsing/00_init.c \
 					./02_src/parsing/04_quotes.c \
 					./02_src/parsing/04_quotes_utils.c \
 					./02_src/parsing/04_redirection.c \
+					./02_src/parsing/98_free.c \
 					./02_src/parsing/99_utils.c \
-					./02_src/parsing/ft_lstfree.c \
-					./02_src/main.c \
+					./02_src/main.c
 
 EXEC			=	./02_src/exec/builtin/builtin_utils.c \
 					./02_src/exec/builtin/exec_echo.c \
@@ -55,10 +55,13 @@ EXEC			=	./02_src/exec/builtin/builtin_utils.c \
 					./02_src/exec/redirections.c \
 					./02_src/exec/heredoc.c \
 					./02_src/exec/exit_utils.c \
-					./02_src/exec/builtin/exec_exit.c 
+					./02_src/exec/builtin/exec_exit.c
+
+TODELETE		=	./99_utils/utils.c
 
 SRC				=	$(LIBFT) \
 					$(PARSING) \
+					$(TODELETE) \
 					$(EXEC)
 
 OBJS			=	$(SRC:.c=.o)

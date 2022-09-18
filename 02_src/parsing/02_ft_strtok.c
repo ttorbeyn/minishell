@@ -63,7 +63,10 @@ int	tok_sep(t_token **token, char **tmp, char *line, int i)
 	*tmp = create_token(token, *tmp, &line[i]);
 	i += is_separator(&line[i]);
 	if (line[i] && ft_strchr("|<>", line[i]))
-		return (ft_error("separator error\n", -1));
+	{
+		ft_error("separator error\n", 42);
+		return (-1);
+	}
 	*tmp = create_token(token, *tmp, &line[i]);
 	return (i);
 }
@@ -78,8 +81,6 @@ int	init_token(char **line, char **tmp, t_token **token)
 		return (0);
 	*line = ft_strtrim(line_tmp, " ");
 	free(line_tmp);
-	if (!*line)
-		return (ft_error("trim error\n", 1));
 	*tmp = *line;
 	return (0);
 }
@@ -94,20 +95,20 @@ t_token	*ft_strtok(char *line)
 	while (line[i])
 	{
 		if (line[i] == '\"' || line[i] == '\'')
-			i = check_quotes(i, line);
-		if (is_separator(&line[i]) && line[i])
+			i = check_quotes(i, line) + 1;
+		else if (is_separator(&line[i]) && line[i])
 			i = tok_sep(&token, &tmp, line, i);
 		else if (is_space(line[i]))
 		{
 			tmp = create_token(&token, tmp, &line[i]);
-			while (is_space(line[i]) && line[i])
+			while (line[i] && is_space(line[i]))
 				tmp = &line[++i];
 		}
 		else
 			i++;
+		if (i == -1)
+			return (free_out(&token, &line));
 	}
-	if (i == -1)
-		return (NULL);
 	create_token(&token, tmp, &line[i]);
 	free(line);
 	return (token);

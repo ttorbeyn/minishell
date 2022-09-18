@@ -55,6 +55,7 @@ char	*create_token(t_token **token, char *begin, char *end);
 t_token	*ft_strtok(char *line);
 
 //02_ft_strtok_utils
+t_token	*free_out(t_token **token, char **line);
 t_token	*ft_toknew(char *content, int type);
 void	ft_tokadd_back(t_token **token, t_token *new);
 int		is_separator(char *line);

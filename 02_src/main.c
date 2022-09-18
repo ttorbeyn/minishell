@@ -24,9 +24,7 @@ int	main(int ac, char **av, char **env)
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, signal_handler);
 		data.line = get_line();
-		if (lex(&data))
-			continue ;
-		if (parser(&data))
+		if (lex(&data) || parser(&data))
 			continue ;
 		print_cmd(&data);
 		cmd_switch(&data);
