@@ -47,10 +47,10 @@ char	*triple_join(char *s1, char *s2, char *s3)
 	if (s1 && s2 && !s3)
 		new = ft_strjoin(s1, s2);
 	if (!s1 && !s2)
-		return (s3);
+		return (ft_strdup(s3));
 	if (!s1 && !s3)
-		return (s2);
+		return (ft_strdup(s2));
 	if (!s2 && !s3)
-		return (s1);
+		return (ft_strdup(s1));
 	return (new);
 }

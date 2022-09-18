@@ -27,9 +27,10 @@ int	main(int ac, char **av, char **env)
 		data.line = get_line();
 		if (lex(&data))
 			continue ;
+		printf("coucou\n");
 		if (parser(&data))
 			continue ;
-		print_cmd(&data);
+//		print_cmd(&data);
 		cmd_switch(&data);
 //		printf("%d\n", g_exit);
 		ft_free_data(&data);
