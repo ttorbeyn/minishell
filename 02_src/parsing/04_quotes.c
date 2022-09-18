@@ -114,14 +114,9 @@ t_token	*clean_tok(t_data *data)
 				if (data->token->content[i] == '\'')
 					i = remove_quotes(data->token, i, '\'', data);
 				if (data->token->content[i] == '\"')
-					{
 					i = remove_quotes(data->token, i, '\"', data);
-					}
 				if (data->token->content[i] == '$')
-					{
-					printf("coucou\n");
 					i = change_env_tok(data, data->token, i);
-					}
 				i++;
 			}
 		}

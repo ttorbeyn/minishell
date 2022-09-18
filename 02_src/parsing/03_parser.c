@@ -106,7 +106,6 @@ int	parser(t_data *data)
 	i = 0;
 	data->token = clean_tok(data);
 	data->token = delete_tok_null(data);
-	printf("coucouSTOP\n");
 	tmp = data->token;
 	data->cmds = malloc(sizeof(t_cmd) * data->nb_cmd);
 	while (i < data->nb_cmd)
