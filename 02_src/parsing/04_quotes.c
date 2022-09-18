@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04_quotes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:06:03 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/05 18:06:05 by ttorbeyn         ###   ########.fr       */
+/*   Updated: 2022/09/18 19:54:41 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ int	change_env_tok(t_data *data, t_token *token, int i)
 	free(token->content);
 	token->content = triple_join(begin, env, end);
 	i = start + ft_strlen(env) - 2;
-	printf("tok : %s\n", token->content);
-	printf("i : %d\n", i);
 	if (begin)
 		free(begin);
 	if (env)
