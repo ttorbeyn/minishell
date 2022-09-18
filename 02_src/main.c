@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:37:15 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/18 19:53:07 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/18 20:01:16 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ int	main(int ac, char **av, char **env)
 		data.line = get_line();
 		if (lex(&data))
 			continue ;
+		printf("coucou\n");
 		if (parser(&data))
 			continue ;
-		// print_cmd(&data);
+		printf("coucou34\n");
+//		print_cmd(&data);
 		cmd_switch(&data);
 		// ft_free_data(&data);
 		// system("leaks minishell");

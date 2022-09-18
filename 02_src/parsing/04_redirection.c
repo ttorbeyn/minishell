@@ -68,7 +68,9 @@ t_token	*redirection(t_token *token, t_cmd *cmd)
 	else if (token->type == DLESS)
 	{
 		token = token->next;
+		printf("content : %s\n", token->content);
 		ft_hereadd_back(&cmd->in.doc, ft_herenew(token->content));
+		printf("bonjour\n");
 	}
 	return (token);
 }
