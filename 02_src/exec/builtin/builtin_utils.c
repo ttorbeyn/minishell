@@ -30,6 +30,8 @@ char	*get_env_content(char *name, t_list *env)
 	char	*content;
 
 	target = NULL;
+	if (!name)
+		return (NULL);
 	if (ft_strlen(name) == 1 && *name == '?')
 		target = ft_itoa(g_exit);
 	else

@@ -76,6 +76,34 @@ t_token	*make_av(t_token *token, t_cmd *cmd)
 	return (token);
 }
 
+t_token *delete_tok_null(t_data *data)
+{
+	t_token *head;
+	t_token *tmp;
+
+	head = data->token;
+	while (data->token && data->token->content == NULL)
+		head = data->token->next;
+	data->token = head;
+	tmp = data->token->next;
+	while (tmp)
+	{
+		if (tmp->content == NULL)
+		{
+			data->token->next = tmp->next;
+			free(tmp);
+		}
+		if (data->token->next)
+		{
+			data->token = data->token->next;
+			tmp = data->token->next;
+		}
+		else
+			break ;
+	}
+	return (head);
+}
+
 int	parser(t_data *data)
 {
 	t_token	*tmp;
@@ -83,7 +111,8 @@ int	parser(t_data *data)
 
 	i = 0;
 	data->token = clean_tok(data);
-	printf("coucou2\n");
+	data->token = delete_tok_null(data);
+	printf("coucouSTOP\n");
 	tmp = data->token;
 	data->cmds = malloc(sizeof(t_cmd) * data->nb_cmd);
 	while (i < data->nb_cmd)
@@ -91,8 +120,6 @@ int	parser(t_data *data)
 		tmp = make_av(tmp, &data->cmds[i]);
 		i++;
 	}
-	printf("coucou54\n");
-
-//	free(tmp);
+	free(tmp);
 	return (0);
 }
