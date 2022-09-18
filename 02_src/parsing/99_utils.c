@@ -14,10 +14,7 @@
 
 int	is_space(char c)
 {
-	char	*space;
-
-	space = ft_strdup(" \n\t\v\f\r");
-	if (ft_strchr(space, c))
+	if (ft_strchr(" \n\t\v\f\r", c))
 		return (1);
 	return (0);
 }
@@ -29,6 +26,14 @@ int	ft_error(char *errmsg, int errnum)
 	return (errnum);
 }
 
+void	ft_free_data(t_data *data)
+{
+//	print_tok(&data->token);
+	if (data->token)
+		ft_tokfree(&data->token);
+	ft_free_cmd(data);
+}
+
 void	ft_free_cmd(t_data *data)
 {
 	int i;
@@ -38,18 +43,14 @@ void	ft_free_cmd(t_data *data)
 	while (i < data->nb_cmd)
 	{
 		j = 0;
-		while (data->cmds[i].av[j++])
-			free(data->cmds[i].av[j]);
-		if (data->cmds[i].in.path)
-			free(data->cmds[i].in.path);
-		if (data->cmds[i].out.path)
-			free(data->cmds[i].out.path);
+		while (data->cmds[i].av[j])
+			free(data->cmds[i].av[j++]);
 		if (data->cmds[i].av)
 			free(data->cmds[i].av);
 		i++;
 	}
-	free(data->line);
-	free(data->cmds);
+	if (data->cmds)
+		free(data->cmds);
 }
 
 void	ft_free_env(t_data *data)
@@ -60,6 +61,8 @@ void	ft_free_env(t_data *data)
 	while (data->envp[i])
 		free(data->envp[i++]);
 	free(data->envp);
+	if (data->env)
+		ft_lstfree(&data->env);
 }
 
 void	print_tok(t_token **token)

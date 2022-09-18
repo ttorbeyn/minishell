@@ -67,10 +67,9 @@ t_token	*make_av(t_token *token, t_cmd *cmd);
 int		parser(t_data *data);
 
 //04_quotes
-int		remove_simple_quotes(t_token *token, int i);
+int		remove_quotes(t_token *token, int i, char quote, t_data *data);
 char	*replace_env(char *quote, t_data *data);
-int		remove_double_quotes(t_data *data, t_token *token, int i);
-t_token	*remove_quotes(t_data *data);
+t_token	*clean_tok(t_data *data);
 
 //04_quotes_utils
 char	*double_join(char*s1, char *s2);
@@ -86,10 +85,16 @@ t_token	*redirection(t_token *token, t_cmd *cmd);
 //99_utils
 int		is_space(char c);
 int		ft_error(char *errmsg, int errnum);
+void	ft_free_data(t_data *data);
 void	ft_free_cmd(t_data *data);
 void	ft_free_env(t_data *data);
 void	print_tok(t_token **token);
 int		print_cmd(t_data *data);
+
+//free
+void	ft_lstfree(t_list **lst);
+void	ft_tokfree(t_token **tok);
+void	ft_herefree(t_here **here);
 
 /// EXEC ///
 int		cmd_switch(t_data *data);

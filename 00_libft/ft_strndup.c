@@ -17,7 +17,7 @@ char	*ft_strndup(const char *s1, int len)
 	int		i;
 	char	*cpy;
 
-	if (len > (int)ft_strlen(s1))
+	if (len > (int)ft_strlen(s1) || len == 0)
 		return (NULL);
 	i = 0;
 	cpy = malloc(sizeof(const char) * (len + 1));

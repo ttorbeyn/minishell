@@ -12,10 +12,15 @@
 
 #include "../../01_include/minishell.h"
 
-char	*double_join(char*s1, char *s2)
+char	*double_join(char *s1, char *s2)
 {
+	char *new;
+
 	if (s1 && s2)
-		return (ft_strjoin(s1, s2));
+	{
+		new = ft_strjoin(s1, s2);
+		return (new);
+	}
 	if (!s1 && s2)
 		return (s2);
 	if (s1 && !s2)
@@ -26,12 +31,17 @@ char	*double_join(char*s1, char *s2)
 char	*triple_join(char *s1, char *s2, char *s3)
 {
 	char	*new;
+	char	*tmp;
 
+	printf("s1 : |%s|\n", s1);
+	printf("s2 : |%s|\n", s2);
+	printf("s3 : |%s|\n", s3);
 	new = NULL;
 	if (s1 && s2 && s3)
 	{
-		new = ft_strjoin(s1, s2);
-		new = ft_strjoin(new, s3);
+		tmp = ft_strjoin(s1, s2);
+		new = ft_strjoin(tmp, s3);
+		free(tmp);
 	}
 	if (!s1 && s2 && s3)
 		new = ft_strjoin(s2, s3);
@@ -39,11 +49,11 @@ char	*triple_join(char *s1, char *s2, char *s3)
 		new = ft_strjoin(s1, s3);
 	if (s1 && s2 && !s3)
 		new = ft_strjoin(s1, s2);
-	if (!s1 && !s2)
-		return (s3);
-	if (!s1 && !s3)
-		return (s2);
-	if (!s2 && !s3)
-		return (s1);
+	if (!s1 && !s2 && s3)
+		return (ft_strdup(s3));
+	if (!s1 && !s3 && s2)
+		return (ft_strdup(s2));
+	if (!s2 && !s3 && s1)
+		return (ft_strdup(s1));
 	return (new);
 }

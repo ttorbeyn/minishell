@@ -16,9 +16,9 @@ t_here	*ft_herenew(char *limit)
 {
 	t_here	*new;
 
-	new = malloc(sizeof(t_token));
+	new = malloc(sizeof(t_here));
 	if (new == NULL)
-		ft_panic("Error : malloc ft_toknew\n");
+		ft_panic("Error : malloc ft_herenew\n");
 	new->limit = limit;
 	new->next = NULL;
 	return (new);
@@ -40,6 +40,7 @@ void	ft_hereadd_back(t_here **token, t_here *new)
 		current->next = new;
 		new->next = 0;
 	}
+	return ;
 }
 
 t_token	*cmd_redirection(t_token *token, t_redir *redir, int chmod)
@@ -69,6 +70,7 @@ t_token	*redirection(t_token *token, t_cmd *cmd)
 	{
 		token = token->next;
 		ft_hereadd_back(&cmd->in.doc, ft_herenew(token->content));
+		token = token->next;
 	}
 	return (token);
 }
