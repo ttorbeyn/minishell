@@ -26,7 +26,6 @@ int	check_separator(t_token **token)
 			return (1);
 		tmp = tmp->next;
 	}
-	free(tmp);
 	return (0);
 }
 
@@ -43,7 +42,6 @@ int	count_cmd(t_token **token)
 			count++;
 		tmp = tmp->next;
 	}
-	free(tmp);
 	return (count);
 }
 
