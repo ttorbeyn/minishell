@@ -30,6 +30,7 @@ int	main(int ac, char **av, char **env)
 		printf("coucou\n");
 		if (parser(&data))
 			continue ;
+		printf("coucou34\n");
 //		print_cmd(&data);
 		cmd_switch(&data);
 //		printf("%d\n", g_exit);

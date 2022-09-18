@@ -58,24 +58,28 @@ int	change_env_tok(t_data *data, t_token *token, int i)
 {
 	int		start;
 	char	*begin;
-	char	*quoted;
+	char	*var;
 	char 	*end;
 	char	*env;
 
 	end = NULL;
 	begin = ft_strndup(token->content, i);
 	i++;
+	printf("begin : %s\n", begin);
 	start = i;
 	while (token->content[i] && token->content[i] != ' ' && token->content[i] != '$' && token->content[i] != '\'' && token->content[i] != '\"')
 		i++;
-	quoted = ft_strndup(&token->content[start], i - start);
-	env = get_env_content(quoted, data->env);
-	free(quoted);
+	var = ft_strndup(&token->content[start], i - start);
+	printf("var : %s\n", var);
+	env = get_env_content(var, data->env);
+	printf("env : %s\n", env);
+	free(var);
 	if (token->content[i])
 		end = ft_strdup(&token->content[i]);
-	if (env)
-		free(token->content);
+	printf("end : %s\n", end);
+	free(token->content);
 	token->content = triple_join(begin, env, end);
+	printf("content : %s\n", token->content);
 	i = start + ft_strlen(env) - 2;
 	printf("tok : %s\n", token->content);
 	printf("i : %d\n", i);
@@ -147,8 +151,8 @@ t_token	*clean_tok(t_data *data)
 					i = remove_quotes(data->token, i, '\"', data);
 //					i = change_env_tok(data, data->token, i);
 				}
-//				if (data->token->content[i] == '$')
-//					i = change_env_tok(data, data->token, i);
+				if (data->token->content[i] == '$')
+					i = change_env_tok(data, data->token, i);
 				i++;
 			}
 		}
