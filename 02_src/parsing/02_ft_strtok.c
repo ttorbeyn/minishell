@@ -70,7 +70,7 @@ int	tok_sep(t_token **token, char **tmp, char *line, int i)
 
 int	init_token(char **line, char **tmp, t_token **token)
 {
-	char *line_tmp;
+	char	*line_tmp;
 
 	line_tmp = *line;
 	*token = NULL;

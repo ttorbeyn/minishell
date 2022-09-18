@@ -17,7 +17,7 @@ int	search_limit(char *input, char *limit)
 	int		len;
 
 	len = ft_strlen(input);
-	if (!ft_strncmp(input, limit, len) && !input[len] && !limit[len]) //MIGHT BE LEN+1
+	if (!ft_strncmp(input, limit, len) && !input[len] && !limit[len])
 		return (1);
 	return (0);
 }
@@ -51,6 +51,7 @@ int	open_heredoc(t_here *doc)
 {
 	int		fd;
 	char	*input;
+
 	fd = open("heredoc", O_CREAT | O_WRONLY, 0666);
 	signal(SIGINT, SIG_DFL);
 	while (21)

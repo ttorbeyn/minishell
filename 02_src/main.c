@@ -15,11 +15,10 @@
 int	main(int ac, char **av, char **env)
 {
 	t_data	data;
-	
+
 	(void)ac;
 	(void)av;
 	data_set(&data, &data.env, env);
-//	data.line = "rien";
 	while (1)
 	{
 		signal(SIGQUIT, SIG_IGN);

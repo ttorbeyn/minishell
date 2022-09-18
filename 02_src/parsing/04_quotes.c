@@ -12,19 +12,31 @@
 
 #include "../../01_include/minishell.h"
 
+void	ft_free_str(char **begin, char **middle, char **end)
+{
+	if (*begin && *begin[0] != '\0')
+		free(*begin);
+	if (*middle && *middle[0] != '\0')
+		free(*middle);
+	if (*end && *end[0] != '\0')
+		free(*end);
+}
+
 int	change_env_tok(t_data *data, t_token *token, int i)
 {
 	int		start;
 	char	*begin;
 	char	*var;
-	char 	*end;
+	char	*end;
 	char	*env;
 
 	end = NULL;
 	begin = ft_strndup(token->content, i);
 	i++;
 	start = i;
-	while (token->content[i] && token->content[i] != ' ' && token->content[i] != '$' && token->content[i] != '\'' && token->content[i] != '\"')
+	while (token->content[i] && token->content[i] != ' '
+		&& token->content[i] != '$' && token->content[i] != '\''
+		&& token->content[i] != '\"')
 		i++;
 	var = ft_strndup(&token->content[start], i - start);
 	env = get_env_content(var, data->env);
@@ -34,19 +46,14 @@ int	change_env_tok(t_data *data, t_token *token, int i)
 	free(token->content);
 	token->content = triple_join(begin, env, end);
 	i = start + ft_strlen(env) - 2;
-	if (begin)
-		free(begin);
-	if (env)
-		free(env);
-	if (end)
-		free(end);
+	ft_free_str(&begin, &env, &end);
 	return (i);
 }
 
-char *change_env_str(char *quoted, t_data *data)
+char	*change_env_str(char *quoted, t_data *data)
 {
-	int	i;
-	t_token *tmp;
+	int		i;
+	t_token	*tmp;
 
 	i = 0;
 	tmp = ft_toknew(quoted, WORD);
@@ -68,12 +75,11 @@ int	remove_quotes(t_token *token, int i, char quote, t_data *data)
 	char	*begin;
 	char	*quoted;
 	char	*tmp;
-	char 	*end;
+	char	*end;
 
 	end = NULL;
 	begin = ft_strndup(token->content, i);
-	i++;
-	start = i;
+	start = ++i;
 	while (token->content[i] != quote)
 		i++;
 	quoted = ft_strndup(&token->content[start], i - start);
@@ -83,18 +89,12 @@ int	remove_quotes(t_token *token, int i, char quote, t_data *data)
 		free(quoted);
 		quoted = change_env_str(tmp, data);
 	}
-	i++;
-	if (token->content[i])
+	if (token->content[++i])
 		end = ft_strdup(&token->content[i]);
 	free(token->content);
 	token->content = triple_join(begin, quoted, end);
 	i = start + ft_strlen(quoted) - 2;
-	if (begin && begin[0] != '\0')
-		free(begin);
-	if (quoted && quoted[0] != '\0')
-		free(quoted);
-	if (end && end[0] != '\0')
-		free(end);
+	ft_free_str(&begin, &quoted, &end);
 	return (i);
 }
 

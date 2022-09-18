@@ -70,10 +70,10 @@ t_token	*make_av(t_token *token, t_cmd *cmd)
 	return (token);
 }
 
-t_token *delete_tok_null(t_data *data)
+t_token	*delete_tok_null(t_data *data)
 {
-	t_token *head;
-	t_token *tmp;
+	t_token	*head;
+	t_token	*tmp;
 
 	head = data->token;
 	while (data->token && data->token->content == NULL)
