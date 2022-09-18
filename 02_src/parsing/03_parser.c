@@ -79,7 +79,7 @@ int	parser(t_data *data)
 	int		i;
 
 	i = 0;
-	data->token = remove_quotes(data);
+	data->token = clean_tok(data);
 	tmp = data->token;
 	data->cmds = malloc(sizeof(t_cmd) * data->nb_cmd);
 	while (i < data->nb_cmd)

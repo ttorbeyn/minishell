@@ -12,10 +12,15 @@
 
 #include "../../01_include/minishell.h"
 
-char	*double_join(char*s1, char *s2)
+char	*double_join(char *s1, char *s2)
 {
+	char *new;
+
 	if (s1 && s2)
-		return (ft_strjoin(s1, s2));
+	{
+		new = ft_strjoin(s1, s2);
+		return (new);
+	}
 	if (!s1 && s2)
 		return (s2);
 	if (s1 && !s2)
@@ -26,12 +31,14 @@ char	*double_join(char*s1, char *s2)
 char	*triple_join(char *s1, char *s2, char *s3)
 {
 	char	*new;
+	char	*tmp;
 
 	new = NULL;
 	if (s1 && s2 && s3)
 	{
-		new = ft_strjoin(s1, s2);
-		new = ft_strjoin(new, s3);
+		tmp = ft_strjoin(s1, s2);
+		new = ft_strjoin(tmp, s3);
+		free(tmp);
 	}
 	if (!s1 && s2 && s3)
 		new = ft_strjoin(s2, s3);

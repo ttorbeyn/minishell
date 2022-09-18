@@ -67,10 +67,9 @@ t_token	*make_av(t_token *token, t_cmd *cmd);
 int		parser(t_data *data);
 
 //04_quotes
-int		remove_simple_quotes(t_token *token, int i);
+int		remove_quotes(t_token *token, int i, char quote, t_data *data);
 char	*replace_env(char *quote, t_data *data);
-int		remove_double_quotes(t_data *data, t_token *token, int i);
-t_token	*remove_quotes(t_data *data);
+t_token	*clean_tok(t_data *data);
 
 //04_quotes_utils
 char	*double_join(char*s1, char *s2);
