@@ -29,7 +29,6 @@ int	ft_error(char *errmsg, int errnum)
 
 void	ft_free_data(t_data *data)
 {
-	printf("data token : %p\n", data->token);
 	if (data->token)
 		ft_tokfree(&data->token);
 	ft_free_cmd(data);

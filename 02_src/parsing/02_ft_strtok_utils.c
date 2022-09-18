@@ -70,14 +70,11 @@ int	check_quotes(int i, char *line)
 	char	quote_type;
 
 	quote_type = line[i];
-	printf("line : %s\n", line);
-	printf("i : %d\n",i);
-	printf("type : %c\n", quote_type);
 	while (line[i])
 	{
 		i++;
 		if (line[i] == quote_type)
-			return (i);
+			return (++i);
 	}
 	ft_error("quote not closed\n", 19);
 	return (-1);

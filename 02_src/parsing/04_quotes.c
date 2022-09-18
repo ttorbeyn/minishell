@@ -45,8 +45,9 @@ int	change_env_tok(t_data *data, t_token *token, int i)
 		end = ft_strdup(&token->content[i]);
 	free(token->content);
 	token->content = triple_join(begin, env, end);
-	i = start + ft_strlen(env) - 2;
+	i = start + ft_strlen(env) - 1;
 	ft_free_str(&begin, &env, &end);
+//		printf("i : %d\n", i);
 	return (i);
 }
 
@@ -58,10 +59,10 @@ char	*change_env_str(char *quoted, t_data *data)
 	i = 0;
 	tmp = ft_toknew(quoted, WORD);
 	free(quoted);
-	while (tmp->content[i])
+	while (tmp->content && tmp->content[i])
 	{
 		if (tmp->content[i] == '$')
-			i = change_env_tok(data, tmp, 0);
+			i = change_env_tok(data, tmp, i);
 		i++;
 	}
 	quoted = ft_strdup(tmp->content);
@@ -78,6 +79,7 @@ int	remove_quotes(t_token *token, int i, char quote, t_data *data)
 	char	*end;
 
 	end = NULL;
+//	printf("content : %s\n", token->content);
 	begin = ft_strndup(token->content, i);
 	start = ++i;
 	while (token->content[i] != quote)
@@ -92,9 +94,16 @@ int	remove_quotes(t_token *token, int i, char quote, t_data *data)
 	if (token->content[++i])
 		end = ft_strdup(&token->content[i]);
 	free(token->content);
+//	printf("coucou\n");
+//	printf("begin : %s\n", begin);
+//	printf("quoted : %s\n", quoted);
+//	printf("end : %s\n", end);
 	token->content = triple_join(begin, quoted, end);
-	i = start + ft_strlen(quoted) - 2;
+//	printf("coucou2\n");
+	i = start + ft_strlen(quoted) - 1;
 	ft_free_str(&begin, &quoted, &end);
+//	printf("i : %d\n", i);
+//	printf("i : %d\n", i);
 	return (i);
 }
 
@@ -111,13 +120,15 @@ t_token	*clean_tok(t_data *data)
 			i = 0;
 			while (data->token->content && data->token->content[i])
 			{
+//				printf("data : %s\n", data->token->content);
 				if (data->token->content[i] == '\'')
 					i = remove_quotes(data->token, i, '\'', data);
-				if (data->token->content[i] == '\"')
+				else if (data->token->content[i] == '\"')
 					i = remove_quotes(data->token, i, '\"', data);
-				if (data->token->content[i] == '$')
+				else if (data->token->content[i] == '$')
 					i = change_env_tok(data, data->token, i);
-				i++;
+				else
+					i++;
 			}
 		}
 		data->token = data->token->next;

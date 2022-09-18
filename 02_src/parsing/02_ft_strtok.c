@@ -95,7 +95,7 @@ t_token	*ft_strtok(char *line)
 	while (line[i])
 	{
 		if (line[i] == '\"' || line[i] == '\'')
-			i = check_quotes(i, line) + 1;
+			i = check_quotes(i, line);
 		else if (is_separator(&line[i]) && line[i])
 			i = tok_sep(&token, &tmp, line, i);
 		else if (is_space(line[i]))
