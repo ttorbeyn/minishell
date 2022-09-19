@@ -32,11 +32,11 @@ void	envp_init(t_data *data, char **env)
 	return ;
 }
 
-char	*get_line(void)
+char	*get_line(char *str)
 {
 	char	*line;
 
-	line = readline("Éshell : ");
+	line = readline(str);
 	if (ft_strlen(line) && !ft_is_only_space_str(line))
 		add_history(line);
 	return (line);

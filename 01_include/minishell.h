@@ -41,7 +41,7 @@ int		g_exit;
 
 //00_init
 void	envp_init(t_data *data, char **env);
-char	*get_line(void);
+char	*get_line(char *str);
 void	data_set(t_data *data, t_list **envp, char **env);
 
 //01_lexer
