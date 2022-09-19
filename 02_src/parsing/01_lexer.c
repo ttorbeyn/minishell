@@ -51,7 +51,10 @@ int	lex(t_data *data)
 	if (!data->token)
 		return (1);
 	if (check_separator(&data->token))
-		return (ft_error("Separator error\n", 1));
+	{
+		ft_tokfree(&data->token);
+		return (ft_error("separator error\n", 42));
+	}
 	data->nb_cmd = count_cmd(&data->token);
 	return (0);
 }
