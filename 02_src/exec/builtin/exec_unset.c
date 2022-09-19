@@ -56,14 +56,12 @@ int	exec_unset(t_cmd command, t_data *data)
 			unset_from_env(&data->env, i);
 			update_envp(data);
 			free(tmp);
-			free(name);
 			return (0);
 		}
 		i++;
 		tmp = tmp->next;
 	}
 	free(tmp);
-	free(name);
 	update_envp(data);
 	return (return_error("unset: Invalid parameter name", NULL, 1));
 }
