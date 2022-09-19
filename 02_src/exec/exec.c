@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/09/18 16:00:41 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 13:35:01 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	cmd_switch(t_data *data)
 		r = exec_builtin(data, 0, &p);
 		if (r == 42)
 			return_error(data->cmds[0].av[0], ": Command not found", 127);
-		if (r != 0)
-			g_exit = r;
+		g_exit = r;
 	}
 	else
 		lauching_process(data, &p);
@@ -62,10 +61,13 @@ void	executer(t_cmd cmd, t_data *data)
 {
 	char	*path;
 	int		ret;
+	// printf("ALOOOOOOOEXEC\n");
 
 	ret = execve(cmd.av[0], cmd.av, data->envp);
+
 	if (ret == -1)
 	{
+		// printf("ALOOOOOOOEXEC2\n");
 		path = check_path(data->envp, cmd.av[0]);
 		ret = execve(path, cmd.av, data->envp);
 		if (!path)
