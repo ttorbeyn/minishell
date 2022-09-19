@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/19 11:11:58 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:50:16 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,9 @@ int	exec_unset(t_cmd command, t_data *data)
 	if (!command.av[1])
 		return (return_error("unset: not enough arguments", NULL, 2));
 	tmp = data->env;
-	name = get_env_name(command.av[1]);
+	name = get_env_name(ft_strdup(command.av[1]));
 	while (tmp)
 	{
-		// printf("CONTENT:	%s\nNAME:	%s\n", tmp->content, name);
-		// if (ft_strlen(tmp->content) > ft_strlen(name))
-		// 	return (return_error("unset: ", "not a valid identifier", 1));
 		if (!ft_strncmp(tmp->content, name, ft_strlen(name)))
 		{
 			unset_from_env(&data->env, i);

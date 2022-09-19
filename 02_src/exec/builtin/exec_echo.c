@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:59:37 by vic               #+#    #+#             */
-/*   Updated: 2022/09/19 13:53:07 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 19:18:08 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	norm_bs2(t_cmd command, int i, int *flag)
 	return (i);
 }
 
-int	exec_echo(t_cmd command, t_pipes *p)
+int	exec_echo(t_cmd command)
 {
 	int	i;
 	int	flag;
@@ -47,18 +47,18 @@ int	exec_echo(t_cmd command, t_pipes *p)
 	flag = 0;
 	if (!command.av[1])
 	{
-		write(p->f_out, "\n", 1);
+		printf("\n");
 		return (0);
 	}
 	i = norm_bs2(command, i, &flag);
 	while (i < command.ac)
 	{
 		if (i != command.ac && i != flag + 1)
-			write(1, " ", 1);
-		ft_putstr_fd(command.av[i], p->f_out);
+			printf(" ");
+		printf("%s", command.av[i]);
 		i++;
 	}
 	if (flag == 0)
-		write(p->f_out, "\n", 1);
+		printf("\n");
 	return (0);
 }

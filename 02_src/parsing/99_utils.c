@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:18:37 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/19 12:56:29 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 18:09:04 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,4 @@ void	ft_free_env(t_data *data)
 	while (data->envp[i])
 		free(data->envp[i++]);
 	free(data->envp);
-	if (data->env)
-		ft_lstfree(&data->env);
 }
