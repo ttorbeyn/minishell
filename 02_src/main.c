@@ -27,11 +27,11 @@ int	main(int ac, char **av, char **env)
 		if (lex(&data) || parser(&data))
 			continue ;
 		print_cmd(&data);
-		cmd_switch(&data);
+//		cmd_switch(&data);
 		ft_free_data(&data);
-		printf("___________________________________________________________\n\n");
-		system("leaks minishell");
-		printf("___________________________________________________________\n");
+//		printf("___________________________________________________________\n\n");
+//		system("leaks minishell");
+//		printf("___________________________________________________________\n");
 	}
 	ft_free_env(&data);
 	return (0);

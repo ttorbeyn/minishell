@@ -12,13 +12,11 @@
 
 #include "../../01_include/minishell.h"
 
-
-
 int	check_separator(t_token **token)
 {
 	t_token	*tmp;
-	char *line;
-	t_token *new;
+	t_token	*new;
+	char	*line;
 
 	tmp = *token;
 	if (tmp && tmp->type == PIPE)
