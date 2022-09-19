@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/19 16:19:06 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:31:28 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	child_process(t_data *data, t_pipes *pipe, int i)
 		short_dup(pipe->f_in, 0);
 	if (pipe->f_out != 1)
 		short_dup(pipe->f_out, 1);
-	printf("I:	%d\n", i);
 	if (i > 0)
 		dup_close_pipe(pipe->old_end[0], pipe->f_in, pipe->old_end);
 	if (i + 1 < data->nb_cmd)
@@ -48,11 +47,11 @@ void	parent_process(t_data *data, t_pipes *pipe, pid_t pid, int i)
 		pipe->old_end[0] = pipe->new_end[0];
 		pipe->old_end[1] = pipe->new_end[1];
 	}
+	waitpid(pid, &g_exit, 0);
 	if (WIFEXITED(g_exit))
 		g_exit = WEXITSTATUS(g_exit);
 	if (g_exit == 512)
 		g_exit = 127;
-	waitpid(pid, NULL, 0);
 }
 
 void	ft_fork(t_data *data, t_pipes *pipe, int i)
