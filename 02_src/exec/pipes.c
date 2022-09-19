@@ -47,7 +47,8 @@ void	parent_process(t_data *data, t_pipes *pipe, pid_t pid, int i)
 		pipe->old_end[0] = pipe->new_end[0];
 		pipe->old_end[1] = pipe->new_end[1];
 	}
-	waitpid(pid, &g_exit, 0);
+	if (waitpid(pid, &g_exit, 0) == -1)
+		exit(EXIT_FAILURE);
 	if (WIFEXITED(g_exit))
 		g_exit = WEXITSTATUS(g_exit);
 	if (g_exit == 512)

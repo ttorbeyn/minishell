@@ -17,6 +17,8 @@ int	cmd_switch(t_data *data)
 	t_pipes	p;
 	int		r;
 
+	p.f_in = 0;
+	p.f_out = 1;
 	if (data->nb_cmd == 1 && check_builtin(data->cmds[0].av[0])
 		&& !data->cmds[0].in.doc && !data->cmds[0].in.path
 		&& !data->cmds[0].out.path)
