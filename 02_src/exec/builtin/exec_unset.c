@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/18 16:33:58 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:11:58 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ int	exec_unset(t_cmd command, t_data *data)
 	name = get_env_name(command.av[1]);
 	while (tmp)
 	{
-		if (ft_strlen(tmp->content) > ft_strlen(name))
-			return (return_error("unset: ", "not a valid identifier", 1));
+		// printf("CONTENT:	%s\nNAME:	%s\n", tmp->content, name);
+		// if (ft_strlen(tmp->content) > ft_strlen(name))
+		// 	return (return_error("unset: ", "not a valid identifier", 1));
 		if (!ft_strncmp(tmp->content, name, ft_strlen(name)))
 		{
 			unset_from_env(&data->env, i);
@@ -63,5 +64,5 @@ int	exec_unset(t_cmd command, t_data *data)
 		tmp = tmp->next;
 	}
 	update_envp(data);
-	return (return_error("Error: Invalid parameter name", NULL, 0));
+	return (return_error("unset: Invalid parameter name", NULL, 1));
 }

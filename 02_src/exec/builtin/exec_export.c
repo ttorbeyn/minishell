@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/18 16:24:01 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:12:36 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	exec_export(t_cmd command, t_data *data)
 	}
 	ft_lstadd_back(&data->env, ft_lstnew(command.av[1]));
 	update_envp(data);
-	free(name);
-	free(tmp);
+	// free(name);
+	// free(tmp);
 	return (0);
 }
