@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/09/17 16:29:41 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:23:23 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	update_envp(t_data *data)
 		data->envp[i] = ft_strdup(tmp->content);
 		tmp = tmp->next;
 	}
-	print_envp(data->envp);
 }
 
 int	exec_env(t_cmd command, t_data *data, t_pipes *p)
@@ -56,7 +55,7 @@ int	exec_env(t_cmd command, t_data *data, t_pipes *p)
 	tmp = data->env;
 	if (command.ac > 1)
 	{
-		return_error("env: No arguments allowed", NULL, 0);
+		return_error("env: No arguments allowed", NULL, 1);
 		return (1);
 	}
 	if (!tmp)

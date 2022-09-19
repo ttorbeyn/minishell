@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:42:17 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/18 18:58:20 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:36:30 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	open_heredoc(t_here *doc)
 {
 	int		fd;
 	char	*input;
-
 	fd = open("heredoc", O_CREAT | O_WRONLY, 0666);
 	signal(SIGINT, SIG_DFL);
 	while (21)

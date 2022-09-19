@@ -6,20 +6,34 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:59:37 by vic               #+#    #+#             */
-/*   Updated: 2022/09/17 17:28:48 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:11:20 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../01_include/minishell.h"
 
-int	norm_bs(t_cmd command, t_pipes *p, int i, int flag)
+int	norm_bs2(t_cmd command, int i, int *flag)
 {
-	while (i < command.ac)
+	int	x;
+
+	while (command.av[i])
 	{
-		if (i != command.ac && i != flag + 1)
-			write(1, " ", 1);
-		ft_putstr_fd(command.av[i], p->f_out);
-		i++;
+		if (!ft_strncmp(command.av[i], "-n", 2))
+		{
+			x = 1;
+			(*flag)++;
+			while (command.av[i][x] && !ft_strncmp(&command.av[i][x], "n", 1))
+				x++;
+			if (command.av[i][x] && ft_strncmp(&command.av[i][x], "n", 1))
+			{
+				(*flag) = 0;
+				break ;
+			}
+			else
+				i++;
+		}
+		else
+			break ;
 	}
 	return (i);
 }
@@ -32,20 +46,18 @@ int	exec_echo(t_cmd command, t_pipes *p)
 	i = 1;
 	flag = 0;
 	if (!command.av[1])
-		return (write(p->f_out, "\n", 1));
-	if (!ft_strncmp(command.av[i], "-n", 2))
 	{
-		if (ft_strlen(command.av[i]) > 2)
-			return (return_error(command.av[i], ": unsupported flag", 2));
-		flag++;
-		i++;
-		while (!ft_strncmp(command.av[i], "-n", 2) && command.av[i])
-		{
-			i++;
-			flag++;
-		}
+		write(p->f_out, "\n", 1);
+		return (0);
 	}
-	i = norm_bs(command, p, i, flag);
+	i = norm_bs2(command, i, &flag);
+	while (i < command.ac)
+	{
+		if (i != command.ac && i != flag + 1)
+			write(1, " ", 1);
+		ft_putstr_fd(command.av[i], p->f_out);
+		i++;
+	}
 	if (flag == 0)
 		write(p->f_out, "\n", 1);
 	return (0);

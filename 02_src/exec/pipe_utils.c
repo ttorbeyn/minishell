@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmusunga <vmusunga@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 16:29:45 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/03 23:55:18 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:07:46 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	short_dup(int x, int y)
 	ret = dup2(x, y);
 	if (ret == -1)
 	{
-		return_error("Error: dup failed", NULL, 2);
+		return_error("Error: dup failed", NULL, 1);
 		exit(1);
 	}
 }
@@ -31,13 +31,13 @@ void	close_pipe(int *end)
 	r = close(end[0]);
 	if (r == -1)
 	{
-		return_error("Error: pipe failed", NULL, 2);
+		return_error("Error: pipe failed", NULL, 1);
 		exit(1);
 	}
 	r = close(end[1]);
 	if (r == -1)
 	{
-		return_error("Error: pipe failed", NULL, 2);
+		return_error("Error: pipe failed", NULL, 1);
 		exit(1);
 	}
 }
