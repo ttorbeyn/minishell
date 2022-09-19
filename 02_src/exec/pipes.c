@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/18 15:22:57 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:37:37 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 void	child_process(t_data *data, t_pipes *pipe, int i)
 {
-	redirections(data, pipe, i);
+	int x;
+
+	x = redirections(data, pipe, i);
+	if (x)
+		return ;
 	if (pipe->f_in != 0)
 		short_dup(pipe->f_in, 0);
 	if (pipe->f_out != 1)

@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:06:03 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/19 11:17:19 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:22:24 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,13 @@ t_token	*clean_tok(t_data *data)
 					i = remove_quotes(data->token, i, '\'', data);
 				else if (data->token->content[i] == '\"')
 					i = remove_quotes(data->token, i, '\"', data);
+<<<<<<< HEAD
+					}
+				if (data->token->content[i] == '$')
+					{
+=======
 				else if (data->token->content[i] == '$')
+>>>>>>> 75f17817c7a0521f1777043d7b434f24924c1d65
 					i = change_env_tok(data, data->token, i);
 				else
 					i++;

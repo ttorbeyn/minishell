@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:07:39 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/18 20:08:14 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:36:51 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	signal_handler2(int signum)
 	}
 }
 
-void	redirections(t_data *data, t_pipes *pipe, int i)
+int	redirections(t_data *data, t_pipes *pipe, int i)
 {
 	char	*in;
 	char	*out;
@@ -50,13 +50,13 @@ void	redirections(t_data *data, t_pipes *pipe, int i)
 	{
 		pipe->f_in = open(in, data->cmds[i].in.chmod);
 		if (pipe->f_in < 0)
-			return_error(in, ": No such file or directory", 1);
+			return (return_error(in, ": No such file or directory", 1));
 	}
 	if (out)
 	{
 		pipe->f_out = open(out, data->cmds[i].out.chmod);
 		if (pipe->f_out < 0)
-			return_error(out, ": No such file or directory", 1);
+			return (return_error(out, ": No such file or directory", 1));
 	}
-	return ;
+	return (0);
 }

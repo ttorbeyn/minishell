@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:32:20 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/18 15:23:58 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:37:01 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	short_dup(int x, int y);
 void	close_pipe(int *end);
 void	dup_close_pipe(int end, int fd, int *ends);
 	//REDIR
-void	redirections(t_data *data, t_pipes *pipe, int i);
+int		redirections(t_data *data, t_pipes *pipe, int i);
 int		open_heredoc(t_here *doc);
 void	rl_replace_line(const char *text, int clear_undo);
 void	signal_handler(int signum);
