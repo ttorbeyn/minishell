@@ -67,6 +67,10 @@ t_token	*count_arg(t_token *token, t_cmd *cmd);
 t_token	*make_av(t_token *token, t_cmd *cmd);
 int		parser(t_data *data);
 
+//03_parser_utils
+t_token	*delete_tok_null_begin(t_token *token);
+t_token	*delete_tok_null(t_data *data);
+
 //04_quotes
 int		remove_quotes(t_token *token, int i, char quote, t_data *data);
 char	*replace_env(char *quote, t_data *data);
