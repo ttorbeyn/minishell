@@ -17,7 +17,7 @@ int	exec_exit(t_cmd cmd)
 	if (cmd.av[1])
 	{
 		if (!isdigit_check(cmd.av[1]))
-			return_error(cmd.av[1], ": numeric argument required", 1);
+			return(return_error_exit(cmd.av[1], ": numeric argument required", 255));
 		return (exit(ft_atoi(cmd.av[1])), 1);
 	}
 	write(1, "exit\n", 5);
