@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/19 13:40:27 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 16:19:06 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ void	child_process(t_data *data, t_pipes *pipe, int i)
 		short_dup(pipe->f_in, 0);
 	if (pipe->f_out != 1)
 		short_dup(pipe->f_out, 1);
+	printf("I:	%d\n", i);
 	if (i > 0)
 		dup_close_pipe(pipe->old_end[0], pipe->f_in, pipe->old_end);
 	if (i + 1 < data->nb_cmd)
 		dup_close_pipe(pipe->new_end[1], pipe->f_out, pipe->new_end);
 	if (check_builtin(data->cmds[i].av[0]))
 	{
-		if (exec_builtin(data, 0, pipe) == 42)
+		if (exec_builtin(data, i, pipe) == 42)
 			return_error_exit(data->cmds[0].av[0], ": Command not found", 127);
 		exit(0);
 	}
@@ -47,12 +48,11 @@ void	parent_process(t_data *data, t_pipes *pipe, pid_t pid, int i)
 		pipe->old_end[0] = pipe->new_end[0];
 		pipe->old_end[1] = pipe->new_end[1];
 	}
-	if (waitpid(pid, &g_exit, 0) == -1)
-		exit(EXIT_FAILURE);
 	if (WIFEXITED(g_exit))
 		g_exit = WEXITSTATUS(g_exit);
 	if (g_exit == 512)
 		g_exit = 127;
+	waitpid(pid, NULL, 0);
 }
 
 void	ft_fork(t_data *data, t_pipes *pipe, int i)
@@ -62,7 +62,7 @@ void	ft_fork(t_data *data, t_pipes *pipe, int i)
 	pid = fork();
 	if (pid == -1)
 		return_error("Error : fork error", NULL, 2);
-	if (pid == 0)
+	else if (pid == 0)
 	{
 		if (!data->cmds[i].in.doc)
 			signal(SIGQUIT, SIG_DFL);
@@ -91,9 +91,8 @@ void	lauching_process(t_data *data, t_pipes *p)
 		}
 		if (data->cmds[i].in.doc)
 			signal(SIGQUIT, SIG_DFL);
-		signal(SIGINT, signal_handler);
+		signal(SIGINT, signal_handler2);
 		ft_fork(data, p, i);
-		
 		i++;
 	}
 	return ;
