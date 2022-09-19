@@ -31,7 +31,6 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		cmd_switch(&data);
 		ft_free_data(&data);
-		system("leaks minishell");
 	}
 	ft_free_env(&data);
 	return (0);
