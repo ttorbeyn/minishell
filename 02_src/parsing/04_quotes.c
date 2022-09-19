@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:06:03 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/19 11:17:19 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:22:24 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ t_token	*clean_tok(t_data *data)
 					}
 				if (data->token->content[i] == '$')
 					{
-					printf("coucou\n");
 					i = change_env_tok(data, data->token, i);
 					}
 				i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04_quotes_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:28:21 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/05 18:28:22 by ttorbeyn         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:22:38 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ char	*triple_join(char *s1, char *s2, char *s3)
 	char	*new;
 	char	*tmp;
 
-	printf("s1 : |%s|\n", s1);
-	printf("s2 : |%s|\n", s2);
-	printf("s3 : |%s|\n", s3);
 	new = NULL;
 	if (s1 && s2 && s3)
 	{

@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:05:57 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/19 11:16:41 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:19:37 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int	parser(t_data *data)
 	i = 0;
 	data->token = clean_tok(data);
 	data->token = delete_tok_null(data);
-	printf("coucouSTOP\n");
 	tmp = data->token;
 	data->cmds = malloc(sizeof(t_cmd) * data->nb_cmd);
 	while (i < data->nb_cmd)

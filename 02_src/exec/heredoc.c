@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:42:17 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/18 18:36:30 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:38:36 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	open_heredoc(t_here *doc)
 	signal(SIGINT, SIG_DFL);
 	while (21)
 	{
-		input = readline(">");
+		input = readline("> ");
 		if (!input)
 		{
 			if (unlink("heredoc"))
