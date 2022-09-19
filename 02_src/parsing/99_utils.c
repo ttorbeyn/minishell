@@ -36,8 +36,8 @@ void	ft_free_data(t_data *data)
 
 void	ft_free_cmd(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < data->nb_cmd)

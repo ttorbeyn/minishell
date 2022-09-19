@@ -47,7 +47,6 @@ int	change_env_tok(t_data *data, t_token *token, int i)
 	token->content = triple_join(begin, env, end);
 	i = start + ft_strlen(env) - 1;
 	ft_free_str(&begin, &env, &end);
-//		printf("i : %d\n", i);
 	return (i);
 }
 
@@ -79,7 +78,6 @@ int	remove_quotes(t_token *token, int i, char quote, t_data *data)
 	char	*end;
 
 	end = NULL;
-//	printf("content : %s\n", token->content);
 	begin = ft_strndup(token->content, i);
 	start = ++i;
 	while (token->content[i] != quote)
@@ -94,16 +92,9 @@ int	remove_quotes(t_token *token, int i, char quote, t_data *data)
 	if (token->content[++i])
 		end = ft_strdup(&token->content[i]);
 	free(token->content);
-//	printf("coucou\n");
-//	printf("begin : %s\n", begin);
-//	printf("quoted : %s\n", quoted);
-//	printf("end : %s\n", end);
 	token->content = triple_join(begin, quoted, end);
-//	printf("coucou2\n");
 	i = start + ft_strlen(quoted) - 1;
 	ft_free_str(&begin, &quoted, &end);
-//	printf("i : %d\n", i);
-//	printf("i : %d\n", i);
 	return (i);
 }
 
@@ -120,18 +111,11 @@ t_token	*clean_tok(t_data *data)
 			i = 0;
 			while (data->token->content && data->token->content[i])
 			{
-//				printf("data : %s\n", data->token->content);
 				if (data->token->content[i] == '\'')
 					i = remove_quotes(data->token, i, '\'', data);
 				else if (data->token->content[i] == '\"')
 					i = remove_quotes(data->token, i, '\"', data);
-<<<<<<< HEAD
-					}
-				if (data->token->content[i] == '$')
-					{
-=======
 				else if (data->token->content[i] == '$')
->>>>>>> 75f17817c7a0521f1777043d7b434f24924c1d65
 					i = change_env_tok(data, data->token, i);
 				else
 					i++;

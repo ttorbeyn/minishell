@@ -15,7 +15,7 @@
 int	main(int ac, char **av, char **env)
 {
 	t_data	data;
-	
+
 	(void)ac;
 	(void)av;
 	data_set(&data, &data.env, env);
