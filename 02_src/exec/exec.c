@@ -63,13 +63,10 @@ void	executer(t_cmd cmd, t_data *data)
 {
 	char	*path;
 	int		ret;
-	// printf("ALOOOOOOOEXEC\n");
 
 	ret = execve(cmd.av[0], cmd.av, data->envp);
-
 	if (ret == -1)
 	{
-		// printf("ALOOOOOOOEXEC2\n");
 		path = check_path(data->envp, cmd.av[0]);
 		ret = execve(path, cmd.av, data->envp);
 		if (!path)

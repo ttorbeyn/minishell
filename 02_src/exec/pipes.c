@@ -14,7 +14,7 @@
 
 void	child_process(t_data *data, t_pipes *pipe, int i)
 {
-	int x;
+	int	x;
 
 	x = redirections(data, pipe, i);
 	if (x)

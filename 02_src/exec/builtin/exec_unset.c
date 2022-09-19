@@ -51,7 +51,6 @@ int	exec_unset(t_cmd command, t_data *data)
 	name = get_env_name(command.av[1]);
 	while (tmp)
 	{
-		// printf("CONTENT:	%s\nNAME:	%s\n", tmp->content, name);
 		// if (ft_strlen(tmp->content) > ft_strlen(name))
 		// 	return (return_error("unset: ", "not a valid identifier", 1));
 		if (!ft_strncmp(tmp->content, name, ft_strlen(name)))
