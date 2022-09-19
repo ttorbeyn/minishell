@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:46:27 by vic               #+#    #+#             */
-/*   Updated: 2022/09/19 20:50:16 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 21:21:48 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,15 @@ int	exec_unset(t_cmd command, t_data *data)
 		{
 			unset_from_env(&data->env, i);
 			update_envp(data);
+			free(tmp);
+			free(name);
 			return (0);
 		}
 		i++;
 		tmp = tmp->next;
 	}
+	free(tmp);
+	free(name);
 	update_envp(data);
 	return (return_error("unset: Invalid parameter name", NULL, 1));
 }
