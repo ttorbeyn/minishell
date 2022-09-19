@@ -48,3 +48,22 @@ void	ft_tokfree(t_token **tok)
 	}
 	*tok = 0;
 }
+
+void	ft_herefree(t_here **here)
+{
+	t_here	*current;
+	t_here	*tmp;
+
+	if ((!here) || (!(*here)))
+		return ;
+	current = *here;
+	while (current != 0)
+	{
+		if (current->limit)
+			free(current->limit);
+		tmp = current;
+		current = current->next;
+		free(tmp);
+	}
+	*here = 0;
+}

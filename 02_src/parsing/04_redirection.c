@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:06:11 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/18 20:11:13 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:17:49 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_hereadd_back(t_here **token, t_here *new)
 		current->next = new;
 		new->next = 0;
 	}
+	return ;
 }
 
 t_token	*cmd_redirection(t_token *token, t_redir *redir, int chmod)
@@ -69,6 +70,7 @@ t_token	*redirection(t_token *token, t_cmd *cmd)
 	{
 		token = token->next;
 		ft_hereadd_back(&cmd->in.doc, ft_herenew(token->content));
+		token = token->next;
 	}
 	return (token);
 }

@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:37:15 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/18 20:07:47 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 11:18:21 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		if (parser(&data))
 			continue ;
+		// print_cmd(&data);
 		cmd_switch(&data);
 		// ft_free_data(&data);
 		// system("leaks minishell");
