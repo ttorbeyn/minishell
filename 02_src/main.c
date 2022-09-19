@@ -26,7 +26,6 @@ int	main(int ac, char **av, char **env)
 		data.line = get_line("Éshell : ");
 		if (lex(&data) || parser(&data))
 			continue ;
-//		print_cmd(&data);
 		cmd_switch(&data);
 		ft_free_data(&data);
 	}

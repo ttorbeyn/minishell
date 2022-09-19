@@ -35,8 +35,6 @@
 
 int		g_exit;
 
-//main
-
 //PARSING
 
 //00_init
@@ -52,6 +50,8 @@ int		lex(t_data *data);
 //02_ft_strtok
 int		token_type(char *token);
 char	*create_token(t_token **token, char *begin, char *end);
+int		tok_sep(t_token **token, char **tmp, char *line, int i);
+int		init_token(char **line, char **tmp, t_token **token);
 t_token	*ft_strtok(char *line);
 
 //02_ft_strtok_utils
@@ -72,8 +72,10 @@ t_token	*delete_tok_null_begin(t_token *token);
 t_token	*delete_tok_null(t_data *data);
 
 //04_quotes
+void	ft_free_str(char **begin, char **middle, char **end);
+int		change_env_tok(t_data *data, t_token *token, int i);
+char	*change_env_str(char *quoted, t_data *data);
 int		remove_quotes(t_token *token, int i, char quote, t_data *data);
-char	*replace_env(char *quote, t_data *data);
 t_token	*clean_tok(t_data *data);
 
 //04_quotes_utils
@@ -83,9 +85,13 @@ char	*triple_join(char *s1, char *s2, char *s3);
 //04_redirection
 t_here	*ft_herenew(char *limit);
 void	ft_hereadd_back(t_here **token, t_here *new);
-//t_token	*cmd_redirection(t_token *token, t_redir redir, int chmod);
 t_token	*cmd_redirection(t_token *token, t_redir *redir, int chmod);
 t_token	*redirection(t_token *token, t_cmd *cmd);
+
+//98_free
+void	ft_lstfree(t_list **lst);
+void	ft_tokfree(t_token **tok);
+void	ft_herefree(t_here **here);
 
 //99_utils
 int		is_space(char c);
@@ -93,13 +99,6 @@ int		ft_error(char *errmsg, int errnum);
 void	ft_free_data(t_data *data);
 void	ft_free_cmd(t_data *data);
 void	ft_free_env(t_data *data);
-void	print_tok(t_token **token);
-int		print_cmd(t_data *data);
-
-//free
-void	ft_lstfree(t_list **lst);
-void	ft_tokfree(t_token **tok);
-void	ft_herefree(t_here **here);
 
 /// EXEC ///
 int		cmd_switch(t_data *data);
@@ -144,5 +143,9 @@ int		return_error(char *msg, char *msg2, int system);
 int		return_error_exit(char *msg, char *msg2, int system);
 void	ft_abort(char *str);
 void	print_lst(t_list **env);
+
+//TO DELETE
+void	print_tok(t_token **token);
+int		print_cmd(t_data *data);
 
 #endif
