@@ -15,9 +15,9 @@
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*new;
-	int	i;
-	int	j;
-	int	count;
+	int		i;
+	int		j;
+	int		count;
 
 	if ((!s1) || (!s2))
 		return (NULL);

@@ -14,7 +14,7 @@
 
 char	*double_join(char *s1, char *s2)
 {
-	char *new;
+	char	*new;
 
 	if (s1 && s2)
 	{
@@ -33,9 +33,6 @@ char	*triple_join(char *s1, char *s2, char *s3)
 	char	*new;
 	char	*tmp;
 
-	printf("s1 : |%s|\n", s1);
-	printf("s2 : |%s|\n", s2);
-	printf("s3 : |%s|\n", s3);
 	new = NULL;
 	if (s1 && s2 && s3)
 	{

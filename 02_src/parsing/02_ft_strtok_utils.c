@@ -12,6 +12,13 @@
 
 #include "../../01_include/minishell.h"
 
+t_token	*free_out(t_token **token, char **line)
+{
+	ft_tokfree(token);
+	free(*line);
+	return (NULL);
+}
+
 t_token	*ft_toknew(char *content, int type)
 {
 	t_token	*new;
@@ -67,7 +74,8 @@ int	check_quotes(int i, char *line)
 	{
 		i++;
 		if (line[i] == quote_type)
-			return (i);
+			return (++i);
 	}
-	return (ft_error("quote not closed\n", -1));
+	ft_error("quote not closed\n", 19);
+	return (-1);
 }
