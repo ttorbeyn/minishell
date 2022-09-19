@@ -30,7 +30,7 @@ t_token	*count_arg(t_token *token, t_cmd *cmd)
 		return (0);
 	while (token && token->type != PIPE)
 	{
-		if (token && token->type > 1)
+		if (token->type > 1)
 			token = redirection(token, cmd);
 		else
 		{

@@ -19,7 +19,7 @@ t_here	*ft_herenew(char *limit)
 	new = malloc(sizeof(t_here));
 	if (new == NULL)
 		ft_panic("Error : malloc ft_herenew\n");
-	new->limit = limit;
+	new->limit = ft_strdup(limit);
 	new->next = NULL;
 	return (new);
 }
@@ -30,7 +30,7 @@ void	ft_hereadd_back(t_here **token, t_here *new)
 
 	current = *token;
 	if (token == NULL || new == NULL)
-		return ;
+		ft_panic("Error : ft_hereadd_back\n");
 	if (*token == NULL)
 		*token = new;
 	else
@@ -40,7 +40,6 @@ void	ft_hereadd_back(t_here **token, t_here *new)
 		current->next = new;
 		new->next = 0;
 	}
-	return ;
 }
 
 t_token	*cmd_redirection(t_token *token, t_redir *redir, int chmod)
