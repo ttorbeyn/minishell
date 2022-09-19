@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:07:39 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/18 19:23:48 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/18 20:08:14 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	redirections(t_data *data, t_pipes *pipe, int i)
 
 	pipe->f_in = 0;
 	pipe->f_out = 1;
-	ft_putstr_fd(data->cmds[i].in.doc->limit, 2);
 	if (data->cmds[i].in.doc)
 		pipe->f_in = open_heredoc(data->cmds[i].in.doc);
 	in = data->cmds[i].in.path;

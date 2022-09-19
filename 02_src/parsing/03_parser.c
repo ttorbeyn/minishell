@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:05:57 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/18 19:55:59 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/18 20:05:27 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,13 @@ t_token	*count_arg(t_token *token, t_cmd *cmd)
 		return (0);
 	while (token && token->type != PIPE)
 	{
-		while (token && token->type == WORD && token->type != PIPE)
+		while (token && token->type == WORD)
 		{
 			cmd->ac++;
 			token = token->next;
 		}
 		if (token && token->type > 1)
-		{
 			token = redirection(token, cmd);
-			token = token->next;
-		}
 	}
 	if (token && token->type == PIPE)
 	{
@@ -83,7 +80,6 @@ int	parser(t_data *data)
 
 	i = 0;
 	data->token = clean_tok(data);
-	printf("coucou2\n");
 	tmp = data->token;
 	data->cmds = malloc(sizeof(t_cmd) * data->nb_cmd);
 	while (i < data->nb_cmd)
@@ -91,8 +87,6 @@ int	parser(t_data *data)
 		tmp = make_av(tmp, &data->cmds[i]);
 		i++;
 	}
-	printf("coucou54\n");
-
 //	free(tmp);
 	return (0);
 }

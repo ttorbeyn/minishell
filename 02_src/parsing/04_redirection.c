@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:06:11 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/17 14:25:04 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/18 20:11:13 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,7 @@ t_token	*redirection(t_token *token, t_cmd *cmd)
 	else if (token->type == DLESS)
 	{
 		token = token->next;
-		printf("content : %s\n", token->content);
 		ft_hereadd_back(&cmd->in.doc, ft_herenew(token->content));
-		printf("bonjour\n");
 	}
 	return (token);
 }
