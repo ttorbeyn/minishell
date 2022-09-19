@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:37:15 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/19 16:41:44 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 17:14:01 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	main(int ac, char **av, char **env)
 	{
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, signal_handler);
-		data.line = get_line();
+		data.line = get_line("Éshell : ");
 		if (lex(&data) || parser(&data))
 			continue ;
-		// print_cmd(&data);
+		print_cmd(&data);
 		cmd_switch(&data);
 		ft_free_data(&data);
 	}

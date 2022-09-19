@@ -15,14 +15,21 @@
 int	check_separator(t_token **token)
 {
 	t_token	*tmp;
+	t_token	*new;
+	char	*line;
 
 	tmp = *token;
 	if (tmp && tmp->type == PIPE)
 		return (1);
 	while (tmp)
 	{
-		if (tmp->type != WORD && tmp->type != PIPE
-			&& (!tmp->next || tmp->next->type != WORD))
+		if (tmp->type == PIPE && !tmp->next)
+		{
+			line = get_line("> ");
+			new = ft_strtok(line);
+			tmp->next = new;
+		}
+		if (tmp->type != WORD && (!tmp->next || tmp->next->type != WORD))
 			return (1);
 		tmp = tmp->next;
 	}
