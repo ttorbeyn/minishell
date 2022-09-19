@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:18:37 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/18 19:14:36 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 12:56:29 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,6 @@ void	ft_free_cmd(t_data *data)
 	while (i < data->nb_cmd)
 	{
 		j = 0;
-		if (data->cmds[i].in.path)
-			free(data->cmds[i].in.path);
-		if (data->cmds[i].out.path)
-			free(data->cmds[i].out.path);
 		while (data->cmds[i].av[j])
 			free(data->cmds[i].av[j++]);
 		if (data->cmds[i].av)

@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 19:21:26 by vmusunga          #+#    #+#             */
-/*   Updated: 2022/09/19 11:37:37 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 13:40:27 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	lauching_process(t_data *data, t_pipes *p)
 			signal(SIGQUIT, SIG_DFL);
 		signal(SIGINT, signal_handler);
 		ft_fork(data, p, i);
+		
 		i++;
 	}
 	return ;
