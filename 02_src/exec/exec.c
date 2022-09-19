@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 18:18:39 by vic               #+#    #+#             */
-/*   Updated: 2022/09/19 13:35:01 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:39:37 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	exec_builtin(t_data *data, int i, t_pipes *pipe)
 		return (exec_cd(data->cmds[i], data));
 	if (!ft_strncmp(data->cmds[i].av[0], "echo", 4)
 		&& ft_strlen(data->cmds[i].av[0]) == 4)
-		return (exec_echo(data->cmds[i], pipe));
+		return (exec_echo(data->cmds[i]));
 	if (!ft_strncmp(data->cmds[i].av[0], "exit", 4)
 		&& ft_strlen(data->cmds[i].av[0]) == 4)
 		return (exec_exit(data->cmds[i]));
 	if (!ft_strncmp(data->cmds[i].av[0], "env", 3)
 		&& ft_strlen(data->cmds[i].av[0]) == 3)
-		return (exec_env(data->cmds[i], data, pipe));
+		return (exec_env(data->cmds[i], data));
 	if (!ft_strncmp(data->cmds[i].av[0], "pwd", 3)
 		&& ft_strlen(data->cmds[i].av[0]) == 3)
 		return (exec_pwd(data, pipe));
@@ -68,7 +68,6 @@ void	executer(t_cmd cmd, t_data *data)
 	if (ret == -1)
 	{
 		path = check_path(data->envp, cmd.av[0]);
-		ret = execve(path, cmd.av, data->envp);
 		if (!path)
 		{
 			return_error_exit(cmd.av[0], ": Command not found", 127);
@@ -76,7 +75,10 @@ void	executer(t_cmd cmd, t_data *data)
 			return ;
 		}
 		else
+		{
+			ret = execve(path, cmd.av, data->envp);
 			free(path);
+		}
 	}
 	if (ret == -1)
 		return_error_exit("Execution error", NULL, 2);

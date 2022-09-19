@@ -6,7 +6,7 @@
 /*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:36:41 by vic               #+#    #+#             */
-/*   Updated: 2022/09/18 16:23:23 by vmusunga         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:50:08 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	update_envp(t_data *data)
 			free(data->envp[i]);
 		free(data->envp);
 	}
-	data->envp = malloc(sizeof(char *) * len);
+	data->envp = malloc(sizeof(char *) * (len + 1));
 	if (!data->envp)
 		return ;
 	i = -1;
@@ -46,13 +46,19 @@ void	update_envp(t_data *data)
 		data->envp[i] = ft_strdup(tmp->content);
 		tmp = tmp->next;
 	}
+	data->envp[i] = ft_strdup(tmp->content);
+	data->envp[i + 1] = NULL;
 }
 
-int	exec_env(t_cmd command, t_data *data, t_pipes *p)
+int	exec_env(t_cmd command, t_data *data)
 {
 	t_list	*tmp;
+	int		i;
+	int		len;
 
+	i = 0;
 	tmp = data->env;
+	len = ft_lstsize(&data->env);
 	if (command.ac > 1)
 	{
 		return_error("env: No arguments allowed", NULL, 1);
@@ -60,10 +66,11 @@ int	exec_env(t_cmd command, t_data *data, t_pipes *p)
 	}
 	if (!tmp)
 		return (1);
-	while (tmp)
+	while (i < len)
 	{
-		ft_putendl_fd(tmp->content, p->f_out);
+		printf("%s\n", tmp->content);
 		tmp = tmp->next;
+		i++;
 	}
 	free(tmp);
 	return (0);

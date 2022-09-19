@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   00_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ttorbeyn <ttorbeyn@student.s19.be>         +#+  +:+       +#+        */
+/*   By: vmusunga <vmusunga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 18:05:21 by ttorbeyn          #+#    #+#             */
-/*   Updated: 2022/09/05 18:05:23 by ttorbeyn         ###   ########.fr       */
+/*   Updated: 2022/09/19 19:46:07 by vmusunga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	envp_init(t_data *data, char **env)
 		data->envp[i] = ft_strdup(env[i]);
 		i++;
 	}
+	data->envp[i] = NULL;
 	return ;
 }
 
