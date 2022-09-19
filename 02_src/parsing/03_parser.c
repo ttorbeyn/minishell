@@ -77,7 +77,7 @@ int	parser(t_data *data)
 
 	i = 0;
 	data->token = clean_tok(data);
-	data->token = delete_tok_null(data);
+//	data->token = delete_tok_null(data);
 	if (!data->token)
 		return (ft_error("command not found\n", 127));
 	tmp = data->token;
